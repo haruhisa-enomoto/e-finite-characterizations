@@ -1,0 +1,158 @@
+module
+
+public import EFiniteCharacterizations.Subcategories.CompactTorsionEquivalences
+
+/-! # Finite semibrick generators of compact torsion classes -/
+
+@[expose] public section
+
+open CategoryTheory CategoryTheory.Limits
+
+universe u
+namespace EFiniteCharacterizations
+
+variable {R : Type u} [Ring R] [IsNoetherianRing R] [IsArtinianRing R]
+
+private abbrev Cl (R : Type u) [Ring R] := Skeleton (FGModuleCat.{u} R)
+private noncomputable abbrev rep (x : Cl R) := (fromSkeleton _).obj x
+private abbrev perp (s : Finset (Cl R)) (Y : FGModuleCat.{u} R) :=
+  ∀ x ∈ s, rightHomOrthogonal (rep x) Y
+
+private noncomputable def cost (x : Cl R) := (FGModuleCat.moduleLength (rep x) + 1)^2
+
+omit [IsArtinianRing R] in
+private theorem perp_toSkeleton (A Y : FGModuleCat.{u} R) :
+    rightHomOrthogonal (rep (toSkeleton A)) Y ↔ rightHomOrthogonal A Y := by
+  let e := fromSkeletonToSkeletonIso A
+  exact ⟨fun h f ↦ (cancel_epi e.hom).mp ((h _).trans comp_zero.symm),
+    fun h f ↦ (cancel_epi e.inv).mp ((h _).trans comp_zero.symm)⟩
+
+omit [IsArtinianRing R] [IsNoetherianRing R] in
+private theorem insert_cost (s : Finset (Cl R)) (x : Cl R) [DecidableEq (Cl R)] :
+    ∑ z ∈ insert x s, cost z ≤ cost x + ∑ z ∈ s, cost z := by
+  by_cases hx : x ∈ s <;> simp [hx]
+
+private theorem exists_finite_semibrick_perp (s₀ : Finset (Cl R)) :
+    ∃ s : Finset (Cl R), IsSemibrick (s : Set (Cl R)) ∧ perp s = perp s₀ := by
+  classical
+  let mass (s : Finset (Cl R)) := ∑ z ∈ s, cost z
+  have hex : ∃ n : ℕ, ∃ s, perp s = perp s₀ ∧ mass s = n := ⟨_,s₀,rfl,rfl⟩
+  obtain ⟨s,he,hm⟩ := Nat.find_spec hex
+  have mmin (t : Finset (Cl R)) (ht : perp t = perp s) : mass s ≤ mass t :=
+    hm.trans_le (Nat.find_min' hex ⟨t,ht.trans he,rfl⟩)
+  have essential (y : Cl R) (hy : y ∈ s) : perp (s.erase y) ≠ perp s := by
+    intro ht
+    have h := mmin _ ht
+    have hsum := Finset.sum_erase_add s cost hy
+    have hpos : 0 < cost y := by dsimp [cost]; positivity
+    dsimp only [mass] at h
+    omega
+  have restore (y : Cl R) (hy : y ∈ s) (Y : FGModuleCat.{u} R)
+      (h : perp (s.erase y) Y) (hyY : rightHomOrthogonal (rep y) Y) : perp s Y := by
+    intro z hz
+    by_cases hzy : z = y
+    · exact hzy ▸ hyY
+    · exact h z (Finset.mem_erase.mpr ⟨hzy,hz⟩)
+  have regular (x : Cl R) (hx : x ∈ s) (y : Cl R) (hy : y ∈ s) (f : rep x ⟶ rep y)
+      (hf : f ≠ 0) : x = y ∧ IsIso f := by
+    by_cases hep : Epi f
+    · by_cases hxy : x = y
+      · subst y
+        exact ⟨rfl,by by_contra hn; exact (Nat.lt_irrefl _) (FGModuleCat.moduleLength_lt_of_epi f hn)⟩
+      · exfalso
+        apply essential y hy
+        funext Y
+        refine propext ⟨fun h ↦ restore y hy Y h (fun a ↦ (cancel_epi f).mp
+          ((h x (Finset.mem_erase.mpr ⟨hxy,hx⟩) (f ≫ a)).trans comp_zero.symm)),
+          fun h z hz ↦ h z (Finset.mem_of_mem_erase hz)⟩
+    · let A := Abelian.image f
+      let i := Abelian.image.ι f
+      let q := Abelian.factorThruImage f
+      let B := cokernel i
+      let a := toSkeleton A
+      let b := toSkeleton B
+      let t := insert a (insert b (s.erase y))
+      have ht : perp t = perp s := by
+        funext Y
+        apply propext
+        constructor
+        · intro h
+          have ha := (perp_toSkeleton A Y).1 (h a (Finset.mem_insert_self ..))
+          have hb := (perp_toSkeleton B Y).1 (h b (Finset.mem_insert_of_mem (Finset.mem_insert_self ..)))
+          apply restore y hy Y (fun z hz ↦ h z (Finset.mem_insert_of_mem (Finset.mem_insert_of_mem hz)))
+          intro g
+          have hzero := ha (i ≫ g)
+          have hh := cokernel.π_desc i g hzero
+          rw [hb (cokernel.desc i g hzero),comp_zero] at hh
+          exact hh.symm
+        · intro h z hz
+          rcases Finset.mem_insert.mp hz with rfl | hz
+          · exact (perp_toSkeleton A Y).2 (fun g ↦ (cancel_epi q).mp ((h x hx (q ≫ g)).trans comp_zero.symm))
+          rcases Finset.mem_insert.mp hz with rfl | hz
+          · exact (perp_toSkeleton B Y).2 (fun g ↦ (cancel_epi (cokernel.π i)).mp
+              ((h y hy (cokernel.π i ≫ g)).trans comp_zero.symm))
+          · exact h z (Finset.mem_of_mem_erase hz)
+      have hsum := Finset.sum_erase_add s cost hy
+      have hle := (insert_cost (insert b (s.erase y)) a).trans (Nat.add_le_add_left (insert_cost _ b) _)
+      have hmin := mmin t ht
+      have ha : 0 < FGModuleCat.moduleLength A := by
+        by_contra! h
+        have hz := (FGModuleCat.moduleLength_eq_zero_iff_isZero A).1 (Nat.eq_zero_of_le_zero h)
+        exact hf ((Abelian.image.fac f).symm.trans (by change q ≫ i = 0; rw [hz.eq_of_tgt q 0,zero_comp]))
+      have hi : ¬ IsIso i := by
+        intro hh
+        apply hep
+        rw [← Abelian.image.fac f]
+        exact epi_comp q i
+      let S := ShortComplex.mk i (cokernel.π i) (cokernel.condition i)
+      have hs : S.ShortExact := ShortComplex.ShortExact.mk' (ShortComplex.exact_cokernel i)
+        (inferInstanceAs (Mono i)) (inferInstanceAs (Epi (cokernel.π i)))
+      have hlen := FGModuleCat.moduleLength_shortExact S hs
+      change FGModuleCat.moduleLength (rep y) = FGModuleCat.moduleLength A + FGModuleCat.moduleLength B at hlen
+      have hlt := FGModuleCat.moduleLength_lt_of_mono i hi
+      change FGModuleCat.moduleLength A < FGModuleCat.moduleLength (rep y) at hlt
+      have hb : 0 < FGModuleCat.moduleLength B := by omega
+      have hcost : cost a + cost b < cost y := by
+        simp only [cost,a,b,FGModuleCat.moduleLength_eq_of_iso (fromSkeletonToSkeletonIso A),
+          FGModuleCat.moduleLength_eq_of_iso (fromSkeletonToSkeletonIso B),hlen]
+        nlinarith [Nat.mul_le_mul ha hb]
+      change ∑ z ∈ s, cost z ≤ ∑ z ∈ t, cost z at hmin
+      change ∑ z ∈ t, cost z ≤ _ at hle
+      omega
+  refine ⟨s,⟨?_,?_⟩,he⟩
+  · intro y hy
+    refine ⟨fun hz ↦ essential y hy ?_,fun f hf ↦ (regular y hy y hy f hf).2⟩
+    funext Y
+    exact propext ⟨fun h ↦ restore y hy Y h (fun f ↦ hz.eq_of_src f 0),
+      fun h z hz ↦ h z (Finset.mem_of_mem_erase hz)⟩
+  · intro x hx y hy hn f
+    by_contra hf
+    exact hn (regular x hx y hy f hf).1
+
+/-- A torsion class is generated by a single module exactly when it is
+generated by a finite semibrick. -/
+theorem single_generator_iff_finite_semibrick (T : ObjectProperty (FGModuleCat.{u} R)) :
+    (∃ M : FGModuleCat.{u} R, T = generatedTorsionClass M) ↔
+      ∃ s : Finset (Skeleton (FGModuleCat.{u} R)), IsSemibrick (C := FGModuleCat.{u} R) (s : Set _) ∧
+        T = torsionClassGeneratedBySet (s : Set _) := by
+  classical
+  constructor
+  · rintro ⟨M,rfl⟩
+    obtain ⟨s,hs,he⟩ := exists_finite_semibrick_perp ({toSkeleton M} : Finset _)
+    refine ⟨s,hs,congrArg leftHomOrthogonal ?_⟩
+    change rightHomOrthogonal M = perp s
+    rw [he]
+    funext Y
+    simpa only [perp,Finset.mem_singleton,forall_eq] using propext (perp_toSkeleton M Y).symm
+  · rintro ⟨s,_,rfl⟩
+    let A (x : s) := rep x.val
+    refine ⟨⨁ A,congrArg leftHomOrthogonal ?_⟩
+    funext Y
+    refine propext ⟨fun h f ↦ ?_,fun h x hx f ↦ ?_⟩
+    · apply biproduct.hom_ext'
+      intro j
+      simpa using h j.val j.property (biproduct.ι A j ≫ f)
+    · let j : s := ⟨x,hx⟩
+      simpa using congrArg (biproduct.ι A j ≫ ·) (h (biproduct.π A j ≫ f))
+
+end EFiniteCharacterizations

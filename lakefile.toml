@@ -1,0 +1,13 @@
+name = "e_finite_characterizations"
+version = "0.1.0"
+defaultTargets = ["EFiniteCharacterizations"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "c55e6e786f49471c72fbddbec5415808896aec1e"
+
+[[lean_lib]]
+name = "EFiniteCharacterizations"
+globs = ["EFiniteCharacterizations", "EFiniteCharacterizations.*"]
+weakLeanArgs = ["-j1", "-M14000"]
