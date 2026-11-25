@@ -46,11 +46,13 @@ sources:
     author_endorsement: "participated"
     note: >-
       Theorem A(I, II, III), Theorem B, and Corollary C are the five compared
-      endpoints in Challenge.lean. All 44 numbered theorems, propositions, lemmas,
-      and corollaries in the manuscript (including Grothendieck-monoid cancellation,
-      Frobenius finite-field brick bounds, and ring epimorphisms with Artin targets)
-      are proved in the library and indexed in docs/PAPER-CORRESPONDENCE.md. AI
-      contributions to the manuscript and formalization are documented in PROVENANCE.md.
+      endpoints in Challenge.lean. All 44 numbered statements in the manuscript
+      (the 3 introductory results together with the 41 body and appendix theorems,
+      propositions, lemmas, and corollaries, including Grothendieck-monoid
+      cancellation, Frobenius finite-field brick bounds, and ring epimorphisms
+      with Artin targets) are proved in the library and indexed in
+      docs/PAPER-CORRESPONDENCE.md. AI contributions to the manuscript and
+      formalization are documented in PROVENANCE.md.
 
 related_formalizations:
   - id: "https://github.com/TauCetiProject/TauCeti"
@@ -80,9 +82,9 @@ status:
     existence of a split basic Morita chart and 3 geometric conditions across all
     such charts), Theorem B (rank at most two over any field), and Corollary C
     (Weyman's conjecture over algebraically closed fields). All 44 numbered
-    statements in the body and appendix of the manuscript and all cited inputs
-    required along the Lean proof routes are proved in the library using only Lean
-    core and Mathlib.
+    statements of the manuscript (the 3 introductory results and the 41 body and
+    appendix statements) and all cited inputs required along the Lean proof routes
+    are proved in the library using only Lean core and Mathlib.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -131,8 +133,11 @@ review:
   status: "unreviewed"
   notes: >-
     No independent human expert review of the Lean statements or proof terms has
-    been recorded. All declarations pass Lean kernel compilation, axiom scanning,
-    and external kernel replay (NanoDa and con-ron via lake comparator).
+    been recorded. All 6,463 declarations across the proof library and
+    Solution.lean compile in the Lean 4 kernel and pass the full declaration
+    axiom scan; the external checkers NanoDa and con-ron (via lake comparator)
+    replay the five Challenge endpoint proofs in Solution.lean together with
+    their transitive proof dependencies.
 
 alignment:
   namespace: "EFiniteCharacterizations"
@@ -141,17 +146,17 @@ alignment:
       lean: "EFiniteCharacterizations.Challenge.arbitraryField"
       module: "Challenge"
       status: "proved"
-      note: "Proved in Solution.lean via EFiniteCharacterizations.proveArbitraryField and equivalences_arbitraryField."
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveArbitraryField, calling equivalences_arbitraryField and isEFinite_iff_twoTermThickGeneration."
     - source: "Theorem A(II): dimension-vector characterizations (dim-brick) and (dim-stab) over infinite fields"
       lean: "EFiniteCharacterizations.Challenge.infiniteField"
       module: "Challenge"
       status: "proved"
-      note: "Proved in Solution.lean via EFiniteCharacterizations.proveInfiniteField and equivalences_infiniteField."
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveInfiniteField, calling isEFinite_iff_finite_brickClassesOfClass and isEFinite_iff_finite_stableClassesOfClass (counterpart to equivalences_infiniteField)."
     - source: "Theorem A(III): geometric characterizations (moduli-pt), (open-brick), and (open-wide) over algebraically closed fields"
       lean: "EFiniteCharacterizations.Challenge.algebraicallyClosedField"
       module: "Challenge"
       status: "proved"
-      note: "Proved in Solution.lean via EFiniteCharacterizations.proveAlgebraicallyClosedField and equivalences_algebraicallyClosedField."
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveAlgebraicallyClosedField, calling basicPresentation, atMostOneKingClosedPoint_of_isEFinite, isEFinite_iff_kingClosedPoints, and isEFinite_iff_open_vertex_loci across all split basic Morita charts (counterpart to equivalences_algebraicallyClosedField)."
     - source: "Theorem B (= Theorem 8.4): equivalence of E-finiteness, τ-tilting finiteness, and brick-finiteness in rank at most two"
       lean: "EFiniteCharacterizations.Challenge.rankTwo"
       module: "Challenge"
@@ -161,6 +166,6 @@ alignment:
       lean: "EFiniteCharacterizations.Challenge.brickDiscreteMultiplicityFree"
       module: "Challenge"
       status: "proved"
-      note: "Proved in Solution.lean via EFiniteCharacterizations.proveBrickDiscreteMultiplicityFree and brick_discrete_iff_multiplicityFree."
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveBrickDiscreteMultiplicityFree, combining isEFinite_iff_finite_brickClassesOfClass with rank_componentWeightSpace_le_one_of_isEFinite and isEFinite_iff_multiplicityFree (counterpart to brick_discrete_iff_multiplicityFree)."
 
 acknowledgements: "Lean and Mathlib."

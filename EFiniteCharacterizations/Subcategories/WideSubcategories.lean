@@ -2,7 +2,14 @@ module
 
 public import EFiniteCharacterizations.Subcategories.ExactAbelianApproximations
 
-/-! # Wide subcategories of finite modules -/
+/-!
+# Functorial finiteness of wide subcategories
+
+Theorem 5.1 (`thm:wide`, condition `(wide)` in Theorem A(I)): studies simple objects of
+wide subcategories and establishes `isEFinite_iff_functoriallyFinite_wideClasses`,
+showing over an arbitrary field that `R` is E-finite if and only if every wide
+subcategory of `mod R` is functorially finite.
+-/
 
 @[expose] public section
 

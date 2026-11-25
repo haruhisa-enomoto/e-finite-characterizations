@@ -38,8 +38,9 @@ To separate statement review from proof checking:
    library without importing `Challenge.lean`.
 4. [`scripts/verify-comparator.sh`](../scripts/verify-comparator.sh) invokes the
    toolchain's `lake comparator` (configured by [`comparator.json`](../comparator.json))
-   inside `bwrap` (Bubblewrap) to verify definition/type identity and replay the proofs
-   through the Lean kernel and the external checkers **NanoDa** and **con-ron**.
+   inside `bwrap` (Bubblewrap) to verify definition/type identity and replay those five
+   endpoint proofs together with their transitive proof dependencies through the Lean
+   kernel and the external checkers **NanoDa** and **con-ron**.
 
 Run the full verification sequence on Linux (with `bwrap` on `PATH` and `.lake/packages`
 as a real directory rather than a symbolic link):

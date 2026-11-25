@@ -7,9 +7,11 @@ public import EFiniteCharacterizations.Silting.Fans.ConeSaturation
 # Exponentially growing families of stable bricks over finite fields
 
 Proposition A.3 (`prop:fq-count`) of Appendix A. Over a finite field `k` of order `q`,
-a two-term projective presentation whose `g`-vector lies outside `Σ(R)` produces at
-least `q^s / (c₀ s)` nonisomorphic stable bricks over `k` in each degree `s ≥ 1`,
-distributed across a fixed finite set of integral weights and bounded in endolength
+let `P` be a two-term projective presentation whose `g`-vector lies outside `Σ(R)`, and
+set `b₀ = dim_k P⁰` and `c₀ = max(1, b₀ · dim_k P⁻¹)`. There is a finite set `Ω` of
+integral weights such that for every auxiliary extension degree `s ≥ 1`, at least
+`q^s / (c₀ s)` pairwise nonisomorphic ground-field bricks in `mod R` are stable at
+weights in `Ω` and satisfy `endolength(M) ≤ b₀` and `dim_k M ≤ s · b₀`
 (`exists_stable_bricks_of_each_degree`).
 -/
 

@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.Modules.Endolength
 public import Mathlib.RingTheory.SimpleModule.WedderburnArtin
 public import Mathlib.RingTheory.SimpleRing.Matrix
 
-/-! # Generic bricks and simple Artinian epic targets -/
+/-!
+# Generic bricks and simple Artinian ring epimorphisms
+
+Defines `IsGenericBrick` (an infinite-dimensional `R`-module that is finite over its
+endomorphism division ring) and proves `no_generic_right_brick_iff_finite_ring_epimorphisms`
+(Theorem 7.8, `(no-gen-brick) ⇔ (ring-epi)` via Wedderburn–Artin theory and Morita
+equivalence with the unique simple module of a simple Artinian epimorphic target).
+-/
 
 @[expose] public section
 

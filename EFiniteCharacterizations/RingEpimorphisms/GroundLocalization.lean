@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.ScalarExtension.GeometricStableFamily
 public import EFiniteCharacterizations.RingEpimorphisms.GeometricLocalizationCharts
 public import EFiniteCharacterizations.Stability.GroundStableDeterminant
 
-/-! # The universal localization criterion over arbitrary fields -/
+/-!
+# Equivalence of E-finiteness with finite-dimensionality of universal localizations
+
+Theorem 7.8 (`thm:large`, condition `(univ-loc)` in Theorem A(I)): combines the forward
+rank-induction proof (`UniversalLocalization.lean`) with infinite-dimensional
+localization charts at missing weights to prove
+`isEFinite_iff_rightUniversalLocalizationsFinite` over an arbitrary field.
+-/
 
 @[expose] public section
 

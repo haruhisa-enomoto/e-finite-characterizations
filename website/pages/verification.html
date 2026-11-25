@@ -15,9 +15,9 @@
   review is separated from proof checking:
 </p>
 <ul>
-  <li><strong>Standalone statement (<a href="{{source_url}}/EFiniteCharacterizations/Statement.lean"><code>Statement.lean</code></a> → <a href="{{source_url}}/Challenge.lean"><code>Challenge.lean</code></a>):</strong> Imports Mathlib alone and states the five endpoints (Theorem A(I–III), Theorem B, and Corollary C) with five deliberate <code>sorry</code> placeholders.</li>
-  <li><strong>Proof replay (<a href="{{source_url}}/Solution.lean"><code>Solution.lean</code></a> + <code>lake comparator</code>):</strong> Proves all five declarations from the library without importing <code>Challenge.lean</code>. Running <code>lake comparator</code> inside Bubblewrap checks that every definition and theorem type in the transitive closure matches byte-for-byte, confirms zero extra axioms, and replays all proofs through the Lean 4 kernel as well as the external checkers <strong>NanoDa</strong> and <strong>con-ron</strong>.</li>
-  <li><strong>Human review surface:</strong> No human expert has reviewed the 388 proof modules line-by-line. Because the kernel and external checkers guarantee soundness of the proofs, the sole mathematical judgment left to a human reader is verifying that the ~625 lines of Mathlib-only definitions in <code>Statement.lean</code> faithfully express the statements of the paper.</li>
+  <li><strong>Whole-library compilation &amp; axiom scan:</strong> All 6,463 declarations across the 388 library modules and <a href="{{source_url}}/Solution.lean"><code>Solution.lean</code></a> compile in the Lean 4 kernel and pass <code>Lean.collectAxioms</code> with only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code> (zero <code>sorryAx</code>).</li>
+  <li><strong>Standalone statement (<a href="{{source_url}}/EFiniteCharacterizations/Statement.lean"><code>Statement.lean</code></a> → <a href="{{source_url}}/Challenge.lean"><code>Challenge.lean</code></a>) &amp; external kernel replay:</strong> <code>Statement.lean</code> imports Mathlib alone and states the five headline endpoints (Theorem A(I–III), Theorem B, and Corollary C). Running <code>lake comparator</code> inside Bubblewrap checks byte-for-byte definition/type identity between <code>Challenge.lean</code> and <code>Solution.lean</code> and replays those five endpoint proofs together with their transitive proof dependencies through the Lean 4 kernel, <strong>NanoDa</strong>, and <strong>con-ron</strong>.</li>
+  <li><strong>Human review surface:</strong> No human expert has reviewed the Lean source files line-by-line. For the five compared Challenge endpoints, human mathematical review reduces to checking that the ~625 lines of Mathlib-only definitions in <code>Statement.lean</code> faithfully express the statements of the paper. For the remaining 41 body and appendix statements (some of which, such as Corollary 7.9 in <code>ArtinTargets.lean</code>, compile in the library outside <code>Solution.lean</code>'s import closure), human judgment also applies to comparing their declarations in <a href="{{source_url}}/docs/PAPER-CORRESPONDENCE.md"><code>docs/PAPER-CORRESPONDENCE.md</code></a> against the manuscript.</li>
 </ul>
 
 <h2>2. Summary of verification checks</h2>
@@ -43,7 +43,7 @@
     </tr>
     <tr>
       <td><strong>External kernel comparator</strong></td>
-      <td>Accepted by Lean 4 kernel, NanoDa, and con-ron on all five endpoints in <code>comparator.json</code>.</td>
+      <td>Accepted by Lean 4 kernel, NanoDa, and con-ron on the five Challenge endpoints in <code>comparator.json</code> and their transitive proof dependencies.</td>
     </tr>
     <tr>
       <td><strong>Hosted Palomar preflight (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/actions/runs/45530650450">Run 45530650450 ↗</a>)</strong></td>

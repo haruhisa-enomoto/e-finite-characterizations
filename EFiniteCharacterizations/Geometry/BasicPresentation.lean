@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.Geometry.SplitBasicSimples
 public import EFiniteCharacterizations.Geometry.TorsionLoci
 public import Mathlib.CategoryTheory.ObjectProperty.Equivalence
 
-/-! # A split basic presentation for the representation varieties of any algebra -/
+/-!
+# Split basic Morita presentations and open-locus characterizations
+
+Constructs `basicPresentation k R` over an algebraically closed field (equipping any
+finite-dimensional `k`-algebra with a Morita-equivalent split basic corner and vertex
+idempotents) and proves `equivalences_openLoci` (Theorem 6.1 / Theorem A(III),
+establishing `(E-fin) ⇔ (open-brick)` and `(E-fin) ⇔ (open-wide)`).
+-/
 
 @[expose] public section
 

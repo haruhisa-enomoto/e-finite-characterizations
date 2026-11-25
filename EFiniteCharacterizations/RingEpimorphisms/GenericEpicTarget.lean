@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.Algebra.MatrixImageEpimorphism
 public import EFiniteCharacterizations.Algebra.MatrixImageSimpleArtinian
 public import EFiniteCharacterizations.LargeModules.GenericBrickExclusion
 
-/-! # Infinite simple Artinian epic targets of non-E-finite algebras -/
+/-!
+# Simple Artinian epimorphic targets and the `(no-gen-brick)` characterization
+
+Theorem 7.8 (`thm:large`) of the manuscript: constructs an infinite-dimensional simple
+Artinian ring-epimorphic target from a missing integral weight over any field
+(`isEFinite_of_simpleArtinianEpicTargetsFinite`) and deduces
+`isEFinite_iff_no_generic_right_brick` (`(E-fin) ⇔ (no-gen-brick)`).
+-/
 
 @[expose] public section
 

@@ -16,7 +16,7 @@ This document maps the results of Haruhisa Enomoto's
 
 ---
 
-## Quick lookup: the 22 conditions of Theorem A
+## Quick lookup: `(E-fin)` and its 22 characterizations in Theorem A
 
 All 17 arbitrary-field equivalences are bundled in
 [`equivalences_arbitraryField`](../EFiniteCharacterizations/Characterizations/Equivalences.lean)
@@ -33,24 +33,24 @@ All 17 arbitrary-field equivalences are bundled in
 | `(mon-dim)` | any | `M(T) → K₀(mod Λ)` injective for every torsion class `T` | Thm. 4.1 | [`isEFinite_iff_injective_torsionMonoid`](../EFiniteCharacterizations/GrothendieckGroups/TorsionMonoidEmbedding.lean) |
 | `(comp-tors)` | any | Every compact torsion class `⊥(M⊥)` is functorially finite | Thm. 3.2 | [`isEFinite_iff_generatedTorsionClass_functoriallyFinite`](../EFiniteCharacterizations/Subcategories/CompactTorsionEquivalences.lean) |
 | `(num-disj)` | any | Every torsion pair `(T, F)` is numerically disjoint | Thm. 3.2 | [`isEFinite_iff_numericallyDisjointTorsionPairs`](../EFiniteCharacterizations/Characterizations/HomCharacterizations.lean) |
-| `(wide)` | any | Every wide subcategory `W ⊆ mod Λ` is functorially finite | Thm. 5.1 | [`isEFinite_iff_functoriallyFinite_wideClasses`](../EFiniteCharacterizations/Characterizations/ModuleCriteria.lean) |
-| `(wide₁)` | any | `Filt(B)` is functorially finite for every brick `B` | Thm. 5.1 | [`isEFinite_iff_functoriallyFinite_filteredBy`](../EFiniteCharacterizations/Characterizations/ModuleCriteria.lean) |
+| `(wide)` | any | Every wide subcategory `W ⊆ mod Λ` is functorially finite | Thm. 5.1 | [`isEFinite_iff_functoriallyFinite_wideClasses`](../EFiniteCharacterizations/Subcategories/WideSubcategories.lean) |
+| `(wide₁)` | any | `Filt(B)` is functorially finite for every brick `B` | Thm. 5.1 | [`isEFinite_iff_functoriallyFinite_filteredBy`](../EFiniteCharacterizations/Subcategories/BrickFiltrationEquivalences.lean) |
 | `(brick-label)` | any | Every brick `B` labels a cover `T' ⋖ T` in `f-tors Λ` via `Filt(B) = T ∩ (T')⊥` | Thm. 5.1 | [`isEFinite_iff_brickLabels`](../EFiniteCharacterizations/Subcategories/BrickLabels.lean) |
 | `(n-sbrick)` | any | `{S₁, …, S_n}` is the unique `n`-element semibrick | Thm. 3.2 | [`isEFinite_iff_unique_fullSize_semibrick`](../EFiniteCharacterizations/Characterizations/HomCharacterizations.lean) |
 | `(fin-sbrick)` | any | Every semibrick in `mod Λ` is finite | Thm. 3.2 | [`isEFinite_iff_finite_semibricks`](../EFiniteCharacterizations/Characterizations/HomCharacterizations.lean) |
-| `(brick-discrete)` | any | Only finitely many bricks of each endolength `r ≥ 1` | Thm. 5.2, Prop. 5.3 | [`isEFinite_iff_endo_brick`](../EFiniteCharacterizations/Characterizations/ModuleCriteria.lean) |
+| `(brick-discrete)` | any | Only finitely many bricks of each endolength `r ≥ 1` | Thm. 5.2, Prop. 5.3 | [`isEFinite_iff_endo_brick`](../EFiniteCharacterizations/Stability/EndInvariantSubmodules.lean) |
 | `(endo-stab)` | any | Only finitely many `θ`-stable bricks of each endolength `r ≥ 1` | Thm. 5.2, Prop. 5.3 | [`isEFinite_iff_endo_stab`](../EFiniteCharacterizations/ScalarExtension/GroundFieldWitnesses.lean) |
 | `(poly-brick)` | any | Bricks of length `≤ m` grow at most polynomially in `m` | Thm. 5.2 | [`isEFinite_iff_poly_brick`](../EFiniteCharacterizations/Stability/PolynomialBrickGrowth.lean) |
-| `(no-gen-brick)` | any | No generic brick in `Mod Λ` | Thm. 7.8 | [`isEFinite_iff_no_generic_right_brick`](../EFiniteCharacterizations/Characterizations/ModuleCriteria.lean) |
+| `(no-gen-brick)` | any | No generic brick in `Mod Λ` | Thm. 7.8 | [`isEFinite_iff_no_generic_right_brick`](../EFiniteCharacterizations/RingEpimorphisms/GenericEpicTarget.lean) |
 | `(no-gen-grain)` | any | No generic grain in `Mod Λ` | Thm. 7.8 | [`isEFinite_iff_no_genericGrain`](../EFiniteCharacterizations/LargeModules/GenericGrainCriterion.lean) |
 | `(thick-gen)` | any | Every thick subcategory of `K^{[-1,0]}(proj Λ)` has a presilting generator | Prop. 7.5, Thm. 7.8 | [`isEFinite_iff_boundedProjectiveThickGeneration`](../EFiniteCharacterizations/Silting/ThickSubcategories/BoundedProjectiveHomotopy.lean) |
-| `(univ-loc)` | any | Every universal localization of `Λ` is finite-dimensional | Thm. 7.8 | [`isEFinite_iff_rightUniversalLocalizationsFinite`](../EFiniteCharacterizations/Characterizations/ModuleCriteria.lean) |
-| `(ring-epi)` | any | Every ring epimorphism `Λ → Γ` to a simple Artinian ring has `dim_k Γ < ∞` | Thm. 7.8 | [`no_generic_right_brick_iff_finite_ring_epimorphisms`](../EFiniteCharacterizations/Characterizations/ModuleCriteria.lean) |
+| `(univ-loc)` | any | Every universal localization of `Λ` is finite-dimensional | Thm. 7.8 | [`isEFinite_iff_rightUniversalLocalizationsFinite`](../EFiniteCharacterizations/RingEpimorphisms/GroundLocalization.lean) |
+| `(ring-epi)` | any | Every ring epimorphism `Λ → Γ` to a simple Artinian ring has `dim_k Γ < ∞` | Thm. 7.8 | [`equivalences_arbitraryField`](../EFiniteCharacterizations/Characterizations/Equivalences.lean), [`no_generic_right_brick_iff_finite_ring_epimorphisms`](../EFiniteCharacterizations/LargeModules/GenericBrick.lean) |
 | `(dim-brick)` | infinite | Only finitely many bricks of each dimension vector `d ∈ ℕ^n` | Cor. 5.4 | [`isEFinite_iff_dim_brick`](../EFiniteCharacterizations/Characterizations/FixedClassFiniteness.lean) |
 | `(dim-stab)` | infinite | Only finitely many `θ`-stable bricks of each dimension vector `d ∈ ℕ^n` | Cor. 5.4 | [`isEFinite_iff_dim_stab`](../EFiniteCharacterizations/Characterizations/FixedClassFiniteness.lean) |
 | `(moduli-pt)` | `k = k̄` | Every King moduli space `M_θ^{ss}(Λ, d)` has at most one closed point | Thm. 6.1 | [`isEFinite_iff_kingClosedPoints`](../EFiniteCharacterizations/Geometry/GeometricCriteria.lean) |
-| `(open-brick)` | `k = k̄` | Every brick has a Zariski-open `GL(d)`-orbit in `rep(Λ, d)` | Thm. 6.1 | [`equivalences_openLoci`](../EFiniteCharacterizations/Geometry/GeometricCriteria.lean) |
-| `(open-wide)` | `k = k̄` | Every wide subcategory defines a Zariski-open locus in `rep(Λ, d)` | Thm. 6.1 | [`equivalences_openLoci`](../EFiniteCharacterizations/Geometry/GeometricCriteria.lean) |
+| `(open-brick)` | `k = k̄` | Every brick has a Zariski-open `GL(d)`-orbit in `rep(Λ, d)` | Thm. 6.1 | [`equivalences_openLoci`](../EFiniteCharacterizations/Geometry/BasicPresentation.lean) |
+| `(open-wide)` | `k = k̄` | Every wide subcategory defines a Zariski-open locus in `rep(Λ, d)` | Thm. 6.1 | [`equivalences_openLoci`](../EFiniteCharacterizations/Geometry/BasicPresentation.lean) |
 
 The per-algebra equivalence among the seven brick-finiteness conjectures `(i)`–`(vii)`
 stated after Theorem A is proved in

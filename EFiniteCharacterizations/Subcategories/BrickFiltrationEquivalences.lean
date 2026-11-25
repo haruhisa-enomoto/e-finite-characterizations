@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.Subcategories.TorsionGeneratorPresentatio
 public import EFiniteCharacterizations.Subcategories.BrickFiltrations
 public import Mathlib.RingTheory.LittleWedderburn
 
-/-! # Finiteness tests on the subcategories filtered by one brick -/
+/-!
+# Functorial finiteness of single-brick filtration subcategories
+
+Theorem 5.1 (`thm:wide`, condition `(wide₁)` in Theorem A(I)): proves
+`isEFinite_iff_functoriallyFinite_filteredBy`, showing over any field that `R` is
+E-finite if and only if `Filt(B)` (`FilteredBy B`) is functorially finite for every
+brick `B` in `mod R`.
+-/
 
 @[expose] public section
 

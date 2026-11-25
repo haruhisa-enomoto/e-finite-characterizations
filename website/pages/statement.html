@@ -19,18 +19,19 @@
 
 <nav class="toc-bar" aria-label="On this page">
   <strong>Contents</strong>
-  <a href="#thm-a-table">All 22 conditions of Theorem A</a>
+  <a href="#thm-a-table"><code>(E-fin)</code> &amp; its 22 characterizations</a>
   <a href="#thm-bc">Theorem B, Corollary C &amp; unified conjectures</a>
   <a href="#encoding">Mathlib-only encoding choices</a>
   <a href="#lean-source">Lean declarations &amp; Challenge source</a>
 </nav>
 
-<h2 id="thm-a-table">1. Complete reference for Theorem A</h2>
+<h2 id="thm-a-table">1. Complete reference for Theorem A: <span class="cond">(E-fin)</span> and its 22 characterizations</h2>
 <p>
   Let <span class="m">Λ</span> be a finite-dimensional algebra over a field <span class="m">k</span> of rank
-  <span class="m">n = |sim Λ|</span>. Baseline condition <span class="cond">(E-fin)</span> states that every
-  integral class <span class="m">g = [P<sup>0</sup>] − [P<sup>−1</sup>] ∈ K<sub>0</sub>(proj Λ)</span> is
-  represented by a two-term presilting complex (<span class="m">Hom<sub>K<sup>b</sup>(proj Λ)</sub>(U, U[1]) = 0</span>).
+  <span class="m">n = |sim Λ|</span> (written <code>A := Rᵐᵒᵖ</code> in <code>Statement.lean</code>). Baseline
+  condition <span class="cond">(E-fin)</span> states that every integral class
+  <span class="m">g = [P<sup>0</sup>] − [P<sup>−1</sup>] ∈ K<sub>0</sub>(proj Λ)</span> is represented by a
+  two-term presilting complex (<span class="m">Hom<sub>K<sup>b</sup>(proj Λ)</sub>(U, U[1]) = 0</span>).
 </p>
 
 <table>
@@ -39,7 +40,7 @@
       <th>Tag</th>
       <th>Scope</th>
       <th>Mathematical statement</th>
-      <th>Predicate in <code>Statement.lean</code></th>
+      <th>Complete formulation in <code>Statement.lean</code></th>
     </tr>
   </thead>
   <tbody>
@@ -53,7 +54,7 @@
       <td><span class="cond">(K₀-Hom)</span></td>
       <td>any <span class="m">k</span></td>
       <td>For all <span class="m">M, N ∈ mod Λ</span>, if <span class="m">[M] = [N] ≠ 0</span> in <span class="m">K<sub>0</sub>(mod Λ)</span>, then <span class="m">Hom<sub>Λ</sub>(M, N) ≠ 0</span>.</td>
-      <td><code>cl X = cl Y → cl X ≠ 0 → ∃ f, f ≠ 0</code></td>
+      <td><code>∀ X Y : Mod A, cl X = cl Y → cl X ≠ 0 → ∃ f : X ⟶ Y, f ≠ 0</code></td>
     </tr>
     <tr>
       <td><span class="cond">(mon-dim)</span></td>
@@ -65,25 +66,25 @@
       <td><span class="cond">(comp-tors)</span></td>
       <td>any <span class="m">k</span></td>
       <td>Every singly generated (compact) torsion class <span class="m"><sup>⊥</sup>(M<sup>⊥</sup>)</span> in <span class="m">mod Λ</span> is functorially finite.</td>
-      <td><code>FunctoriallyFinite (leftPerp (rightPerp M))</code></td>
+      <td><code>∀ M : Mod A, FunctoriallyFinite (leftPerp (rightPerp M))</code></td>
     </tr>
     <tr>
       <td><span class="cond">(num-disj)</span></td>
       <td>any <span class="m">k</span></td>
       <td>For every torsion pair <span class="m">(𝒯, ℱ)</span> and nonzero <span class="m">X ∈ 𝒯, Y ∈ ℱ</span>, <span class="m">[X] ≠ [Y]</span> in <span class="m">K<sub>0</sub>(mod Λ)</span>.</td>
-      <td><code>TorsionPair T F → … → cl X ≠ cl Y</code></td>
+      <td><code>∀ T F : ObjectProperty (Mod A), TorsionPair T F → ∀ X Y, T X → F Y → ¬ IsZero X → ¬ IsZero Y → cl X ≠ cl Y</code></td>
     </tr>
     <tr>
       <td><span class="cond">(wide)</span></td>
       <td>any <span class="m">k</span></td>
       <td>Every wide subcategory <span class="m">𝒲 ⊆ mod Λ</span> is functorially finite.</td>
-      <td><code>Wide W → FunctoriallyFinite W</code></td>
+      <td><code>∀ W : ObjectProperty (Mod A), Wide W → FunctoriallyFinite W</code></td>
     </tr>
     <tr>
       <td><span class="cond">(wide₁)</span></td>
       <td>any <span class="m">k</span></td>
       <td>For every brick <span class="m">B ∈ brick Λ</span>, the filtration subcategory <span class="m">Filt(B)</span> is functorially finite.</td>
-      <td><code>Brick B → FunctoriallyFinite (Filt B)</code></td>
+      <td><code>∀ B : Mod A, Brick B → FunctoriallyFinite (Filt B)</code></td>
     </tr>
     <tr>
       <td><span class="cond">(brick-label)</span></td>
@@ -95,25 +96,25 @@
       <td><span class="cond">(n-sbrick)</span></td>
       <td>any <span class="m">k</span></td>
       <td>The set <span class="m">sim Λ</span> of simple modules is the unique <span class="m">n</span>-element semibrick in <span class="m">mod Λ</span>.</td>
-      <td><code>s.ncard = (simpleClasses A).ncard → s = simpleClasses A</code></td>
+      <td><code>∀ s : Set (Skeleton (Mod A)), Semibrick s → s.Finite → s.ncard = (simpleClasses A).ncard → s = simpleClasses A</code></td>
     </tr>
     <tr>
       <td><span class="cond">(fin-sbrick)</span></td>
       <td>any <span class="m">k</span></td>
       <td>Every semibrick in <span class="m">mod Λ</span> is finite.</td>
-      <td><code>Semibrick s → s.Finite</code></td>
+      <td><code>∀ s : Set (Skeleton (Mod A)), Semibrick s → s.Finite</code></td>
     </tr>
     <tr>
       <td><span class="cond">(brick-discrete)</span></td>
       <td>any <span class="m">k</span></td>
       <td>For every <span class="m">r ≥ 1</span>, only finitely many classes in <span class="m">brick Λ</span> have endolength <span class="m">r</span>.</td>
-      <td><code>(classes (endolength k X = r ∧ Brick X)).Finite</code></td>
+      <td><code>∀ r : ℕ, 0 < r → (classes (fun X : Mod A ↦ endolength k X = r ∧ Brick X)).Finite</code></td>
     </tr>
     <tr>
       <td><span class="cond">(endo-stab)</span></td>
       <td>any <span class="m">k</span></td>
       <td>For every <span class="m">θ ∈ K<sub>0</sub>(proj Λ)</span> and <span class="m">r ≥ 1</span>, only finitely many <span class="m">θ</span>-stable bricks have endolength <span class="m">r</span>.</td>
-      <td><code>(classes (endolength k X = r ∧ Stable k P Q X)).Finite</code></td>
+      <td><code>∀ (P Q : Proj A) (r : ℕ), 0 < r → (classes (fun X : Mod A ↦ endolength k X = r ∧ Stable k P Q X)).Finite</code></td>
     </tr>
     <tr>
       <td><span class="cond">(poly-brick)</span></td>
@@ -125,13 +126,13 @@
       <td><span class="cond">(no-gen-brick)</span></td>
       <td>any <span class="m">k</span></td>
       <td>There is no infinite-dimensional generic brick in <span class="m">Mod Λ</span>.</td>
-      <td><code>¬ ∃ M, GenericBrick k M</code></td>
+      <td><code>¬ ∃ M : ModuleCat.{u} A, GenericBrick k M</code></td>
     </tr>
     <tr>
       <td><span class="cond">(no-gen-grain)</span></td>
       <td>any <span class="m">k</span></td>
       <td>There is no generic grain in <span class="m">Mod Λ</span>.</td>
-      <td><code>¬ ∃ M, GenericGrain k M</code></td>
+      <td><code>¬ ∃ M : ModuleCat.{u} A, GenericGrain k M</code></td>
     </tr>
     <tr>
       <td><span class="cond">(thick-gen)</span></td>
@@ -155,31 +156,31 @@
       <td><span class="cond">(dim-brick)</span></td>
       <td><span class="m">k</span> infinite</td>
       <td>For every dimension vector <span class="m">d</span>, only finitely many bricks have class <span class="m">d</span> (<em>Schur-representation-finiteness</em>).</td>
-      <td><code>(classes (cl X = c ∧ Brick X)).Finite</code></td>
+      <td><code>∀ c : K₀ A, (classes (fun X : Mod A ↦ cl X = c ∧ Brick X)).Finite</code></td>
     </tr>
     <tr>
       <td><span class="cond">(dim-stab)</span></td>
       <td><span class="m">k</span> infinite</td>
       <td>For every <span class="m">θ ∈ K<sub>0</sub>(proj Λ)</span> and class <span class="m">d</span>, only finitely many <span class="m">θ</span>-stable bricks have class <span class="m">d</span>.</td>
-      <td><code>(classes (cl X = c ∧ Stable k P Q X)).Finite</code></td>
+      <td><code>∀ (P Q : Proj A) (c : K₀ A), (classes (fun X : Mod A ↦ cl X = c ∧ Stable k P Q X)).Finite</code></td>
     </tr>
     <tr>
       <td><span class="cond">(moduli-pt)</span></td>
       <td><span class="m">k = k̄</span></td>
       <td>For every <span class="m">θ ∈ K<sub>0</sub>(proj Λ)</span> and <span class="m">d ∈ ℕ<sup>n</sup></span>, King's moduli scheme <span class="m">ℳ<sub>θ</sub><sup>ss</sup>(Λ, d)</span> has at most one closed point.</td>
-      <td><code>C.KingCondition</code></td>
+      <td><code>∀ C : Chart k R, C.KingCondition</code></td>
     </tr>
     <tr>
       <td><span class="cond">(open-brick)</span></td>
       <td><span class="m">k = k̄</span></td>
       <td>Every brick <span class="m">B ∈ brick Λ</span> has a Zariski-open <span class="m">GL(d)</span>-orbit in <span class="m">rep(Λ, d)</span>.</td>
-      <td><code>C.BrickOrbits</code></td>
+      <td><code>∀ C : Chart k R, C.BrickOrbits</code></td>
     </tr>
     <tr>
       <td><span class="cond">(open-wide)</span></td>
       <td><span class="m">k = k̄</span></td>
       <td>For every <span class="m">d ∈ ℕ<sup>n</sup></span> and wide <span class="m">𝒲 ⊆ mod Λ</span>, <span class="m">{x ∈ rep(Λ, d) | x ∈ 𝒲}</span> is Zariski-open.</td>
-      <td><code>C.WideLoci</code></td>
+      <td><code>∀ C : Chart k R, C.WideLoci</code></td>
     </tr>
   </tbody>
 </table>

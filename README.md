@@ -119,11 +119,14 @@ The mathematical architecture and all differences from the paper's proof routes 
 explained in [docs/proofs/PROOF-ROUTES.md](docs/proofs/PROOF-ROUTES.md).
 
 The central bridge of Theorem A(I) links the polyhedral condition `(E-fin)` with the
-module-theoretic condition `(K₀-Hom)`. At any weight inside a presilting cone `C(U)`,
-the semistable category is the `τ`-perpendicular category `J(U)` (`ConeTorsionPairs.lean`),
-which is equivalent to `mod Γ_U` for a finite-dimensional reduction algebra of smaller
-rank (`PerpendicularReduction.lean`), so the dimension vectors of its stable bricks are
-linearly independent. Conversely, any pair of nonzero modules `M, N` with `[M] = [N]`
+module-theoretic condition `(K₀-Hom)`. At any weight in the relative interior `C°(U)`
+of the cone of a basic two-term presilting complex `U` with `r` indecomposable
+summands, the semistable category is the `τ`-perpendicular category `J(U)`
+(`ConeTorsionPairs.lean`), which is equivalent to `mod Γ_U` for a finite-dimensional
+reduction algebra of rank `n - r` (`PerpendicularReduction.lean`,
+`PerpendicularSimpleCount.lean`; at `U = 0` the weight is `0` and `J(0) = mod Λ` of
+rank `n`, while points on a proper face are treated on that face), so the dimension
+vectors of its stable bricks are linearly independent. Conversely, any pair of nonzero modules `M, N` with `[M] = [N]`
 and `Hom_Λ(M, N) = 0` yields a finite semibrick with linearly dependent dimension
 vectors jointly stable at a single integral weight (`RationalExtraction.lean`), giving
 `(E-fin) ⇒ (K₀-Hom)`. In the reverse direction, an integral class `g ∉ Σ(Λ)` produces
@@ -195,15 +198,20 @@ Conventions match the paper:
 
 ### Axioms and review status
 
-Every endpoint—and all 6,463 declarations across the library and `Solution.lean`—uses
-only the three standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`,
-with zero `sorry`.
+All 6,463 declarations across the proof library and `Solution.lean` compile in the
+Lean 4 kernel and depend only on the three standard axioms `propext`,
+`Classical.choice`, and `Quot.sound`, with zero `sorry`. In addition, `lake comparator`
+replays the five standalone `Challenge.lean` endpoint proofs in `Solution.lean` (and
+their transitive proof dependencies) through the Lean 4 kernel and the external
+checkers **NanoDa** and **con-ron**.
 
-No human expert has reviewed the Lean source files line-by-line. Lean's kernel (together
-with the external checkers NanoDa and con-ron in `lake comparator`) verifies that the
-proofs establish the statements in `Challenge.lean`; whether the Mathlib-only
-definitions in `Statement.lean` faithfully express the mathematical statements of the
-paper is a human judgment.
+No human expert has reviewed the Lean source files line-by-line. For the five compared
+endpoints, human mathematical review reduces to checking that the Mathlib-only
+definitions in `Statement.lean` faithfully express the statements in the paper; for
+the remaining 41 body and appendix statements (such as Corollary 7.9, which compiles
+in the library outside `Solution.lean`'s import closure), human judgment also applies
+to comparing their Lean declarations in `docs/PAPER-CORRESPONDENCE.md` with the
+manuscript.
 
 ---
 

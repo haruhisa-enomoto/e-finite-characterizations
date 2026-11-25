@@ -3,7 +3,14 @@ module
 public import EFiniteCharacterizations.Stability.BrickWalls
 public import EFiniteCharacterizations.Stability.SubmoduleWeights
 
-/-! # Testing weights on endomorphism-invariant submodules of a brick -/
+/-!
+# Endomorphism-invariant submodules and the `(brick-discrete)` characterization
+
+Shows that every weight on submodules of a brick `M` attains its maximum on an
+`End_R(M)`-invariant submodule (`exists_endInvariant_weight_maximizer`), and combines
+normalized submodule polytopes with finite-field witness bounds to prove
+`isEFinite_iff_endo_brick` (`(E-fin) ⇔ (brick-discrete)` over an arbitrary field).
+-/
 
 @[expose] public section
 

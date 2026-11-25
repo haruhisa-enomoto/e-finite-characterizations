@@ -1,3 +1,3 @@
 {
-  "summary": "All five standalone endpoints (Theorem A(I–III), Theorem B, and Corollary C) pass Lean kernel, NanoDa, and con-ron comparison, and all 6,463 library declarations depend only on propext, Classical.choice, and Quot.sound. Palomar's hosted mechanical preflight passed with zero errors on release v0.1.0."
+  "summary": "All 6,463 declarations across the library and Solution.lean compile in Lean 4 and depend only on propext, Classical.choice, and Quot.sound. The five standalone Challenge endpoints (Theorem A(I–III), Theorem B, and Corollary C) and their proof dependencies also pass external kernel replay via NanoDa and con-ron, and Palomar's hosted mechanical preflight passed with zero errors on release v0.1.0."
 }

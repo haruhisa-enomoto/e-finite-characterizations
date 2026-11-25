@@ -169,30 +169,38 @@
     <!-- Panel A: Kronecker fan -->
     <g transform="translate(20,10)">
       <text x="180" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="14.5" font-weight="bold" fill="#1b2024">(a) Kronecker algebra k(1 ⇉ 2): E-infinite</text>
-      <!-- Shaded cones in Q1, Q3, Q2, and partial Q4 accumulating at (1,-1) -->
-      <polygon points="180,155 180,38 305,38 305,155" fill="#dce9ec" opacity="0.72"/>
-      <polygon points="180,155 55,155 55,268 180,268" fill="#dce9ec" opacity="0.72"/>
-      <polygon points="180,155 55,155 55,38 180,38" fill="#dce9ec" opacity="0.55"/>
-      <!-- Preprojective & preinjective fans in Q4 leaving gap around (1,-1) -->
-      <polygon points="180,155 305,155 305,248" fill="#cde0e5" opacity="0.8"/>
-      <polygon points="180,155 180,268 273,268" fill="#cde0e5" opacity="0.8"/>
+      <!-- Shaded cones in Q1 (+,+), Q2 (-,+), Q3 (-,-) -->
+      <polygon points="180,155 180,38 300,38 300,155" fill="#dce9ec" opacity="0.72"/>
+      <polygon points="180,155 55,155 55,275 180,275" fill="#dce9ec" opacity="0.72"/>
+      <polygon points="180,155 55,155 55,38 180,38" fill="#dce9ec" opacity="0.58"/>
+      <!-- Preprojective & preinjective cones in Q4 (+,-) filling all of Q4 up to the single missing ray (1,-1) -->
+      <polygon points="180,155 300,155 300,272" fill="#cde0e5" opacity="0.82"/>
+      <polygon points="180,155 180,275 297,275" fill="#cde0e5" opacity="0.82"/>
       <!-- Axes -->
       <line x1="48" y1="155" x2="315" y2="155" stroke="#5c6770" stroke-width="1.2" marker-end="url(#arr-ink)"/>
-      <line x1="180" y1="274" x2="180" y2="30" stroke="#5c6770" stroke-width="1.2" marker-end="url(#arr-ink)"/>
-      <!-- Accumulating rays in Q4 -->
-      <line x1="180" y1="155" x2="305" y2="217" stroke="#1d4e5f" stroke-width="1.1"/>
-      <line x1="180" y1="155" x2="305" y2="238" stroke="#1d4e5f" stroke-width="1.0" opacity="0.85"/>
-      <line x1="180" y1="155" x2="305" y2="250" stroke="#1d4e5f" stroke-width="0.9" opacity="0.7"/>
-      <line x1="180" y1="155" x2="242" y2="268" stroke="#1d4e5f" stroke-width="1.1"/>
-      <line x1="180" y1="155" x2="262" y2="268" stroke="#1d4e5f" stroke-width="1.0" opacity="0.85"/>
-      <line x1="180" y1="155" x2="274" y2="268" stroke="#1d4e5f" stroke-width="0.9" opacity="0.7"/>
-      <!-- Missing ray (1,-1) -->
-      <line x1="180" y1="155" x2="292" y2="267" stroke="#9c2f23" stroke-width="2.1" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
-      <circle cx="242" cy="217" r="3.5" fill="#9c2f23"/>
+      <line x1="180" y1="280" x2="180" y2="30" stroke="#5c6770" stroke-width="1.2" marker-end="url(#arr-ink)"/>
+      <!-- Accumulating preprojective rays (j+1, -j) for j = 1..5 -->
+      <line x1="180" y1="155" x2="300" y2="215" stroke="#1d4e5f" stroke-width="1.15"/>
+      <line x1="180" y1="155" x2="300" y2="235" stroke="#1d4e5f" stroke-width="1.05" opacity="0.9"/>
+      <line x1="180" y1="155" x2="300" y2="245" stroke="#1d4e5f" stroke-width="0.95" opacity="0.82"/>
+      <line x1="180" y1="155" x2="300" y2="251" stroke="#1d4e5f" stroke-width="0.85" opacity="0.74"/>
+      <line x1="180" y1="155" x2="300" y2="255" stroke="#1d4e5f" stroke-width="0.75" opacity="0.66"/>
+      <!-- Accumulating preinjective rays (j, -j-1) for j = 1..5 -->
+      <line x1="180" y1="155" x2="240" y2="275" stroke="#1d4e5f" stroke-width="1.15"/>
+      <line x1="180" y1="155" x2="260" y2="275" stroke="#1d4e5f" stroke-width="1.05" opacity="0.9"/>
+      <line x1="180" y1="155" x2="270" y2="275" stroke="#1d4e5f" stroke-width="0.95" opacity="0.82"/>
+      <line x1="180" y1="155" x2="276" y2="275" stroke="#1d4e5f" stroke-width="0.85" opacity="0.74"/>
+      <line x1="180" y1="155" x2="280" y2="275" stroke="#1d4e5f" stroke-width="0.75" opacity="0.66"/>
+      <!-- Missing ray (1,-1) (unique ray outside Σ(Λ)) -->
+      <line x1="180" y1="155" x2="299" y2="274" stroke="#ffffff" stroke-width="3.2"/>
+      <line x1="180" y1="155" x2="299" y2="274" stroke="#9c2f23" stroke-width="2.0" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+      <circle cx="240" cy="215" r="3.4" fill="#9c2f23"/>
       <text x="322" y="159" font-family="Georgia, serif" font-size="13" fill="#1b2024">[P₁]</text>
       <text x="187" y="34" font-family="Georgia, serif" font-size="13" fill="#1b2024">[P₂]</text>
-      <text x="250" y="212" font-family="ui-monospace, monospace" font-size="11.5" fill="#9c2f23" font-weight="bold">g = (1, −1) ∉ Σ(Λ)</text>
-      <text x="72" y="95" font-family="sans-serif" font-size="11.5" fill="#2c4a54">Σ(Λ) covers Q₁, Q₂, Q₃</text>
+      <text x="304" y="218" font-family="ui-monospace, monospace" font-size="10.5" fill="#1d4e5f">(2,−1)</text>
+      <text x="205" y="286" font-family="ui-monospace, monospace" font-size="10.5" fill="#1d4e5f">(1,−2)</text>
+      <text x="290" y="287" font-family="ui-monospace, monospace" font-size="11" fill="#9c2f23" font-weight="bold">g = (1,−1) ∉ Σ(Λ)</text>
+      <text x="68" y="95" font-family="sans-serif" font-size="11.2" fill="#2c4a54">Σ(Λ) = ℝ² \ ℝ&gt;0(1,−1)</text>
     </g>
 
     <line x1="410" y1="24" x2="410" y2="276" stroke="#dcd9cf" stroke-width="1"/>
@@ -241,9 +249,9 @@
   <article class="card">
     <h3>Exact statements &amp; Challenge surface</h3>
     <p>
-      Read all 22 conditions of Theorem A alongside their exact Lean predicates, see how right modules,
-      Grothendieck monoids, and King's projective moduli schemes are encoded using Mathlib alone, and
-      inspect the standalone <code>Challenge.lean</code> file.
+      Read <span class="cond">(E-fin)</span> and all 22 equivalent conditions of Theorem A alongside their
+      complete <code>Statement.lean</code> formulations, see how right modules, Grothendieck monoids, and
+      King's projective moduli schemes are encoded using Mathlib alone, and inspect <code>Challenge.lean</code>.
     </p>
     <p><a href="statement.html">Open Statements →</a></p>
   </article>

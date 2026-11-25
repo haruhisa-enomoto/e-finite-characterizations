@@ -9,19 +9,26 @@ public import EFiniteCharacterizations.Silting.Fans.RankTwoTauTilting
 # Bridge from the proof library to the standalone statements
 
 This file proves the five standalone predicates defined in
-`EFiniteCharacterizations/Statement.lean` (`proveArbitraryField`,
-`proveInfiniteField`, `proveAlgebraicallyClosedField`, `proveRankTwo`, and
-`proveBrickDiscreteMultiplicityFree`) from the library's main theorems:
+`EFiniteCharacterizations/Statement.lean` from the library:
 
-* `equivalences_arbitraryField`, `equivalences_infiniteField`, and
-  `equivalences_algebraicallyClosedField` (`Characterizations/Equivalences.lean`);
-* `rankTwoEquivalences` (`Silting/Fans/RankTwoTauTilting.lean`);
-* `brick_discrete_iff_multiplicityFree` (`Geometry/ComponentMultiplicity.lean`).
-
-The private lemmas in this file establish the routine dictionary between the
-minimal Mathlib-only encodings of `Statement.lean` (pairs of projectives for
-integral weights, multisets for Grothendieck monoids, and arbitrary split basic
-Morita charts `Statement.Chart k R`) and the library's internal structures.
+* `proveArbitraryField` (**Theorem A(I)**): proved from `equivalences_arbitraryField`
+  (`Characterizations/Equivalences.lean`), using `isEFinite_iff_twoTermThickGeneration`
+  (`Silting/ThickSubcategories/ThickGenerationCriterion.lean`) for `(thick-gen)`.
+* `proveInfiniteField` (**Theorem A(II)**, counterpart to `equivalences_infiniteField`):
+  proved directly from `isEFinite_iff_finite_brickClassesOfClass` and
+  `isEFinite_iff_finite_stableClassesOfClass` (`Characterizations/FixedClassFiniteness.lean`).
+* `proveAlgebraicallyClosedField` (**Theorem A(III)**, counterpart to
+  `equivalences_algebraicallyClosedField`): constructs a split basic Morita chart via
+  `basicPresentation` and proves chart invariance from
+  `atMostOneKingClosedPoint_of_isEFinite`, `isEFinite_iff_kingClosedPoints`, and
+  `isEFinite_iff_open_vertex_loci` (`Geometry/`).
+* `proveRankTwo` (**Theorem B**): proved from `rankTwoEquivalences`
+  (`Silting/Fans/RankTwoTauTilting.lean`).
+* `proveBrickDiscreteMultiplicityFree` (**Corollary C**, counterpart to
+  `brick_discrete_iff_multiplicityFree`): combines
+  `isEFinite_iff_finite_brickClassesOfClass` with
+  `rank_componentWeightSpace_le_one_of_isEFinite` and `isEFinite_iff_multiplicityFree`
+  (`Geometry/ComponentMultiplicity.lean`).
 -/
 
 @[expose] public section
