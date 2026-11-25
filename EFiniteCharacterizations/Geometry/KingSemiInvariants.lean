@@ -5,7 +5,14 @@ public import Mathlib.Algebra.DirectSum.Internal
 public import Mathlib.LinearAlgebra.Determinant
 public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Scheme
 
-/-! # The graded semi-invariant ring of a vertex representation variety -/
+/-!
+# Graded semi-invariant rings and King moduli schemes
+
+Constructs the coordinate ring `coordinateAlgebra`, the graded `GL(d)`-semi-invariant
+pieces `kingSemiInvariants`, the direct-sum ring `KingSemiInvariantRing`, and King's
+projective moduli scheme `kingProj = Proj(KingSemiInvariantRing)` (`kingModuli` for
+an integral projective class `g`) on the vertex representation variety `rep(A, d)`.
+-/
 
 @[expose] public section
 

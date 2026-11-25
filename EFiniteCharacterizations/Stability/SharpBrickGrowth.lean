@@ -4,7 +4,14 @@ public import EFiniteCharacterizations.Stability.OppositeAlgebra
 public import EFiniteCharacterizations.Stability.PolynomialBrickGrowth
 public import EFiniteCharacterizations.LinearAlgebra.NormalizedWeightPatterns
 
-/-! # The rank-dependent cumulative bound for bricks -/
+/-!
+# Explicit polynomial bound on cumulative brick counts
+
+Second assertion of Theorem 5.2 (`thm:walls`): for an E-finite algebra of rank
+`n ≥ 2` over any field, the number of isomorphism classes of bricks of composition
+length at most `m` is at most `2(n - 1)(m + 1)^{n(n - 1)}`
+(`sharpBrickGrowth_of_isEFinite`, `right_brick_count_le_of_isEFinite`).
+-/
 
 @[expose] public section
 
@@ -72,7 +79,8 @@ theorem sharpBrickGrowth_of_isEFinite (h : IsEFinite R) (r m : ℕ)
 
 include k in
 omit [IsNoetherianRing R] [IsArtinianRing R] in
-/-- The explicit A′ bound in the right-module convention. -/
+/-- **Theorem 5.2 (explicit bound):** For an E-finite algebra of rank `n ≥ 2`, at most
+`2(n - 1)(m + 1)^{n(n - 1)}` isomorphism classes of right bricks have composition length `≤ m`. -/
 theorem right_brick_count_le_of_isEFinite (h : IsEFinite R) (m : ℕ) :
     let n := (simpleIsomorphismClasses Rᵐᵒᵖ).ncard
     2 ≤ n → (bricksOfLengthLE (R := Rᵐᵒᵖ) m).ncard ≤ 2 * (n - 1) * (m + 1) ^ (n * (n - 1)) := by

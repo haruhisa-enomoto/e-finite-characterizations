@@ -3,7 +3,19 @@ module
 public import EFiniteCharacterizations.Silting.ThickSubcategories.ThickGenerationCriterion
 public import Mathlib.Algebra.Homology.HomotopyCategory.Plus
 
-/-! # The bounded homotopy category of finite projectives -/
+/-!
+# Presilting generation of thick subcategories inside `Kᵇ(proj R)`
+
+Proposition 7.5 (`prop:thick-generation`) and the `(thick-gen)` characterization in
+Theorem A(I) / Theorem 7.8:
+
+* `bounded_thick_iff`: compares thick closure inside `Kᵇ(proj R)` with the ambient
+  homotopy envelope on two-term complexes.
+* `exists_maximum_basic_thick_generator` (**Proposition 7.5**): over an E-finite
+  algebra, any basic presilting object `U ∈ H` with the maximum number of
+  indecomposable summands satisfies `H = thick(U) ∩ K^{[-1,0]}(proj R)`.
+* `isEFinite_iff_boundedProjectiveThickGeneration`: full equivalence `(E-fin) ⇔ (thick-gen)`.
+-/
 
 @[expose] public section
 

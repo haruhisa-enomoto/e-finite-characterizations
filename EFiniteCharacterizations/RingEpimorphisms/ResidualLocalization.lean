@@ -4,7 +4,15 @@ public import EFiniteCharacterizations.RingEpimorphisms.FiniteDimensionalResidua
 public import EFiniteCharacterizations.Geometry.InfiniteMatrixImage
 public import EFiniteCharacterizations.Stability.OppositeAlgebra
 
-/-! # Residually finite-dimensional quotients of ground localization charts -/
+/-!
+# Infinite-dimensional residual localizations at missing weights
+
+Lemma A.6 (`lem:field-localization`) and the converse localization implications of
+Theorem 7.8 (`thm:large`). When `R` is E-infinite over any field `k`, there exists a
+single morphism `P` between finite projectives whose universal localization `B`
+remains infinite-dimensional over `k` even modulo the common annihilator of all its
+finite-dimensional modules (`exists_infinite_residual_localization`).
+-/
 
 @[expose] public section
 open CategoryTheory

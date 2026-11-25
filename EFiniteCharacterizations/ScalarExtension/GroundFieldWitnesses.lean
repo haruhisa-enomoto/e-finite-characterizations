@@ -6,7 +6,15 @@ public import EFiniteCharacterizations.Subcategories.TorsionPairs
 public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 public import EFiniteCharacterizations.Stability.StableFiniteness
 
-/-! # Consequences of a missing class over an arbitrary ground field -/
+/-!
+# Stable-brick witnesses over an arbitrary ground field
+
+Proposition 2.8 (`prop:stable-witnesses`) and the converse directions of Theorem 3.2
+and Theorem 5.2 (`(endo-stab)`, `(brick-discrete)`, `(fin-sbrick)`, `(n-sbrick)`,
+`(K₀-Hom)`, `(num-disj)`) over an arbitrary field `k`, combining the infinite-field
+minor argument (`MissingWeightWitnesses.lean`) with the finite-field Frobenius orbit
+bounds (`SharpFiniteFieldCount.lean`).
+-/
 
 @[expose] public section
 

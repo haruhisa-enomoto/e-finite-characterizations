@@ -4,7 +4,14 @@ public import EFiniteCharacterizations.Stability.ProjectiveSubspacePairs
 public import EFiniteCharacterizations.ScalarExtension.FieldWitnessFibres
 public import EFiniteCharacterizations.ScalarExtension.FieldExtensionRigidity
 
-/-! # Semistability under algebraic extension of the ground field -/
+/-!
+# Preservation of semistability under algebraic field extensions
+
+Lemma A.2(1) (`lem:frob-dict`) of Appendix A: if a finite-dimensional `R`-module `M`
+is semistable at an integral projective weight over `k`, then `F ⊗_k M` remains
+semistable at the extended weight over every algebraic field extension `F / k`,
+including `k̄` (`isSemistable_extendObj_of_algebraic`).
+-/
 
 @[expose] public section
 open CategoryTheory Module

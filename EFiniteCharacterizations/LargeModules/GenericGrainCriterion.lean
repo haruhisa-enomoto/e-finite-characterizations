@@ -5,7 +5,17 @@ public import EFiniteCharacterizations.DivisionRings.OrderedGroupSeries
 public import EFiniteCharacterizations.Stability.FiniteCogeneratorWeights
 public import EFiniteCharacterizations.LargeModules.GenericBrickExclusion
 
-/-! # Generic grains and integral weights over an arbitrary field -/
+/-!
+# Generic grains at missing integral weights
+
+Proposition 7.6 (`prop:grain`) and the `(E-fin) ⇔ (no-gen-grain)` equivalence of
+Theorem 7.8 (`isEFinite_iff_no_genericGrain`). Whereas the manuscript constructs
+generic grains over Cohn's universal skew field, Lean constructs the required
+division ring self-containedly from Malcev–Neumann well-ordered power series on a
+bi-ordered finitely generated free group (`DivisionRings/`), producing an endofinite
+module `N` realizing the numerical torsion pair at a missing weight whose
+indecomposable summands include a generic grain (`exists_weight_with_generic_grain_kernel`).
+-/
 
 @[expose] public section
 

@@ -3,7 +3,14 @@ module
 public import EFiniteCharacterizations.Subcategories.BrickFiltrationEquivalences
 public import Mathlib.Algebra.Homology.DerivedCategory.Ext.ExactSequences
 
-/-! # Separating a family of modules by Hom and Ext -/
+/-!
+# Zariski-open Hom–Ext separation bounds family size
+
+Lemma A.4 (`lem:open-sep`) of Appendix A: in a fixed `k`-dimension `d`, any family of
+`R`-modules `{B_i}` whose members can be pairwise isolated by witness modules `G_i`
+satisfying `Hom(G_i, B_i) ≠ 0`, `Ext¹(G_i, B_i) = 0`, and `Hom(G_i, B_j) = 0` for
+`j ≠ i` must be finite (`finite_of_hom_ext_separation`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits CategoryTheory.Abelian

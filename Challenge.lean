@@ -31,11 +31,34 @@ public import Mathlib.Algebra.DirectSum.Internal
 public import Mathlib.LinearAlgebra.Determinant
 public import Mathlib.AlgebraicGeometry.ProjectiveSpectrum.Scheme
 
-/-! # Characterizations of E-finite algebras
+/-!
+# Independent statements of the main results
 
-All modules at the endpoints are right modules, realized as left modules over
-the opposite algebra. The integral lattice is the split Grothendieck group of
-finite projectives. Pairs of projectives represent integral weights. -/
+This file states Theorem A(I–III), Theorem B, and Corollary C of
+*Characterizations of E-finite algebras and conjectures on brick-finiteness*
+using only Mathlib definitions. The proof library does not import this file for
+its internal development; `EFiniteCharacterizations/MainTheorems.lean` connects
+the library's theorems to the predicates defined here, and
+`scripts/generate_challenge.py` copies this file into `Challenge.lean`.
+
+## Encoding conventions
+
+* **Right modules:** Following the manuscript, all endpoint statements concern
+  right modules over a finite-dimensional `k`-algebra `R`, realized in Lean as
+  left modules over `Rᵐᵒᵖ` (`Mod Rᵐᵒᵖ = FGModuleCat Rᵐᵒᵖ` and `ModuleCat Rᵐᵒᵖ`).
+* **Projective lattice and weights:** `Lattice A` is the split Grothendieck
+  group `K₀(proj A)` of finitely generated projective modules, and integral
+  weights `θ ∈ K₀(proj A)` are represented as differences `[Q] - [P]` of finite
+  projectives evaluated via `dim_k Hom(Q, -) - dim_k Hom(P, -)`.
+* **Dimension vectors:** Classes `[M] ∈ K₀(mod A)` in the exact Grothendieck
+  group (`cl M : K₀ A`) encode dimension vectors, since the classes of the
+  simple modules form a `ℤ`-basis of `K₀(mod A)`.
+* **Representation varieties and King moduli:** Over an algebraically closed
+  field, `Chart k R` packages a Morita-equivalent split basic `k`-algebra `C.A`
+  equipped with a complete set of primitive orthogonal idempotents. Theorem
+  A(III) proves that every finite-dimensional algebra admits such a chart and
+  that the three geometric criteria hold in every chart.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits
@@ -45,60 +68,78 @@ namespace EFiniteCharacterizations.Statement
 
 variable (R : Type u) [Ring R]
 
+/-- The category `mod R` of finitely generated left `R`-modules (right modules when applied to `Rᵐᵒᵖ`). -/
 abbrev Mod := FGModuleCat.{u} R
+/-- Finitely generated projective `R`-modules. -/
 abbrev Proj := {P : Mod R // Module.Projective R P}
 
-/-- Isomorphism and direct sum relations in the projective lattice. -/
+/-- Isomorphism and direct-sum relations defining the split Grothendieck group `K₀(proj R)`. -/
 def splitRelations : AddSubgroup (FreeAbelianGroup (Proj R)) :=
   AddSubgroup.closure
     ({x | ∃ P Q : Proj R, Nonempty (P.val ≅ Q.val) ∧ x = FreeAbelianGroup.of P - FreeAbelianGroup.of Q} ∪
      {x | ∃ P Q T : Proj R, Nonempty (T.val.obj ≅ P.val.obj ⊞ Q.val.obj) ∧
        x = FreeAbelianGroup.of T - (FreeAbelianGroup.of P + FreeAbelianGroup.of Q)})
 
+/-- The split Grothendieck group `K₀(proj R)` of finitely generated projective modules. -/
 abbrev Lattice := FreeAbelianGroup (Proj R) ⧸ splitRelations R
 
 variable {R}
+/-- The class `[P] ∈ K₀(proj R)` of a finitely generated projective module. -/
 def projClass (P : Proj R) : Lattice R := QuotientAddGroup.mk (FreeAbelianGroup.of P)
 
-/-- Every map to the shift of the complex is null-homotopic. -/
+/-- A two-term projective complex `P → Q` is presilting when `Hom_{Kᵇ(proj R)}(U, U[1]) = 0`,
+i.e., every map `P → Q` is null-homotopic along `d`. -/
 def Presilting {P Q : Proj R} (d : P.val ⟶ Q.val) : Prop :=
   Function.Surjective (fun t : (P.val ⟶ P.val) × (Q.val ⟶ Q.val) ↦ t.1 ≫ d - d ≫ t.2)
 
 variable (R)
+/-- Condition `(E-fin)`: every integral class `[Q] - [P] ∈ K₀(proj R)` is represented by a
+two-term presilting complex `P → Q`. -/
 def EFinite : Prop := ∀ g : Lattice R, ∃ (P Q : Proj R) (d : P.val ⟶ Q.val),
   Presilting d ∧ projClass Q - projClass P = g
 
 variable [IsNoetherianRing R]
 
-/-- Short exact sequence relations for finite modules. -/
+/-- Short-exact-sequence relations defining the Grothendieck group `K₀(mod R)`. -/
 def exactRelations : AddSubgroup (FreeAbelianGroup (Mod R)) :=
   AddSubgroup.closure {r | ∃ S : ShortComplex (Mod R), S.ShortExact ∧
     r = FreeAbelianGroup.of S.X₂ - (FreeAbelianGroup.of S.X₁ + FreeAbelianGroup.of S.X₃)}
 
+/-- The exact Grothendieck group `K₀(mod R)`. -/
 abbrev K₀ := FreeAbelianGroup (Mod R) ⧸ exactRelations R
 
 variable {R}
+/-- The class `[M] ∈ K₀(mod R)` (encoding the dimension vector of `M`). -/
 def cl (M : Mod R) : K₀ R := QuotientAddGroup.mk (FreeAbelianGroup.of M)
+/-- A finite-dimensional brick: a nonzero module whose nonzero endomorphisms are isomorphisms. -/
 def Brick (M : Mod R) : Prop := ¬ IsZero M ∧ ∀ f : M ⟶ M, f ≠ 0 → IsIso f
+/-- Isomorphism classes of bricks in `mod R`. -/
 def brickClasses : Set (Skeleton (Mod R)) := {s | Brick ((fromSkeleton _).obj s)}
+/-- Isomorphism classes of simple objects in `mod R`. -/
 def simpleClasses (R : Type u) [Ring R] : Set (Skeleton (Mod R)) :=
   {s | ∃ M : Mod R, toSkeleton M = s ∧ Simple M}
+/-- A semibrick: a set of isomorphism classes of pairwise Hom-orthogonal bricks. -/
 def Semibrick (s : Set (Skeleton (Mod R))) : Prop := s ⊆ brickClasses ∧
   ∀ x ∈ s, ∀ y ∈ s, x ≠ y → ∀ f : (fromSkeleton _).obj x ⟶ (fromSkeleton _).obj y, f = 0
 
+/-- Functorial finiteness (both covariantly and contravariantly finite) in `mod R`. -/
 def FunctoriallyFinite (T : ObjectProperty (Mod R)) : Prop :=
   (∀ X, ∃ (L : Mod R) (i : X ⟶ L), T L ∧ ∀ Y, T Y → ∀ f : X ⟶ Y, ∃ g, i ≫ g = f) ∧
   (∀ X, ∃ (L : Mod R) (p : L ⟶ X), T L ∧ ∀ Y, T Y → ∀ f : Y ⟶ X, ∃ g, g ≫ p = f)
 
+/-- A torsion pair `(T, F)` in `mod R`: Hom-orthogonality and canonical short exact decompositions. -/
 def TorsionPair (T F : ObjectProperty (Mod R)) : Prop :=
   (∀ {X Y} (f : X ⟶ Y), T X → F Y → f = 0) ∧
   ∀ X, ∃ (L Q : Mod R) (i : L ⟶ X) (p : X ⟶ Q) (w : i ≫ p = 0), T L ∧ F Q ∧
     (ShortComplex.mk i p w).ShortExact
 
+/-- The left Hom-perpendicular class `⊥F = {X | Hom(X, F) = 0}`. -/
 def leftPerp (F : ObjectProperty (Mod R)) : ObjectProperty (Mod R) :=
   fun X ↦ ∀ Y, F Y → ∀ f : X ⟶ Y, f = 0
+/-- The right Hom-perpendicular `B⊥ = {Y | Hom(B, Y) = 0}` of a single module `B`. -/
 def rightPerp (B : Mod R) : ObjectProperty (Mod R) := fun Y ↦ ∀ f : B ⟶ Y, f = 0
 
+/-- A wide subcategory of `mod R`: closed under zero objects, isomorphisms, kernels, cokernels, and extensions. -/
 structure Wide (W : ObjectProperty (Mod R)) : Prop where
   zero_mem (X : Mod R) : IsZero X → W X
   iso_mem {X Y} : (X ≅ Y) → W X → W Y
@@ -106,22 +147,24 @@ structure Wide (W : ObjectProperty (Mod R)) : Prop where
   cokernel_mem {X Y} (f : X ⟶ Y) : W X → W Y → W (cokernel f)
   extension_mem (S : ShortComplex (Mod R)) : S.ShortExact → W S.X₁ → W S.X₃ → W S.X₂
 
-/-- Finite filtrations with factors isomorphic to a prescribed brick. -/
+/-- The subcategory `Filt(B)` of modules admitting a finite filtration with factors isomorphic to `B`. -/
 inductive Filt (B : Mod R) : Mod R → Prop where
   | zero {X} (h : IsZero X) : Filt B X
   | extend (S : ShortComplex (Mod R)) (h : S.ShortExact) (e : S.X₁ ≅ B) (q : Filt B S.X₃) :
       Filt B S.X₂
 
+/-- The poset `f-tors R` of functorially finite torsion classes, ordered by inclusion. -/
 abbrev FiniteTorsion (R : Type u) [Ring R] [IsNoetherianRing R] :=
   {T : ObjectProperty (Mod R) // (∃ F, T = leftPerp F) ∧ FunctoriallyFinite T}
 
-/-- The defining relations in the exact Grothendieck monoid of T. -/
+/-- Defining relations of the Grothendieck monoid `M(T)` of an exact subcategory `T`. -/
 inductive ExactMonoidRel (T : ObjectProperty (Mod R)) : Multiset {X // T X} → Multiset {X // T X} → Prop
   | zero (X) (h : IsZero X.val) : ExactMonoidRel T {X} 0
   | iso (X Y) (e : X.val ≅ Y.val) : ExactMonoidRel T {X} {Y}
   | exact (S : ShortComplex (Mod R)) (h : S.ShortExact) (a : T S.X₁) (b : T S.X₂) (c : T S.X₃) :
       ExactMonoidRel T {⟨S.X₂,b⟩} ({⟨S.X₁,a⟩} + {⟨S.X₃,c⟩})
 
+/-- Condition `(mon-dim)`: for every torsion class `T`, the dimension-vector map `M(T) → K₀(mod R)` is injective. -/
 def MonoidDimension (R : Type u) [Ring R] [IsNoetherianRing R] : Prop :=
   ∀ (T : ObjectProperty (Mod R)), T.IsClosedUnderQuotients → T.IsClosedUnderExtensions → T 0 →
     ∀ X Y (hx : T X) (hy : T Y), cl X = cl Y →
@@ -129,34 +172,44 @@ def MonoidDimension (R : Type u) [Ring R] [IsNoetherianRing R] : Prop :=
 
 variable (k : Type u) [Field k] [Algebra k R]
 
+/-- The endolength of a brick `M`, computed as `dim_k M / dim_k End_R(M)`. -/
 noncomputable def endolength (M : Mod R) : ℕ :=
   Module.finrank k (M.obj : Type u) / Module.finrank k (M.obj ⟶ M.obj)
 
-/-- Evaluation of the integral weight [Q] − [P] on a module. -/
+/-- Evaluation `⟨[Q] - [P], [M]⟩ = dim_k Hom(Q, M) - dim_k Hom(P, M)` of an integral weight on `M`. -/
 noncomputable def weight (P Q : Proj R) (M : Mod R) : ℤ :=
   (Module.finrank k (Q.val.obj ⟶ M.obj) : ℤ) - Module.finrank k (P.val.obj ⟶ M.obj)
 
+/-- Stability of a nonzero module `M` at the integral weight `θ = [Q] - [P]`:
+`θ(M) = 0` and `θ(U) < 0` for every nonzero proper submodule `U ⊊ M`. -/
 def Stable (P Q : Proj R) (M : Mod R) : Prop :=
   ¬ IsZero M ∧ weight k P Q M = 0 ∧ ∀ {U : Mod R} (i : U ⟶ M) [Mono i],
     ¬ IsZero U → ¬ IsIso i → weight k P Q U < 0
 
+/-- A generic brick: an infinite-dimensional `R`-module whose endomorphism ring is a division ring
+over which it has finite length (equivalently, is finitely generated). -/
 def GenericBrick (M : ModuleCat.{u} R) : Prop :=
   ¬ Module.Finite k M ∧ (∀ f : Module.End R M, f ≠ 0 → Function.Bijective f) ∧
     Module.Finite (Module.End R M) M
 
+/-- A generic grain: an infinite-dimensional indecomposable endofinite module `M` such that
+`Ext¹_R(X, M) = 0` for every finite-dimensional module `X` cogenerated by `M`. -/
 def GenericGrain (M : ModuleCat.{u} R) : Prop :=
   ¬ Module.Finite k M ∧ Indecomposable M ∧ IsFiniteLength (Module.End R M) M ∧
     ∀ S : ShortComplex (ModuleCat.{u} R), S.ShortExact → Nonempty (S.X₁ ≅ M) → Module.Finite k S.X₃ →
       (∃ (n : ℕ) (f : S.X₃ →ₗ[R] (Fin n → M)), Function.Injective f) → ∃ s : S.X₃ ⟶ S.X₂, s ≫ S.g = 𝟙 S.X₃
 
-/-- Isomorphism classes of modules satisfying a predicate. -/
+/-- Isomorphism classes of modules in `mod R` satisfying `T`. -/
 def classes (T : ObjectProperty (Mod R)) : Set (Skeleton (Mod R)) := {s | ∃ M, toSkeleton M = s ∧ T M}
 
 variable (R)
+/-- Brick-finiteness: `mod R` has only finitely many isomorphism classes of bricks. -/
 def BrickFinite : Prop := (brickClasses (R := R)).Finite
 
 local instance : HasFiniteBiproducts (Mod R) := HasFiniteBiproducts.of_hasFiniteCoproducts
 
+/-- `τ`-tilting finiteness, formulated via finiteness of basic `τ`-tilting modules (cokernels of
+two-term presilting complexes with `n = |sim R|` nonisomorphic indecomposable summands). -/
 def TauTiltingFinite : Prop :=
   let n := (simpleClasses R).ncard
   {s : Skeleton (Mod R) | ∃ M : Mod R,
@@ -164,40 +217,49 @@ def TauTiltingFinite : Prop :=
     (∃ X : Fin n → Mod R, (∀ i, Indecomposable (X i)) ∧ Function.Injective (toSkeleton ∘ X) ∧
       Nonempty ((⨁ X) ≅ M)) ∧ toSkeleton M = s}.Finite
 
+/-- Statement of Theorem B: in rank `n ≤ 2` over any field, E-finiteness is equivalent to
+`τ`-tilting finiteness and to brick-finiteness. -/
 def RankTwo : Prop :=
   ∀ (k R : Type u) [Field k] [Ring R] [Algebra k R] [Module.Finite k R],
     letI := IsNoetherianRing.of_finite k Rᵐᵒᵖ
     (simpleClasses Rᵐᵒᵖ).ncard ≤ 2 →
       (EFinite Rᵐᵒᵖ ↔ TauTiltingFinite Rᵐᵒᵖ) ∧ (EFinite Rᵐᵒᵖ ↔ BrickFinite Rᵐᵒᵖ)
 
-/-- A differential between two finite projective modules. -/
+/-- A two-term projective presentation `source → target` in `K^{[-1,0]}(proj R)`. -/
 structure Differential where
   source : Proj R
   target : Proj R
   d : source.val ⟶ target.val
 
 variable {R}
+/-- A ring homomorphism `f : R →+* B` inverts a projective morphism `D` when `Hom_R(D.d, B)` is bijective. -/
 def Differential.inverts (D : Differential R) {B : Type u} [Ring B] (f : R →+* B) : Prop :=
   letI := Module.compHom B f
   Function.Bijective (fun g : D.target.val.obj ⟶ ModuleCat.of R B ↦ D.d.hom ≫ g)
 
+/-- Universal property of the universal localization `R →+* B` at a set `S` of projective morphisms. -/
 def Localization (S : Set (Differential R)) {B : Type u} [Ring B] (f : R →+* B) : Prop :=
   (∀ D ∈ S, D.inverts f) ∧ ∀ (C : Type u) [Ring C] (g : R →+* C),
     (∀ D ∈ S, D.inverts g) → ∃! q : B →+* C, q.comp f = g
 
+/-- A categorical epimorphism in the category of rings. -/
 def RingEpic {B : Type u} [Ring B] (f : R →+* B) : Prop :=
   ∀ (C : Type u) [Ring C] (g h : B →+* C), g.comp f = h.comp f → g = h
 
 open CategoryTheory.Pretriangulated
 
+/-- Realization of a two-term presentation in degrees `-1` and `0` of `K(mod R)`. -/
 noncomputable abbrev Differential.realize (D : Differential R) :=
   (HomotopyCategory.quotient _ _).obj
     (HomologicalComplex.double D.d (show (ComplexShape.up ℤ).Rel (-1) 0 from rfl))
 
+/-- Canonical contractible zero presentation `0 → 0`. -/
 def zeroDifferential (R : Type u) [Ring R] : Differential R :=
   let Z : Proj R := ⟨FGModuleCat.of R PUnit, inferInstance⟩
   ⟨Z,Z,𝟙 Z.val⟩
 
+/-- A thick subcategory of `K^{[-1,0]}(proj R)`: contains `0`, satisfies two-out-of-three on
+distinguished triangles among two-term complexes, and is closed under retracts. -/
 def Thick (H : Differential R → Prop) : Prop :=
   H (zeroDifferential R) ∧
   (∀ (A B C : Differential R) (f : A.realize ⟶ B.realize) (g : B.realize ⟶ C.realize)
@@ -206,28 +268,35 @@ def Thick (H : Differential R → Prop) : Prop :=
   ∀ A B : Differential R, Retract A.realize B.realize → H B → H A
 
 variable (R)
+/-- Condition `(thick-gen)`: every thick subcategory of `K^{[-1,0]}(proj R)` has the form
+`thick(U) ∩ K^{[-1,0]}(proj R)` for a two-term presilting complex `U`. -/
 def ThickGeneration : Prop :=
   ∀ H : Differential R → Prop, Thick H → ∃ U : Differential R,
     Presilting U.d ∧ ∀ X, H X ↔ (ObjectProperty.singleton U.realize).triangEnvelope X.realize
 
+/-- Condition `(brick-label)`: every brick `B` labels a cover `T ⋖ U` in `f-tors R` via `Filt(B) = U ∩ T⊥`. -/
 def BrickLabels : Prop :=
   ∀ B : Mod R, Brick B → ∃ T U : FiniteTorsion R, T ⋖ U ∧
     ∀ X, Filt B X ↔ U.val X ∧ ∀ Y, T.val Y → rightPerp Y X
 
+/-- Condition `(poly-brick)`: the number of bricks of composition length `≤ m` grows at most polynomially in `m`. -/
 def PolynomialGrowth : Prop :=
   ∃ a n : ℕ, ∀ m : ℕ,
     let C := classes (fun X : Mod R ↦ Brick X ∧ (Module.length R X).toNat ≤ m)
     C.Finite ∧ C.ncard ≤ a * (m + 1) ^ n
 
+/-- Condition `(univ-loc)`: every universal localization of `R` is finite-dimensional over `k`. -/
 def LocalizationFinite : Prop :=
   ∀ (S : Set (Differential Rᵐᵒᵖ)) (B : Type u) [Ring B] [Algebra k B] (f : R →ₐ[k] B),
     Localization S (AlgHom.op f).toRingHom → Module.Finite k B
 
+/-- Condition `(ring-epi)`: every ring epimorphism from `R` to a simple Artinian ring has finite `k`-dimension. -/
 def SimpleEpicFinite : Prop :=
   ∀ (B : Type u) [Ring B] [IsSimpleRing B] [IsArtinianRing B] (f : R →+* B),
     RingEpic f → letI := Module.compHom B (f.comp (algebraMap k R)); Module.Finite k B
 
-/-- The seventeen conditions of Theorem A(I), in manuscript order. -/
+/-- Statement of Theorem A(I): the seventeen arbitrary-field equivalences `(E-fin)` through `(ring-epi)`,
+in manuscript order. -/
 def ArbitraryField : Prop :=
   ∀ (k R : Type u) [Field k] [Ring R] [Algebra k R] [Module.Finite k R],
     let A := Rᵐᵒᵖ
@@ -252,7 +321,8 @@ def ArbitraryField : Prop :=
     (E ↔ ¬ ∃ M : ModuleCat.{u} A, GenericGrain k M) ∧
     (E ↔ ThickGeneration A) ∧ (E ↔ LocalizationFinite (k := k) R) ∧ (E ↔ SimpleEpicFinite (k := k) R)
 
-/-- Composition vectors are indexed by their classes in the exact Grothendieck group. -/
+/-- Statement of Theorem A(II): over an infinite field, E-finiteness is also equivalent to
+`(dim-brick)` (Schur-representation-finiteness) and `(dim-stab)`. -/
 def InfiniteField : Prop :=
   ∀ (k R : Type u) [Field k] [Infinite k] [Ring R] [Algebra k R] [Module.Finite k R],
     let A := Rᵐᵒᵖ
@@ -293,13 +363,14 @@ abbrev VertexSpace (k : Type u) (d : I → ℕ) := (i : I) → Fin (d i) → k
 
 variable (d : I → ℕ)
 
+/-- Coordinate projection onto the `i`-th vertex summand of `VertexSpace k d`. -/
 noncomputable def vertexProjection (i : I) : Module.End k (VertexSpace k d) :=
   (LinearMap.single k (fun i ↦ Fin (d i) → k) i).comp (LinearMap.proj i)
 
 variable (e : I → R)
 
-/-- Algebra actions on the fixed vertex spaces taking each vertex idempotent
-to the corresponding coordinate projection. -/
+/-- The representation variety `rep(A, d)` of algebra actions on `VertexSpace k d` sending each
+vertex idempotent `e i` to the `i`-th coordinate projection. -/
 def VertexRepresentation := {ρ : R →ₐ[k] Module.End k (VertexSpace k d) //
   ∀ i, ρ (e i) = vertexProjection d i}
 
@@ -307,6 +378,7 @@ namespace VertexRepresentation
 
 variable {d e}
 
+/-- The base-change group `GL(d) = ∏_i GL_{d_i}(k)` acting at the vertices. -/
 abbrev BaseChange (k : Type u) [Field k] (d : I → ℕ) :=
   ∀ i, (Fin (d i) → k) ≃ₗ[k] (Fin (d i) → k)
 /-- Conjugation of the algebra action by an invertible change of basis at each vertex. -/
@@ -513,28 +585,38 @@ namespace Chart
 open VertexRepresentation
 variable {k R : Type u} [Field k] [Ring R] (C : Chart k R)
 
+/-- Chosen `k`-basis of the split basic algebra `C.A`. -/
 noncomputable def basis := (Module.finBasis k C.A).reindex (Equiv.ulift.{u}.symm)
 
+/-- Condition `(moduli-pt)`: for every integral weight `w` and dimension vector `d`, King's moduli
+scheme `M_w^{ss}(C.A, d)` has at most one closed point. -/
 def KingCondition : Prop :=
   ∀ (w : ULift.{u} (Fin C.n) → ℤ) (d : ULift.{u} (Fin C.n) → ℕ),
     let X := kingProj C.basis d C.vertex w
     Set.Subsingleton {x : X | IsClosed ({x} : Set X)}
 
+/-- Condition `(open-brick)`: every brick has a Zariski-open `GL(d)`-orbit in `rep(C.A, d)`. -/
 def BrickOrbits : Prop :=
   ∀ d (x : VertexRepresentation (k := k) d C.vertex), Brick x.moduleObj →
     @IsOpen _ (zariski C.basis) (MulAction.orbit (BaseChange k d) x)
 
+/-- Condition `(open-wide)`: for every dimension vector `d` and wide subcategory `W`, the locus
+`{x ∈ rep(C.A, d) | x ∈ W}` is Zariski-open. -/
 def WideLoci : Prop :=
   letI := IsNoetherianRing.of_finite k C.A
   ∀ d (W : ObjectProperty (Mod C.A)), Wide W →
     @IsOpen (VertexRepresentation (k := k) d C.vertex) (zariski C.basis) {x | W x.moduleObj}
 
+/-- Multiplicity-freeness: on every irreducible component of every `rep(C.A, d)`, each weight space
+of `GL(d)`-semi-invariants has dimension at most one. -/
 def MultiplicityFree : Prop :=
   ∀ d, ∀ Z ∈ @irreducibleComponents _ (zariski (d := d) (e := C.vertex) C.basis),
     ∀ w, Module.rank k (componentWeightSpace C.basis Z w) ≤ 1
 end Chart
 
-/-- Every algebra admits the required basic presentation. Each criterion is tested in all such presentations. -/
+/-- Statement of Theorem A(III): over an algebraically closed field, every finite-dimensional
+algebra admits a split basic Morita chart, and E-finiteness is equivalent in every chart to
+`(moduli-pt)`, `(open-brick)`, and `(open-wide)`. -/
 def AlgebraicallyClosedField : Prop :=
   ∀ (k R : Type u) [Field k] [IsAlgClosed k] [Ring R] [Algebra k R] [Module.Finite k R],
     Nonempty (Chart k R) ∧
@@ -542,7 +624,9 @@ def AlgebraicallyClosedField : Prop :=
     (EFinite Rᵐᵒᵖ ↔ ∀ C : Chart k R, C.BrickOrbits) ∧
     (EFinite Rᵐᵒᵖ ↔ ∀ C : Chart k R, C.WideLoci)
 
-/-- Weyman's conjecture over an algebraically closed field of any characteristic. -/
+/-- Statement of Corollary C (Weyman's conjecture): over an algebraically closed field of arbitrary
+characteristic, Schur-representation-finiteness `(dim-brick)` is equivalent to multiplicity-freeness
+on every irreducible component of every representation variety. -/
 def BrickDiscreteMultiplicityFree : Prop :=
   ∀ (k R : Type u) [Field k] [IsAlgClosed k] [Ring R] [Algebra k R] [Module.Finite k R],
     let A := Rᵐᵒᵖ
@@ -554,23 +638,29 @@ end EFiniteCharacterizations.Statement
 
 namespace EFiniteCharacterizations.Challenge
 
-/-- Theorem A(I). Seventeen equivalent characterizations over an arbitrary field. -/
+/-- **Theorem A(I):** Over an arbitrary field, E-finiteness is equivalent to each of the
+seventeen conditions `(K₀-Hom)` through `(ring-epi)`. -/
 theorem arbitraryField : Statement.ArbitraryField.{u} := by
   sorry
 
-/-- Theorem A(II). Finiteness of brick and stable classes with a fixed composition vector. -/
+/-- **Theorem A(II):** Over an infinite field, E-finiteness is also equivalent to
+`(dim-brick)` (finitely many bricks of each dimension vector) and `(dim-stab)`. -/
 theorem infiniteField : Statement.InfiniteField.{u} := by
   sorry
 
-/-- Theorem A(III). King closed points, open brick orbits and open wide loci in the basic representation varieties. -/
+/-- **Theorem A(III):** Over an algebraically closed field, E-finiteness is also equivalent to
+`(moduli-pt)`, `(open-brick)`, and `(open-wide)` in every split basic Morita chart. -/
 theorem algebraicallyClosedField : Statement.AlgebraicallyClosedField.{u} := by
   sorry
 
-/-- Theorem B. E-finiteness, brick-finiteness and τ-tilting finiteness coincide in rank at most two. -/
+/-- **Theorem B:** For a finite-dimensional algebra of rank at most two over any field,
+E-finiteness, `τ`-tilting finiteness, and brick-finiteness are equivalent. -/
 theorem rankTwo : Statement.RankTwo.{u} := by
   sorry
 
-/-- Corollary C. Brick-discreteness is equivalent to multiplicity-freeness on every irreducible component. -/
+/-- **Corollary C (Weyman's conjecture):** Over an algebraically closed field,
+Schur-representation-finiteness `(dim-brick)` is equivalent to multiplicity-freeness on every
+irreducible component of every representation variety. -/
 theorem brickDiscreteMultiplicityFree : Statement.BrickDiscreteMultiplicityFree.{u} := by
   sorry
 

@@ -5,7 +5,15 @@ public import EFiniteCharacterizations.Presentations.PresiltingCompletions
 public import EFiniteCharacterizations.Presentations.ProjectiveRankBound
 public import EFiniteCharacterizations.Stability.StableFiniteness
 
-/-! # Integral weights separating stable classes at a covered weight -/
+/-!
+# Separating stable bricks by integral weights inside a presilting cone
+
+Establishes Proposition 2.3 (`prop:covered-indep`) for integral weights: at the Euler
+weight of a two-term presilting complex `P`, each `P`-stable brick can be separated
+from all other `P`-stable bricks by a summand of a Bongartz completion
+(`exists_stable_separating_projective_weight`), so the classes of `P`-stable bricks
+are `ℤ`-linearly independent in `K₀(mod R)` (`linearIndependent_stableClasses_eulerWeight`).
+-/
 
 @[expose] public section
 

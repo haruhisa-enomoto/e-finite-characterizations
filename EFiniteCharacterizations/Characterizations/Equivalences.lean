@@ -6,7 +6,25 @@ public import EFiniteCharacterizations.Subcategories.BrickLabels
 public import EFiniteCharacterizations.GrothendieckGroups.TorsionMonoidEmbedding
 public import EFiniteCharacterizations.Silting.ThickSubcategories.BoundedProjectiveHomotopy
 
-/-! # Characterizations of E-finiteness -/
+/-!
+# Theorem A: Characterizations of E-finite algebras
+
+This file assembles the three parts of Theorem A (`intro:main`) in the right-module
+convention (`Rᵐᵒᵖ`) of the manuscript:
+
+* `equivalences_arbitraryField` (**Theorem A(I)**): over an arbitrary field `k`,
+  E-finiteness `(E-fin)` is equivalent to each of the seventeen module-theoretic,
+  categorical, numerical, homological, and ring-theoretic conditions `(K₀-Hom)`,
+  `(mon-dim)`, `(comp-tors)`, `(num-disj)`, `(wide)`, `(wide₁)`, `(brick-label)`,
+  `(n-sbrick)`, `(fin-sbrick)`, `(brick-discrete)`, `(endo-stab)`, `(poly-brick)`,
+  `(no-gen-brick)`, `(no-gen-grain)`, `(thick-gen)`, `(univ-loc)`, and `(ring-epi)`.
+* `equivalences_infiniteField` (**Theorem A(II)**): when `k` is infinite,
+  E-finiteness is also equivalent to `(dim-brick)` (Schur-representation-finiteness)
+  and `(dim-stab)`.
+* `equivalences_algebraicallyClosedField` (**Theorem A(III)**, Theorem 6.1): when `k`
+  is algebraically closed, E-finiteness is also equivalent to `(moduli-pt)`,
+  `(open-brick)`, and `(open-wide)`.
+-/
 
 @[expose] public section
 
@@ -17,7 +35,8 @@ namespace EFiniteCharacterizations
 
 variable (k R : Type u) [Field k] [Ring R] [Algebra k R] [Module.Finite k R]
 
-/-- The seventeen tests over an arbitrary field, in the order of the manuscript. -/
+/-- **Theorem A(I):** Over an arbitrary field, E-finiteness `(E-fin)` is equivalent to each of
+the seventeen conditions `(K₀-Hom)` through `(ring-epi)`, listed in manuscript order. -/
 theorem equivalences_arbitraryField :
     letI := IsNoetherianRing.of_finite k Rᵐᵒᵖ
     letI := IsArtinianRing.of_finite k Rᵐᵒᵖ
@@ -53,7 +72,9 @@ theorem equivalences_arbitraryField :
     isEFinite_iff_brickLabels k,fullSize,semibrick,endoBrick,endoStable,growth,brick,
     isEFinite_iff_no_genericGrain k,isEFinite_iff_boundedProjectiveThickGeneration k,localization,epic⟩
 
-/-- The two additional dimension-vector tests over an infinite field. -/
+/-- **Theorem A(II)** (Corollary 5.4): Over an infinite field, E-finiteness is also equivalent to
+finiteness of bricks of each dimension vector `(dim-brick)` and finiteness of `θ`-stable bricks
+of each dimension vector `(dim-stab)`. -/
 theorem equivalences_infiniteField [Infinite k] :
     letI := IsNoetherianRing.of_finite k Rᵐᵒᵖ
     letI := IsArtinianRing.of_finite k Rᵐᵒᵖ
@@ -64,7 +85,9 @@ theorem equivalences_infiniteField [Infinite k] :
   obtain ⟨brick,stable,_⟩ := compositionVectorCriteria k R
   exact ⟨brick,stable⟩
 
-/-- The three geometric tests over an algebraically closed field. -/
+/-- **Theorem A(III)** (Theorem 6.1): Over an algebraically closed field, E-finiteness is also
+equivalent to `(moduli-pt)` (at most one closed point in each King moduli space), `(open-brick)`
+(every brick has an open orbit), and `(open-wide)` (every wide locus is open). -/
 theorem equivalences_algebraicallyClosedField [IsAlgClosed k] :
     letI := IsNoetherianRing.of_finite k Rᵐᵒᵖ
     (IsEFinite Rᵐᵒᵖ ↔ (basicPresentation k R).KingClosedPointCondition) ∧

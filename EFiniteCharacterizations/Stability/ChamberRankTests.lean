@@ -3,7 +3,18 @@ module
 public import EFiniteCharacterizations.Stability.OneSidedDeterminants
 public import EFiniteCharacterizations.LargeModules.PrescribedGrain
 
-/-! # Projective representatives from one-sided rank tests in an integral chamber -/
+/-!
+# Fixed-weight torsion criteria and generic grains at prescribed missing weights
+
+Proves Proposition 2.5(1) (`prop:known-baseline`) and Proposition 7.6 (`prop:grain`):
+
+* `fixedWeightTorsionCriteria`: for any real weight `v ∈ K₀(proj R)_ℝ` over any field
+  (even for an E-infinite algebra), `v ∈ Σ(R)` is equivalent to functorial finiteness
+  of the strict and weak `v`-semistable torsion and torsion-free classes.
+* `exists_generic_grain_kernel_of_missing_weight`: at every integral class
+  `γ ∉ Σ(R)`, the endofinite kernel realizing the numerical torsion pair of `γ` has a
+  generic grain as an indecomposable direct summand.
+-/
 
 @[expose] public section
 

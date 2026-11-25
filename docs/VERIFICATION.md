@@ -1,18 +1,48 @@
-# Checking the Lean proofs
+# Reproducing and checking the formalization
 
-Use the Lean toolchain selected by `lean-toolchain`. At the repository root, fetch the pinned Mathlib build cache and build the proof library.
+## 1. Building the library and checking axioms
+
+Install [`elan`](https://github.com/leanprover/elan) so that `lean-toolchain` selects
+`leanprover/lean4:v4.35.0-rc3`. From the repository root, download the precompiled
+Mathlib cache, compile the library, and run the axiom checks:
 
 ```sh
 lake exe cache get
 lake build
+python3 scripts/audit_axioms.py
 python3 scripts/scan_axioms.py
 ```
 
-The scan imports the library in a non-module Lean file so that Lean can inspect the bodies of theorems across module boundaries. It calls `Lean.collectAxioms` on every declaration in the project’s proof modules and fails if any axiom besides `propext`, `Classical.choice` and `Quot.sound` occurs. The [concordance](PAPER-CORRESPONDENCE.md) identifies the exact result checked for each numbered statement in the manuscript.
+- `scripts/audit_axioms.py` runs `#print axioms` on 19 principal theorems in a
+  non-module wrapper (`scripts/AxiomAudit.lean`, so that proof bodies across `module`
+  boundaries are visible) and checks that only `propext`, `Classical.choice`, and
+  `Quot.sound` appear.
+- `scripts/scan_axioms.py` calls `Lean.collectAxioms` on every declaration in the
+  imported proof library and `Solution.lean` (6,463 declarations) and fails if `sorryAx`
+  or any non-standard axiom occurs anywhere.
 
-## Independent comparison
+## 2. Independent Challenge–Solution comparison
 
-The Mathlib-only [statement](../EFiniteCharacterizations/Statement.lean) defines the hypotheses and conclusions independently of the proof library. The [generator](../scripts/generate_challenge.py) copies those definitions into [Challenge.lean](../Challenge.lean), with one placeholder per requested proof. The [solution](../Solution.lean) supplies all five proofs. The comparator checks their types and transitive declaration dependencies against the challenge and verifies the proofs with its external kernels.
+To separate statement review from proof checking:
+
+1. [`EFiniteCharacterizations/Statement.lean`](../EFiniteCharacterizations/Statement.lean)
+   imports **only Mathlib** and defines the standalone propositions `ArbitraryField`,
+   `InfiniteField`, `AlgebraicallyClosedField`, `RankTwo`, and
+   `BrickDiscreteMultiplicityFree`.
+2. [`scripts/generate_challenge.py`](../scripts/generate_challenge.py) generates
+   [`Challenge.lean`](../Challenge.lean) from `Statement.lean` with one `sorry`
+   placeholder for each of the five endpoints (`Challenge.arbitraryField`,
+   `Challenge.infiniteField`, `Challenge.algebraicallyClosedField`,
+   `Challenge.rankTwo`, `Challenge.brickDiscreteMultiplicityFree`).
+3. [`Solution.lean`](../Solution.lean) proves those five declarations from the proof
+   library without importing `Challenge.lean`.
+4. [`scripts/verify-comparator.sh`](../scripts/verify-comparator.sh) invokes the
+   toolchain's `lake comparator` (configured by [`comparator.json`](../comparator.json))
+   inside `bwrap` (Bubblewrap) to verify definition/type identity and replay the proofs
+   through the Lean kernel and the external checkers **NanoDa** and **con-ron**.
+
+Run the full verification sequence on Linux (with `bwrap` on `PATH` and `.lake/packages`
+as a real directory rather than a symbolic link):
 
 ```sh
 python3 scripts/check-lean-sources.py
@@ -23,4 +53,5 @@ python3 scripts/scan_axioms.py
 ./scripts/verify-comparator.sh
 ```
 
-The comparator runs in Bubblewrap on Linux. Install `bwrap` on the executable path and use a real directory for `.lake/packages`. See the [verification record](../verification/README.md) for results and artifact hashes.
+Recorded local and hosted verification runs, timings, and artifact hashes are archived
+in [`verification/`](../verification/README.md).

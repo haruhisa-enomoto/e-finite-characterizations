@@ -5,7 +5,15 @@ public import EFiniteCharacterizations.Stability.StableSubobjects
 public import EFiniteCharacterizations.Modules.AbelianCompositionFactors
 public import Mathlib.CategoryTheory.Limits.FullSubcategory
 
-/-! # Functorial finiteness of full exact abelian subcategories -/
+/-!
+# Functorial finiteness of exact abelian subcategories
+
+Lemma 7.7 (`lem:exact-ab`) of the manuscript: over an E-finite algebra, every full
+subcategory of `mod R` closed under finite direct sums, kernels, and cokernels — and
+hence the essential image of any exact fully faithful functor from an abelian category
+— is functorially finite (`functoriallyFinite_exactAbelianClass`,
+`functoriallyFinite_of_full_exact_embedding`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

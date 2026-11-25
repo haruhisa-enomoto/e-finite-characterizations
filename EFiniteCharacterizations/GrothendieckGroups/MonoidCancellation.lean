@@ -4,7 +4,20 @@ public import EFiniteCharacterizations.GrothendieckGroups.TorsionGrothendieckGro
 public import EFiniteCharacterizations.GrothendieckGroups.TorsionMonoidEmbedding
 public import EFiniteCharacterizations.Stability.OppositeAlgebra
 
-/-! # Cancellation in Grothendieck monoids of torsion and torsion-free classes -/
+/-!
+# Cancellation in Grothendieck monoids of torsion and torsion-free classes
+
+Corollary 4.3 (`cor:monoid-cancellation`) of the manuscript:
+
+* `isEFinite_iff_torsionMonoids_cancellative`: since the group completion `K₀(T)`
+  embeds into `K₀(mod R)` (Proposition 4.2), the dimension-vector map
+  `M(T) → K₀(mod R)` is injective if and only if `M(T)` is cancellative; hence `R`
+  is E-finite if and only if every torsion class has a cancellative Grothendieck monoid.
+* `isEFinite_iff_torsionFreeMonoids_cancellative`: contravariant `k`-duality exchanges
+  torsion classes of `mod Rᵐᵒᵖ` with torsion-free classes of `mod R` and preserves
+  Grothendieck monoids (`GrothendieckMonoid.mapAnti`), giving the same criterion for
+  torsion-free classes.
+-/
 
 @[expose] public section
 
@@ -53,6 +66,8 @@ variable {R : Type u} [Ring R] (k : Type u) [Field k] [Algebra k R] [Module.Fini
   [IsNoetherianRing R] [IsArtinianRing R]
 
 include k in
+/-- **Corollary 4.3 (torsion classes):** `R` is E-finite if and only if every torsion class in
+`mod R` has a cancellative Grothendieck monoid. -/
 theorem isEFinite_iff_torsionMonoids_cancellative :
     IsEFinite R ↔ ∀ T : ObjectProperty (FGModuleCat.{u} R), T.IsClosedUnderQuotients →
       T.IsClosedUnderExtensions → T 0 → IsCancelAdd (GrothendieckMonoid T) := by
@@ -96,6 +111,8 @@ private theorem cancel_transfer [T.IsClosedUnderExtensions] [T.IsClosedUnderIsom
 end
 
 include k in
+/-- **Corollary 4.3 (torsion-free classes):** `R` is E-finite if and only if every torsion-free
+class in `mod R` has a cancellative Grothendieck monoid. -/
 theorem isEFinite_iff_torsionFreeMonoids_cancellative :
     IsEFinite R ↔ ∀ T : ObjectProperty (FGModuleCat.{u} R), T.IsClosedUnderSubobjects →
       T.IsClosedUnderExtensions → T 0 → IsCancelAdd (GrothendieckMonoid T) := by

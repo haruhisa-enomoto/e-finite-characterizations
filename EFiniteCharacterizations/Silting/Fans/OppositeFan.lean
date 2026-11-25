@@ -3,7 +3,14 @@ module
 public import EFiniteCharacterizations.Presentations.ShiftedProjectiveDuality
 public import EFiniteCharacterizations.Silting.Fans.ConeSaturation
 
-/-! # The presilting fan of the opposite algebra -/
+/-!
+# Duality of the `g`-vector fan for the opposite algebra
+
+Lemma 2.1(3) (`lem:fan-lattice`) of the manuscript: under the shifted projective
+duality `Hom_R(-, R)[1]`, the support `Σ(Rᵐᵒᵖ)` of the `g`-vector fan of the opposite
+algebra equals `-Σ(R)` (`image_neg_star_fanSupport`), so E-finiteness is left–right
+symmetric.
+-/
 
 @[expose] public section
 

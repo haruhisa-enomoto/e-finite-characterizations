@@ -3,7 +3,17 @@ module
 public import EFiniteCharacterizations.Presentations.RigidPowers
 public import EFiniteCharacterizations.Presentations.FinitePresiltingCokernels
 
-/-! # Representatives of presilting objects on prescribed projective terms -/
+/-!
+# Presilting representatives on prescribed projective terms and rational pencils
+
+Lemma 2.9 (`lem:rigid-terms`) of the manuscript:
+
+* `exists_representative_on_terms`: if `P` is presilting of class `[B] - [A]` for
+  `A, B ∈ proj R`, then `P` is homotopy equivalent to a presilting differential `A → B`.
+* `exists_rational_pencil_automorphisms`: for any `σ : P.source → P.target`, the
+  generic pencil `P.differential + t σ` over `k(t)` is isomorphic as an arrow to
+  `P.differential` extended to `k(t)`.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

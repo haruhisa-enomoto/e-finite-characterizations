@@ -3,7 +3,16 @@ module
 public import EFiniteCharacterizations.Stability.StableDeterminant
 public import EFiniteCharacterizations.LinearAlgebra.RectangularBlockDescent
 
-/-! # One-sided rank tests for numerical torsion pairs -/
+/-!
+# Simultaneous Hom-rank realization in a rational torsion chamber
+
+Key step for Proposition 2.5(1): given a module `B` strictly positive on nonzero
+quotients and a module `M` strictly negative on nonzero subobjects at the Euler
+weight of `P`, some positive multiple of `[P]` admits a ground-field differential
+that is simultaneously surjective on `Hom(-, B)` and injective on `Hom(-, M)`
+(`exists_block_precomposition_tests`), proved via max-rank specialization over `k̄`
+and restriction of scalars from a finite field extension.
+-/
 
 @[expose] public section
 

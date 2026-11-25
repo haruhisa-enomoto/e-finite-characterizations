@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.Geometry.BasicPresentation
 public import EFiniteCharacterizations.Geometry.KingCompositionFactors
 
-/-! # The King moduli criterion in the right-module convention -/
+/-!
+# King moduli spaces with at most one closed point
+
+Defines `BasicPresentation.KingClosedPointCondition` (`(moduli-pt)` in Theorem A(III):
+for every integral weight `g` and dimension vector `d`, King's projective moduli
+scheme `M_g^{ss}(Λ, d)` has at most one closed point) and proves the forward
+implication `kingModuli_of_isEFinite` by splitting extensions while preserving the
+evaluation class in `Proj`.
+-/
 
 @[expose] public section
 

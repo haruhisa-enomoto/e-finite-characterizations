@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.Geometry.VertexDimensions
 public import EFiniteCharacterizations.Stability.SEquivalence
 
-/-! # S-equivalence on points of the vertex representation variety -/
+/-!
+# S-equivalence classes on representation varieties
+
+Identifies the quotient of the semistable locus `SemistablePoints` by equality of
+Jordan–Hölder factors in the semistable category with the intrinsic set of
+S-equivalence classes (`quotientPointFactorsEquiv`), and characterizes E-finiteness
+over an algebraically closed field by having at most one S-equivalence class in
+every `rep(A, d)` and integral weight (`isEFinite_iff_subsingleton_semistable_point_quotients`).
+-/
 
 @[expose] public section
 

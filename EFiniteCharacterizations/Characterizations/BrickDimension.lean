@@ -2,7 +2,19 @@ module
 
 public import EFiniteCharacterizations.Characterizations.FixedClassFiniteness
 
-/-! # Families of bricks of prescribed ground-field dimension -/
+/-!
+# Bricks of prescribed dimension vector and ground-field dimension
+
+Corollaries 5.4 and 5.5 of the manuscript:
+
+* `dimensionVectorFiniteness` (**Corollary 5.4**, forward implications over any field):
+  `(E-fin)` implies `(dim-brick)` (finitely many bricks of each dimension vector),
+  which implies `(dim-stab)`.
+* `exists_infinite_stable_of_infinite_bricks` (**Corollary 5.5**): over an infinite
+  field, if infinitely many nonisomorphic bricks have `k`-dimension `r`, then some
+  integral weight `g` and positive `k`-dimension `s` admit infinitely many
+  nonisomorphic `g`-stable bricks.
+-/
 
 @[expose] public section
 
@@ -15,12 +27,13 @@ namespace EFiniteCharacterizations
 variable (k : Type u) [Field k] {R : Type u} [Ring R] [Algebra k R] [Module.Finite k R]
   [IsNoetherianRing R] [IsArtinianRing R]
 
-/-- Isomorphism classes of bricks whose underlying vector space has dimension `r`. -/
+/-- Isomorphism classes of bricks in `mod R` of `k`-dimension `r`. -/
 def brickClassesOfDimension (r : ℕ) : Set (Skeleton (FGModuleCat.{u} R)) :=
   {x | ∃ M : FGModuleCat.{u} R, toSkeleton M = x ∧ Module.finrank k (M.obj : Type u) = r ∧ IsBrick M}
 
-/-- Over every field, E-finiteness gives brick discreteness at each composition
-vector. At each vector, discreteness of bricks implies discreteness of stable bricks. -/
+/-- **Corollary 5.4** (arbitrary-field implications): E-finiteness implies finiteness of bricks of
+each dimension vector `(dim-brick)`, which in turn implies finiteness of stable bricks of each
+dimension vector `(dim-stab)`. -/
 theorem dimensionVectorFiniteness :
     (IsEFinite R → ∀ d, (brickClassesOfClass (classOfCompositionVector (R := R) k d)).Finite) ∧
     ((∀ d, (brickClassesOfClass (classOfCompositionVector (R := R) k d)).Finite) →
@@ -28,8 +41,9 @@ theorem dimensionVectorFiniteness :
   exact ⟨fun h _ ↦ finite_brickClassesOfClass_of_isEFinite k h _,
     fun h _ d ↦ (h d).subset (stableClassesOfClass_subset_brickClassesOfClass _ _)⟩
 
-/-- An infinite family of bricks in one ground-field dimension gives an infinite
-family of stable bricks at one integral weight and one positive dimension. -/
+/-- **Corollary 5.5:** Over an infinite field, if infinitely many nonisomorphic bricks have a fixed
+`k`-dimension `r`, then there exist an integral weight `g` and an integer `s > 0` with infinitely
+many nonisomorphic `g`-stable bricks of `k`-dimension `s`. -/
 theorem exists_infinite_stable_of_infinite_bricks [Infinite k] {r : ℕ}
     (h : (brickClassesOfDimension (R := R) k r).Infinite) :
     ∃ (g : ProjectiveClass R) (s : ℕ), 0 < s ∧

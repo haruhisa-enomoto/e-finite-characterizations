@@ -1,2 +1,81 @@
-<p class="eyebrow">Reproducibility</p><h1>Verification and provenance</h1><p>{{verification_status}}</p><dl><dt>Lean</dt><dd>v4.35.0-rc3</dd><dt>Mathlib revision</dt><dd><code>c55e6e786f49471c72fbddbec5415808896aec1e</code></dd><dt>Permitted axioms</dt><dd>propext, Classical.choice, Quot.sound</dd></dl><p>The <a href="{{source_url}}/docs/VERIFICATION.md">verification guide</a> gives the reproduction commands. The <a href="{{source_url}}/verification">verification records</a> identify the commits checked. The <a href="{{source_url}}/PROVENANCE.md">provenance record</a> describes the paper, the Lean proofs and adapted code.</p>
-<p><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/actions/runs/45530650450">Passing hosted preflight</a> · <a href="{{source_url}}/verification/2026-11-25/README.md">Checks, timing and resource use</a></p>
+<header class="paper-header">
+  <p class="kicker">Mechanical Checks, Reproducibility &amp; Provenance</p>
+  <h1>Verification and trust boundary</h1>
+  <p class="lead">{{verification_status}}</p>
+  <div class="meta-strip">
+    <span><strong>Lean toolchain:</strong> <code>leanprover/lean4:v4.35.0-rc3</code></span>
+    <span><strong>Mathlib commit:</strong> <code>c55e6e786f49471c72fbddbec5415808896aec1e</code></span>
+    <span><strong>Permitted axioms:</strong> <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code></span>
+  </div>
+</header>
+
+<h2>1. What is mechanically verified vs. what requires human reading</h2>
+<p>
+  Following the <a href="https://palomar-registry.org">Palomar</a> verification architecture, statement
+  review is separated from proof checking:
+</p>
+<ul>
+  <li><strong>Standalone statement (<a href="{{source_url}}/EFiniteCharacterizations/Statement.lean"><code>Statement.lean</code></a> → <a href="{{source_url}}/Challenge.lean"><code>Challenge.lean</code></a>):</strong> Imports Mathlib alone and states the five endpoints (Theorem A(I–III), Theorem B, and Corollary C) with five deliberate <code>sorry</code> placeholders.</li>
+  <li><strong>Proof replay (<a href="{{source_url}}/Solution.lean"><code>Solution.lean</code></a> + <code>lake comparator</code>):</strong> Proves all five declarations from the library without importing <code>Challenge.lean</code>. Running <code>lake comparator</code> inside Bubblewrap checks that every definition and theorem type in the transitive closure matches byte-for-byte, confirms zero extra axioms, and replays all proofs through the Lean 4 kernel as well as the external checkers <strong>NanoDa</strong> and <strong>con-ron</strong>.</li>
+  <li><strong>Human review surface:</strong> No human expert has reviewed the 388 proof modules line-by-line. Because the kernel and external checkers guarantee soundness of the proofs, the sole mathematical judgment left to a human reader is verifying that the ~625 lines of Mathlib-only definitions in <code>Statement.lean</code> faithfully express the statements of the paper.</li>
+</ul>
+
+<h2>2. Summary of verification checks</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Verification step</th>
+      <th>Scope &amp; recorded outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Source &amp; module header check</strong></td>
+      <td>392 Lean files inspected; all use the Lean 4 <code>module</code> system and stay well within the 10,000-line limit.</td>
+    </tr>
+    <tr>
+      <td><strong>Library &amp; Solution build</strong></td>
+      <td><code>lake build</code> and <code>lake build Challenge Solution</code> pass cleanly (3,873 Lake build jobs).</td>
+    </tr>
+    <tr>
+      <td><strong>Full declaration axiom scan</strong></td>
+      <td><code>Lean.collectAxioms</code> across all 6,463 declarations in the library and <code>Solution.lean</code> reports only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code> (zero <code>sorryAx</code>).</td>
+    </tr>
+    <tr>
+      <td><strong>External kernel comparator</strong></td>
+      <td>Accepted by Lean 4 kernel, NanoDa, and con-ron on all five endpoints in <code>comparator.json</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Hosted Palomar preflight (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/actions/runs/45530650450">Run 45530650450 ↗</a>)</strong></td>
+      <td>Passed on proof tag <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/releases/tag/v0.1.0"><code>v0.1.0</code></a> (<code>f594ef1</code>): zero errors; Solution build 317 s (2.13 GiB peak RSS), comparator 238 s (2.20 GiB), con-ron 100 s (1.84 GiB).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Reproducing the checks locally</h2>
+<pre><code>python3 scripts/check-lean-sources.py
+lake exe cache get
+lake build
+python3 scripts/audit_axioms.py
+python3 scripts/scan_axioms.py
+python3 scripts/generate_challenge.py --check
+lake build Challenge Solution
+./scripts/verify-comparator.sh</code></pre>
+<p>
+  <code>verify-comparator.sh</code> runs on Linux with <code>bwrap</code> (Bubblewrap) on <code>PATH</code>
+  and a real directory (not a symlink) at <code>.lake/packages</code>; see
+  <a href="{{source_url}}/docs/VERIFICATION.md"><code>docs/VERIFICATION.md</code></a> for details.
+</p>
+
+<h2>4. Provenance and attribution</h2>
+<p>
+  Haruhisa Enomoto authored the manuscript and directed both the mathematical research and the Lean
+  formalization. Detailed attribution of AI contributions to the paper and formalization, exact TeX/PDF
+  hashes, and per-file origins of the 24 adapted Apache-2.0 modules are recorded in:
+</p>
+<div class="actions">
+  <a class="button" href="{{source_url}}/PROVENANCE.md">PROVENANCE.md ↗</a>
+  <a class="button" href="{{source_url}}/VENDORED.md">VENDORED.md ↗</a>
+  <a class="button" href="{{source_url}}/docs/MANUSCRIPT.md">docs/MANUSCRIPT.md ↗</a>
+  <a class="button" href="{{source_url}}/verification/2026-11-25/README.md">November 25 verification report ↗</a>
+</div>

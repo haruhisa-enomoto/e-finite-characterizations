@@ -5,7 +5,16 @@ public import EFiniteCharacterizations.Silting.Fans.MediantCount
 public import EFiniteCharacterizations.Silting.Fans.ConeSaturation
 public import EFiniteCharacterizations.Silting.ThickSubcategories.BoundedProjectiveHomotopy
 
-/-! # The finite Stern–Brocot test and the number of basic silting complexes -/
+/-!
+# Finite Stern–Brocot plane test and silting count in rank two
+
+Proposition 8.3 (`cor:stern-brocot`) of the manuscript. For an algebra of rank two
+with indecomposable projectives `P, Q` and `x = dim_k Hom(Q, P)`,
+`y = dim_k Hom(P, Q)`, the `g`-vector fan covers the entire plane if and only if the
+finitely many Stern–Brocot mediants of depths `x` and `y` in the two mixed quadrants
+lie in `Σ(R)`, in which case there are at most `2^x + 2^y + 2` basic two-term silting
+complexes (`sternBrocot_plane_test_and_count`).
+-/
 
 @[expose] public section
 

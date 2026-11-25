@@ -4,7 +4,15 @@ public import EFiniteCharacterizations.Geometry.VertexMatrixLocalization
 public import EFiniteCharacterizations.Geometry.KingModuli
 public import EFiniteCharacterizations.Characterizations.ModuleCriteria
 
-/-! # E-finiteness over an algebraically closed field -/
+/-!
+# Geometric characterizations over an algebraically closed field
+
+Theorem 6.1 (**Theorem A(III)**) of the manuscript. Over an algebraically closed
+field `k`, this file connects E-finiteness in the chosen split basic Morita
+presentation (`basicPresentation k R`) with the King moduli criterion
+`isEFinite_iff_kingClosedPoints`, complementing the open-orbit and open-wide-locus
+equivalences (`equivalences_openLoci`).
+-/
 
 @[expose] public section
 

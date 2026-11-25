@@ -2,7 +2,15 @@ module
 
 public import EFiniteCharacterizations.Silting.Fans.ConeSaturation
 
-/-! # The class of a generator is in the relative interior of its cone -/
+/-!
+# Relative interiors of two-term presilting cones
+
+Second assertion of Lemma 2.1(1) (`lem:fan-lattice`): the `g`-vector of any two-term
+complex lies in the relative interior of its `g`-vector cone
+(`class_mem_intrinsicInterior_gVectorCone`), and every vector in the fan support
+`Σ(R)` lies in the relative interior of `C(P)` for some two-term presilting complex `P`
+(`mem_fanSupport_iff_cone_interior`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

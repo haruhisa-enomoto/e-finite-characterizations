@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.Silting.Fans.BrickFacets
 public import EFiniteCharacterizations.Stability.PolystableClasses
 
-/-! # Realizing a wide subcategory by a single presilting perpendicular -/
+/-!
+# Realization of wide subcategories as `τ`-perpendicular categories
+
+First assertion of Theorem 5.1 (`thm:wide`): over an E-finite algebra, the simple
+objects of any wide subcategory `W ⊆ mod R` form a finite semibrick jointly stable
+at an integral weight; choosing a presilting cone `C(P)` of maximal dimension whose
+interior stabilizes those simples realizes `W` as the `τ`-perpendicular category
+`J(P)` (`exists_presilting_perpendicular_of_wide`), which is functorially finite.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

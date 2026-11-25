@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.Presentations.CokernelGenerators
 public import EFiniteCharacterizations.Characterizations.FixedClassFiniteness
 
-/-! # Stable bricks in a finite rank-two sector cover -/
+/-!
+# Brick-finiteness of E-finite algebras in rank at most two
+
+Establishes the `(E-fin) ⇔ brick-finite` half of Theorem B / Theorem 8.4
+(`isEFinite_iff_brickFinite_of_rank_le_two` and
+`isEFinite_iff_brickFinite_right_of_rank_le_two`). When `n ≤ 2` and `R` is E-finite,
+Stern–Brocot subdivision covers the two mixed quadrants by finitely many compatible
+presilting cones, yielding finitely many weights at which every brick is stable.
+-/
 
 @[expose] public section
 

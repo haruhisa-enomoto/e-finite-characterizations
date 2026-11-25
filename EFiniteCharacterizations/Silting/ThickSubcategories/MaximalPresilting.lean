@@ -4,7 +4,13 @@ public import EFiniteCharacterizations.Presentations.SiltingPresentation
 public import EFiniteCharacterizations.Silting.Fans.SectorGenerators
 public import EFiniteCharacterizations.Presentations.ProjectiveClassSeparation
 
-/-! # Maximal presilting generators in a two-term thick subcategory -/
+/-!
+# Maximal presilting complexes inside a two-term thick subcategory
+
+Proves that every thick subcategory `H` of `K^{[-1,0]}(proj R)` contains a presilting
+complex `U` maximal with respect to compatible direct sums (`exists_maximal_presilting`),
+bounding chains of compatible summands by the rank `n = |sim R|`.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits CategoryTheory.Pretriangulated

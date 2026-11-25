@@ -1,66 +1,88 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 
 project:
   name: "Characterizations of E-finite algebras and conjectures on brick-finiteness"
   description: >-
-    For a finite-dimensional algebra, E-finiteness means that the two-term silting fan
-    covers the integral projective lattice. Theorem A relates this property to seventeen
-    tests over arbitrary fields, two fixed-vector counts over infinite fields, and three
-    geometric conditions over algebraically closed fields. The arbitrary-field tests include
-    nonzero morphisms between modules of equal class, injectivity of the dimension maps of
-    torsion-class Grothendieck monoids, finiteness of semibricks, absence of generic bricks and grains,
-    thick generation, and finiteness of localization targets. The geometric tests use closed
-    points of King moduli, open brick orbits and open wide loci. Theorem B equates E-finiteness,
-    brick-finiteness and tau-tilting finiteness in rank at most two. Corollary C identifies
-    brick-discreteness with multiplicity-freeness on every irreducible component in arbitrary
-    characteristic. The intended readers are representation theorists studying finite-dimensional
-    algebras, silting theory, stability and representation varieties.
+    A Mathlib-only Lean 4 formalization of the manuscript Characterizations of
+    E-finite algebras and conjectures on brick-finiteness by Haruhisa Enomoto. A
+    finite-dimensional algebra over a field is E-finite when its two-term silting
+    fan covers the integral projective lattice K₀(proj Λ). Theorem A proves that
+    E-finiteness is equivalent over an arbitrary field to seventeen conditions—including
+    nonzero morphisms between nonzero modules of equal dimension vector (K₀-Hom),
+    injectivity of dimension-vector maps on torsion-class Grothendieck monoids,
+    functorial finiteness of compact torsion classes and wide subcategories,
+    finiteness of semibricks, finiteness of bricks of each endolength, polynomial
+    brick growth, absence of generic bricks and generic grains, presilting
+    generation of two-term thick subcategories, and finite-dimensionality of
+    universal localizations and simple Artinian epimorphic targets—together with
+    two dimension-vector finiteness conditions over infinite fields and three
+    geometric conditions (King moduli closed points, open brick orbits, and open
+    wide loci) over algebraically closed fields. Consequently, seven open
+    brick-finiteness conjectures (including Demonet's lattice point conjecture,
+    the finite semibrick conjecture, the second brick-Brauer–Thrall conjecture,
+    and Mousavand–Paquette's generic brick conjecture) become equivalent for each
+    algebra. Theorem B proves this common conjecture in rank at most two over any
+    field, equating E-finiteness, brick-finiteness, and τ-tilting finiteness.
+    Corollary C proves Weyman's conjecture over algebraically closed fields of
+    arbitrary characteristic, equating Schur-representation-finiteness with
+    multiplicity-freeness on every irreducible component. Intended for researchers
+    in the representation theory of finite-dimensional algebras, silting and
+    τ-tilting theory, and module varieties.
   authors: ["Haruhisa Enomoto"]
   responsible_maintainers: ["Haruhisa Enomoto"]
   license: "Apache-2.0"
 
 classification:
   arxiv: ["math.RT", "math.RA"]
-  msc2020: ["16G10", "16G20", "16E35"]
+  msc2020: ["16G10", "16G20", "16E20", "18E40"]
 
 sources:
   - title: "Characterizations of E-finite algebras and conjectures on brick-finiteness"
     authors: ["Haruhisa Enomoto"]
     type: "paper"
-    location: "Author's manuscript, November 25, 2026, 43 pages. Exact TeX and PDF hashes in docs/MANUSCRIPT.md."
+    location: "Author's manuscript, November 25, 2026 (43 pages; exact TeX and PDF SHA-256 hashes recorded in docs/MANUSCRIPT.md)."
     relationship: "formalizes"
     author_endorsement: "participated"
     note: >-
-      Theorems A and B and Corollary C are the compared results. The correspondence links all
-      44 numbered statements, including the localizations, finite-field estimates, cancellation
-      criteria and Artin-target corollary, to their Lean proofs. The author's manuscript credits
-      the AI-assisted development of its results as described in PROVENANCE.md.
+      Theorem A(I, II, III), Theorem B, and Corollary C are the five compared
+      endpoints in Challenge.lean. All 44 numbered theorems, propositions, lemmas,
+      and corollaries in the manuscript (including Grothendieck-monoid cancellation,
+      Frobenius finite-field brick bounds, and ring epimorphisms with Artin targets)
+      are proved in the library and indexed in docs/PAPER-CORRESPONDENCE.md. AI
+      contributions to the manuscript and formalization are documented in PROVENANCE.md.
 
 related_formalizations:
   - id: "https://github.com/TauCetiProject/TauCeti"
     relationship: "adapts"
-    note: "13 modules on Nakayama, duality, injectivity and tensor products from development commit 02160f039476c36211f34cf7cb338272193a0ab6."
-  - id: "https://github.com/haruhisa-enomoto/pretorsion-image-closed"
-    relationship: "adapts"
-    note: "Finite-module morphisms and composition length."
+    note: "13 modules on linear duals, balanced tensor products, injectivity, opposite modules, and the Nakayama functor, ported from development commit 02160f039476c36211f34cf7cb338272193a0ab6 (2026-11)."
   - id: "https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture"
     relationship: "adapts"
-    note: "Contragredient duality, full corners and basic-algebra reduction."
+    note: "6 modules on contragredient duality, full-idempotent Morita equivalence, and split basic corner reduction."
+  - id: "https://github.com/haruhisa-enomoto/pretorsion-image-closed"
+    relationship: "adapts"
+    note: "2 modules on finitely generated module morphisms and composition length (commit e6e95f6c295649bccf0ca476c9a5b008320e9443)."
   - id: "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution"
     relationship: "adapts"
-    note: "Criterion for simplicity in the category of finite modules."
+    note: "1 module adapting the simplicity criterion in the finitely generated module category."
   - id: "https://github.com/haruhisa-enomoto/magnitude-conjecture"
     relationship: "adapts"
-    note: "Restriction of Morita equivalences to the finite-module categories."
+    note: "1 module adapting restriction of Morita equivalences to finitely generated module categories."
   - id: "https://github.com/haruhisa-enomoto/extension-closed-string-algebras"
     relationship: "adapts"
-    note: "Fourier–Motzkin elimination for Farkas's lemma over an ordered field."
+    note: "1 module adapting Fourier–Motzkin elimination for Farkas's lemma over an ordered field."
 
 status:
   scope: >-
-    The five compared declarations state Theorem A(I), A(II), A(III), Theorem B and
-    Corollary C. The proof library also covers the numbered body and appendix results
-    listed in docs/PAPER-CORRESPONDENCE.md. Each proof uses only Lean core and Mathlib.
+    The five compared theorems in Challenge.lean state Theorem A(I) (arbitrary
+    field, 17 equivalent conditions), Theorem A(II) (infinite field, 2
+    dimension-vector conditions), Theorem A(III) (algebraically closed field,
+    existence of a split basic Morita chart and 3 geometric conditions across all
+    such charts), Theorem B (rank at most two over any field), and Corollary C
+    (Weyman's conjecture over algebraically closed fields). All 44 numbered
+    statements in the body and appendix of the manuscript and all cited inputs
+    required along the Lean proof routes are proved in the library using only Lean
+    core and Mathlib.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -68,47 +90,77 @@ status:
 automation:
   methods:
     - method: "agent"
-      models: ["OpenAI GPT-6 family"]
-      framework: "OpenAI Codex"
-      tool_setup: "Lean compiler, pinned Mathlib, declaration and axiom audits, and independently stated comparison endpoints."
-      prompting_notes: "Formalize the manuscript under the author's direction. Alternative proof routes are permitted."
-  notes: "The Lean proof terms were developed under Haruhisa Enomoto's direction. Authorship and borrowed components are documented in PROVENANCE.md and VENDORED.md."
+      models: ["OpenAI GPT-6 family", "Gemini 4 Carbon"]
+      framework: "OpenAI Codex and Antigravity"
+      tool_setup: >-
+        AI coding agents working in a local Lean 4 project with compiler feedback,
+        declaration-wide axiom scans, a statement-by-statement concordance, and
+        standalone Mathlib-only comparison endpoints, under the author's direction.
+      prompting_notes: >-
+        Formalize all numbered statements and cited inputs of the frozen manuscript
+        in a subject-organized Mathlib-only package; self-contained alternative
+        proof routes are permitted where they avoid heavy external prerequisites.
+  notes: >-
+    The mathematical research, manuscript, and Lean formalization were directed by
+    Haruhisa Enomoto; model roles and adapted modules are detailed in PROVENANCE.md
+    and VENDORED.md.
 
 fidelity:
   divergences: >-
-    Right modules are left modules over the opposite algebra. Integral weights are represented
-    by differences of finite projectives. Composition vectors are identified with exact
-    Grothendieck classes by the finite-length decomposition into simples. The two-term thick
-    condition uses the fully faithful realization of bounded projective complexes in the ambient
-    homotopy category, with its comparison theorem in the library. The geometric statement
-    proves existence of a split basic presentation and quantifies over all such presentations.
-    The paper uses one basic representative. All algebras, ground fields and modules are taken
-    in one arbitrary universe. See docs/proofs/PROOF-ROUTES.md for the different proof routes.
+    Right modules over R are formalized as left modules over Rᵐᵒᵖ. Integral weights
+    in K₀(proj Λ) are represented as differences [Q] - [P] of finitely generated
+    projectives, and dimension vectors are encoded by classes in the exact
+    Grothendieck group K₀(mod Λ) (identified with simple-multiplicity vectors in
+    the library). In Theorem A(I), the two-term thick condition (thick-gen) uses
+    the canonical realization of two-term projective complexes inside K(mod Λ),
+    with equivalence to the thick envelope inside Kᵇ(proj Λ) proved in
+    BoundedProjectiveHomotopy.lean. In Theorem A(III) and Corollary C, Statement.lean
+    packages a Morita-equivalent split basic presentation with complete orthogonal
+    vertex idempotents as Statement.Chart k R, proves Nonempty (Chart k R) for
+    every finite-dimensional algebra over an algebraically closed field, and
+    quantifies the geometric conditions over all such charts (whereas the paper
+    fixes one basic representative). Three proof routes differ from the paper's
+    citations: Proposition 7.6 constructs generic grains via Malcev–Neumann
+    well-ordered series on a bi-ordered free group instead of Cohn's universal
+    skew field; Theorem 6.1 proves King's closed-point condition directly by
+    splitting extensions in Proj; and Theorem 7.8 includes a direct rank-induction
+    proof of finite-dimensionality of universal localizations via rigid pencils.
+    All rings, fields, and modules live in one arbitrary universe u.
 
 review:
   status: "unreviewed"
-  notes: "An independent human review of the Lean statements and proof terms has not been recorded."
+  notes: >-
+    No independent human expert review of the Lean statements or proof terms has
+    been recorded. All declarations pass Lean kernel compilation, axiom scanning,
+    and external kernel replay (NanoDa and con-ron via lake comparator).
 
 alignment:
   namespace: "EFiniteCharacterizations"
   statements:
-    - source: "Theorem A(I), arbitrary field, seventeen characterizations"
+    - source: "Theorem A(I): seventeen arbitrary-field characterizations of E-finiteness"
       lean: "EFiniteCharacterizations.Challenge.arbitraryField"
       module: "Challenge"
       status: "proved"
-    - source: "Theorem A(II), infinite field, two further characterizations"
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveArbitraryField and equivalences_arbitraryField."
+    - source: "Theorem A(II): dimension-vector characterizations (dim-brick) and (dim-stab) over infinite fields"
       lean: "EFiniteCharacterizations.Challenge.infiniteField"
       module: "Challenge"
       status: "proved"
-    - source: "Theorem A(III), algebraically closed field, three geometric characterizations"
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveInfiniteField and equivalences_infiniteField."
+    - source: "Theorem A(III): geometric characterizations (moduli-pt), (open-brick), and (open-wide) over algebraically closed fields"
       lean: "EFiniteCharacterizations.Challenge.algebraicallyClosedField"
       module: "Challenge"
       status: "proved"
-    - source: "Theorem B, rank at most two"
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveAlgebraicallyClosedField and equivalences_algebraicallyClosedField."
+    - source: "Theorem B (= Theorem 8.4): equivalence of E-finiteness, τ-tilting finiteness, and brick-finiteness in rank at most two"
       lean: "EFiniteCharacterizations.Challenge.rankTwo"
       module: "Challenge"
       status: "proved"
-    - source: "Corollary C, Weyman's conjecture"
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveRankTwo and rankTwoEquivalences."
+    - source: "Corollary C: Weyman's conjecture equating Schur-representation-finiteness (dim-brick) with multiplicity-freeness"
       lean: "EFiniteCharacterizations.Challenge.brickDiscreteMultiplicityFree"
       module: "Challenge"
       status: "proved"
+      note: "Proved in Solution.lean via EFiniteCharacterizations.proveBrickDiscreteMultiplicityFree and brick_discrete_iff_multiplicityFree."
+
+acknowledgements: "Lean and Mathlib."

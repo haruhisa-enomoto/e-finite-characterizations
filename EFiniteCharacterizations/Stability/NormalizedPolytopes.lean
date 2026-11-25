@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.Stability.SubmodulePolytopes
 public import Mathlib.Analysis.Convex.Extreme
 
-/-! # The integer grid for normalized submodule polytopes -/
+/-!
+# Normalized submodule polytopes and endolength bounds
+
+Proposition 5.3 (`prop:norm-polytope`) of the manuscript. Dividing the projective
+Hom coordinates of subobject classes of a brick `M` by `dim_k End_R(M)` places all
+vertices of its normalized submodule polytope in `{0, 1, …, endolength(M)}^n`
+(`normalizedSubmodulePolytope_vertices`), bounding the number of normalized submodule
+polytopes of bricks of endolength `r` (`normalizedSubmodulePolytope_count`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

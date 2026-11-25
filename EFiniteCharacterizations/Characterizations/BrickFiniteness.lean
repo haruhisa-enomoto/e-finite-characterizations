@@ -2,7 +2,26 @@ module
 
 public import EFiniteCharacterizations.Characterizations.ModuleCriteria
 
-/-! # Brick-continuity, the seven pointwise implications, and finite-field growth -/
+/-!
+# Consequences for brick-finiteness conjectures and brick-continuity
+
+Section 1 of the manuscript deduces from Theorem A(I) that seven open problems
+asking for sufficient conditions for brick-finiteness become equivalent for each
+individual finite-dimensional `k`-algebra:
+
+1. Demonet's lattice point conjecture (`(E-fin) ⇒ brick-finite`);
+2. Enomoto's finite semibrick conjecture (`(fin-sbrick) ⇒ brick-finite`);
+3. Mousavand–Paquette's `n`-semibrick question (`(n-sbrick) ⇒ brick-finite`);
+4. the second brick-Brauer–Thrall conjecture (`(brick-discrete) ⇒ brick-finite`);
+5. Mousavand–Paquette's generic brick conjecture (`(no-gen-brick) ⇒ brick-finite`);
+6. Pfeifer's stable Brauer–Thrall II′ conjecture (`(endo-stab) ⇒ brick-finite`);
+7. Angeleri Hügel–Sentieri's wide subcategory question (`(wide) ⇒ brick-finite`).
+
+This file proves this per-algebra equivalence (`seven_pointwise_implications`), the
+contrapositive equivalence between brick-continuity and the existence of a generic
+brick (`brickContinuous_iff_exists_generic_right_brick`), and exponential brick growth
+by `k`-dimension for E-infinite algebras over finite fields.
+-/
 
 @[expose] public section
 
@@ -14,6 +33,8 @@ namespace EFiniteCharacterizations
 
 variable (k R : Type u) [Field k] [Ring R] [Algebra k R] [Module.Finite k R]
 
+/-- Over an arbitrary field, `Rᵐᵒᵖ` is brick-continuous (has infinitely many bricks of some
+endolength `r ≥ 1`) if and only if `Mod Rᵐᵒᵖ` admits a generic brick. -/
 theorem brickContinuous_iff_exists_generic_right_brick :
     (∃ r : ℕ, 0 < r ∧ (brickClassesOfEndolength (R := Rᵐᵒᵖ) k r).Infinite) ↔
       ∃ M : ModuleCat.{u} Rᵐᵒᵖ, IsGenericBrick k M := by
@@ -24,8 +45,9 @@ theorem brickContinuous_iff_exists_generic_right_brick :
   simpa only [not_forall, exists_prop, Classical.not_imp, not_not, Set.Infinite] using
     (hd.symm.trans hg).not
 
-/-- For a fixed algebra all seven hypotheses in the introduction yield
-equivalent implications to brick-finiteness. -/
+/-- For each finite-dimensional `k`-algebra, the seven implications `(i)`–`(vii)` from
+`(E-fin)`, `(fin-sbrick)`, `(n-sbrick)`, `(brick-discrete)`, `(no-gen-brick)`, `(endo-stab)`,
+and `(wide)` to brick-finiteness are pairwise equivalent. -/
 theorem seven_pointwise_implications :
     letI := IsNoetherianRing.of_finite k Rᵐᵒᵖ
     let C := FGModuleCat.{u} Rᵐᵒᵖ
@@ -45,6 +67,8 @@ theorem seven_pointwise_implications :
   exact ⟨imp_congr s Iff.rfl, imp_congr n Iff.rfl, imp_congr d Iff.rfl,
     imp_congr g Iff.rfl, imp_congr t Iff.rfl, imp_congr w Iff.rfl⟩
 
+/-- Over a finite field, an E-infinite algebra has exponentially many nonisomorphic bricks of
+`k`-dimension at most `m`. -/
 theorem finiteField_exponential_bricks_by_dimension [Finite k] (h : ¬ IsEFinite Rᵐᵒᵖ) :
     ∃ (c : ℝ) (m₀ : ℕ), 0 < c ∧ ∀ m ≥ m₀,
       ∃ s : Finset (Skeleton (FGModuleCat.{u} Rᵐᵒᵖ)), Real.exp (c * m) ≤ s.card ∧

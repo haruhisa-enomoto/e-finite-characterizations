@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.ScalarExtension.FiniteFieldGrowth
 public import EFiniteCharacterizations.Silting.Fans.ConeSaturation
 
-/-! # The finite-field brick count for a prescribed missing class -/
+/-!
+# Exponentially growing families of stable bricks over finite fields
+
+Proposition A.3 (`prop:fq-count`) of Appendix A. Over a finite field `k` of order `q`,
+a two-term projective presentation whose `g`-vector lies outside `Σ(R)` produces at
+least `q^s / (c₀ s)` nonisomorphic stable bricks over `k` in each degree `s ≥ 1`,
+distributed across a fixed finite set of integral weights and bounded in endolength
+(`exists_stable_bricks_of_each_degree`).
+-/
 
 @[expose] public section
 open CategoryTheory

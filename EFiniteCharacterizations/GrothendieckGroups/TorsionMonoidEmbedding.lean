@@ -5,7 +5,19 @@ public import EFiniteCharacterizations.Characterizations.HomCharacterizations
 public import Mathlib.CategoryTheory.Limits.Shapes.Pullback.IsPullback.Kernels
 public import Mathlib.CategoryTheory.ObjectProperty.EpiMono
 
-/-! # Dimension-vector embeddings for torsion-class monoids -/
+/-!
+# Injectivity of dimension-vector maps on torsion-class Grothendieck monoids
+
+Theorem 4.1 (`thm:mon-dim`, condition `(mon-dim)` in Theorem A(I)) of the manuscript:
+
+* `torsionMonoid_injective_of_equalClassHom`: under `(K₀-Hom)`, pushing out short
+  exact sequences along nonzero morphisms between modules of equal class shows by
+  induction on length that `M(T) → K₀(mod R)` is injective for every torsion class `T`.
+* `isEFinite_iff_injective_weakTorsionMonoid` and `isEFinite_iff_injective_torsionMonoid`:
+  conversely, two nonisomorphic `g`-stable bricks of equal class have distinct classes
+  in the Grothendieck monoid of the weak `g`-semistable torsion class, completing
+  `(E-fin) ⇔ (mon-dim)`.
+-/
 
 @[expose] public section
 

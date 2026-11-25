@@ -6,7 +6,14 @@ public import Mathlib.Algebra.MvPolynomial.Funext
 public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 public import Mathlib.LinearAlgebra.TensorProduct.Basis
 
-/-! # Tangent directions at a point of maximum geometric rank -/
+/-!
+# Kernel-to-image inclusion at a point of maximum geometric rank
+
+Lemma 2.6 (`lem:rank-lemma`) of the manuscript: if a `k`-linear family
+`Φ : T → Hom_k(V, W)` attains its maximum rank over `k̄` at a ground point `p ∈ T`,
+then `Φ(q)(ker Φ(p)) ⊆ im Φ(p)` for every `q ∈ T`
+(`map_ker_le_range_of_maximal_geometric_rank`).
+-/
 
 @[expose] public section
 open Module

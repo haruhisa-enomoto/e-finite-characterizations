@@ -2,7 +2,16 @@ module
 
 public import EFiniteCharacterizations.Presentations.PencilHomDimensions
 
-/-! # The Euler characteristic of the three-term complex of morphisms -/
+/-!
+# Euler characteristic of morphism complexes and the pencil semicontinuity bound
+
+Lemma 2.10 (`lem:pencil`) of the manuscript. Computes the alternating dimension sum
+of shifted homotopy morphism spaces between two-term projective complexes
+(`bounded_hom_euler`) and proves that replacing a presilting differential `u : A → B`
+by any map `σ : A → B` on the same projective terms can only increase
+`dim_k Hom_{Kᵇ(proj R)}(-, V[n])` and `dim_k Hom_{Kᵇ(proj R)}(V, -[n])`
+(`pencil_hom_finrank_le`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits HomologicalComplex CochainComplex.HomComplex

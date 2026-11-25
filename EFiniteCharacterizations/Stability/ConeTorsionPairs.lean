@@ -7,7 +7,21 @@ public import EFiniteCharacterizations.Silting.Fans.FourQuadrants
 public import EFiniteCharacterizations.Stability.RationalExtraction
 public import EFiniteCharacterizations.Stability.StableSeparationWeights
 
-/-! # Numerical torsion pairs on the interior of a presilting cone -/
+/-!
+# Semistable categories and linear independence on presilting cone interiors
+
+Section 2 of the manuscript (Lemma 2.2, Proposition 2.3, and Lemma 2.4):
+
+* `cone_interior_torsion_identities` (**Lemma 2.2**): for any real weight `v` in the
+  relative interior `C°(P)` of a presilting cone, the `v`-semistable subcategory is
+  the `τ`-perpendicular category `J(P)` and the four numerical torsion/torsion-free
+  classes agree with `(⊥H⁻¹(νP), (H⁰(P))⊥)` and `(Fac H⁰(P), Sub H⁻¹(νP))`.
+* `rationally_independent_stable_classes_in_cone` (**Proposition 2.3**): the
+  dimension vectors of `v`-stable bricks are `ℚ`-linearly independent.
+* `silting_interior_signs` (**Lemma 2.4**): interior weights of a silting cone `C(T)`
+  are strictly positive on nonzero objects of `Fac H⁰(T)` and strictly negative on
+  nonzero objects of `(H⁰(T))⊥`.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

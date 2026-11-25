@@ -4,7 +4,15 @@ public import EFiniteCharacterizations.GrothendieckGroups.TorsionFreeClassGroup
 public import EFiniteCharacterizations.Subcategories.WideSubcategories
 public import EFiniteCharacterizations.Presentations.ProjectiveClassSeparation
 
-/-! # Grothendieck groups of torsion and torsion-free classes over a finite-dimensional algebra -/
+/-!
+# Grothendieck groups of torsion and torsion-free classes
+
+Proposition 4.2 (`thm:K0-tors`) of the manuscript. For any torsion class or
+torsion-free class `T` in `mod R` over any field, the natural homomorphism
+`K₀(T) → K₀(mod R)` from its exact Grothendieck group is injective, and its image is
+the free abelian subgroup spanned by the classes of simple modules occurring as
+composition factors of objects in `T` (`intrinsicGroup_on_compositionSupport`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

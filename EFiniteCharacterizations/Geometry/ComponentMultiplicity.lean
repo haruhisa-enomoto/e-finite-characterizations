@@ -3,7 +3,24 @@ module
 public import EFiniteCharacterizations.Geometry.ComponentDegeneration
 public import EFiniteCharacterizations.Geometry.MultiplicityFree
 
-/-! # E-finiteness bounds the semi-invariant weight spaces on every component -/
+/-!
+# Semi-invariant multiplicities on irreducible components and Weyman's conjecture
+
+Corollary C (`cor:intro-weyman`, Weyman's conjecture) and Section 6 of the manuscript.
+Over an algebraically closed field `k` of arbitrary characteristic, an algebra is
+*multiplicity-free* if on every irreducible component `Z` of every representation
+variety `rep(Λ, d)`, the weight space of `GL(d)`-semi-invariants has dimension at
+most one for every character `w`.
+
+* `SplitBasicVertices.rank_componentWeightSpace_le_one_of_isEFinite`: when `Λ` is
+  E-finite, degenerating a general point of `Z` to its polystable limit and using
+  linear independence of the classes of stable bricks shows that all semi-invariants
+  of weight `w` on `Z` are proportional.
+* `isEFinite_iff_multiplicityFree`: E-finiteness is equivalent to multiplicity-freeness.
+* `brick_discrete_iff_multiplicityFree` (**Corollary C**): combining this with
+  Theorem A(II) (`(E-fin) ⇔ (dim-brick)`), Schur-representation-finiteness is
+  equivalent to multiplicity-freeness.
+-/
 
 @[expose] public section
 

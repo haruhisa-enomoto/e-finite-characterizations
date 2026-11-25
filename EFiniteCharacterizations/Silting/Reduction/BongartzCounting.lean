@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.Subcategories.WidePerpendicular
 public import EFiniteCharacterizations.Presentations.BasicSummandClasses
 public import EFiniteCharacterizations.Presentations.FinitePresiltingCokernels
 
-/-! # Projective coordinates for counting the simples in perpendicular reduction -/
+/-!
+# Spanning projective classes from a presilting complex and its perpendicular simples
+
+Proves the lower rank inequality `n ≤ r + |sim J(P)|` of Lemma 2.2 (`lem:perpendicular`)
+over any field by showing that `K₀(proj R)` is spanned by the classes of the `r`
+basic summands of `P` together with at most one class per simple object of `J(P)`
+(`exists_spanning_weights_for_perpendicular`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

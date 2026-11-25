@@ -3,7 +3,14 @@ module
 public import EFiniteCharacterizations.Subcategories.CompactTorsion
 public import EFiniteCharacterizations.Subcategories.TorsionGeneratorPresentation
 
-/-! # Characterizations by compact torsion classes and torsion radicals -/
+/-!
+# Functorial finiteness of compact torsion classes
+
+Condition `(comp-tors)` of Theorem 3.2 (`thm:core`) and Theorem A(I): over any field,
+`R` is E-finite if and only if every singly generated (compact) torsion class `⊥(M⊥)`
+in `mod R` is functorially finite (`isEFinite_iff_generatedTorsionClass_functoriallyFinite`),
+equivalently if and only if `⊥(B⊥)` is functorially finite for every brick `B`.
+-/
 
 @[expose] public section
 

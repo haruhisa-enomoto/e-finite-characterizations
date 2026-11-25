@@ -3,7 +3,16 @@ module
 public import EFiniteCharacterizations.Silting.ThickSubcategories.ThickInversion
 public import EFiniteCharacterizations.RingEpimorphisms.GroundLocalization
 
-/-! # E-finiteness and presilting generation of two-term thick subcategories -/
+/-!
+# Equivalence of E-finiteness with presilting generation of two-term thick subcategories
+
+Assembles `isEFinite_iff_twoTermThickGeneration` (Theorem 7.8, `(E-fin) ⇔ (thick-gen)`).
+For the converse `(thick-gen) ⇒ (E-fin)`, generating the thick subcategory of a
+single differential `P` by a presilting complex `U` identifies the modules inverting
+`P` with those inverting `U` (`exists_presilting_same_inversions`), forcing the
+singleton universal localization at `P` to be finite-dimensional and ruling out
+missing integral weights.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

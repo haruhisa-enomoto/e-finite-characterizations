@@ -7,7 +7,14 @@ public import EFiniteCharacterizations.Presentations.RigidPair
 public import EFiniteCharacterizations.Silting.ThickSubcategories.ThickPencil
 public import Mathlib.CategoryTheory.Limits.Comma
 
-/-! # Comparing finite powers of rigid differentials over the ground field -/
+/-!
+# Uniqueness of two-term presilting complexes of a given `g`-vector
+
+Lemma 2.1(2) (`lem:fan-lattice`) of the manuscript: over any ground field `k`, two
+two-term presilting complexes with the same class in `K₀(proj R)` are isomorphic in
+the homotopy category (`nonempty_homotopyIso_of_isPresilting_of_class_eq`), whether
+or not they are basic.
+-/
 
 @[expose] public section
 

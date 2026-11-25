@@ -168,4 +168,22 @@ public import EFiniteCharacterizations.Characterizations.BrickDimension
 public import EFiniteCharacterizations.Subcategories.TorsionRadical
 public import EFiniteCharacterizations.RingEpimorphisms.ArtinTargets
 
-/-! # Characterizations of E-finite algebras -/
+/-!
+# Characterizations of E-finite algebras
+
+Root umbrella module for the Lean 4 formalization of Haruhisa Enomoto's
+*Characterizations of E-finite algebras and conjectures on brick-finiteness*
+(frozen November 25, 2026 manuscript).
+
+## Principal entry points
+
+* `EFiniteCharacterizations.Characterizations.Equivalences`: Theorem A(I), A(II),
+  and A(III) (`equivalences_arbitraryField`, `equivalences_infiniteField`,
+  `equivalences_algebraicallyClosedField`).
+* `EFiniteCharacterizations.Silting.Fans.RankTwoTauTilting`: Theorem B / Theorem 8.4
+  (`rankTwoEquivalences`).
+* `EFiniteCharacterizations.Geometry.ComponentMultiplicity`: Corollary C / Weyman's
+  conjecture (`brick_discrete_iff_multiplicityFree`).
+* `EFiniteCharacterizations.Statement` and `EFiniteCharacterizations.MainTheorems`:
+  standalone Mathlib-only formulations and their proofs (`Challenge.lean` / `Solution.lean`).
+-/

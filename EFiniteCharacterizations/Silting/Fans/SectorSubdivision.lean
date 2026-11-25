@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.Presentations.StableRigidComparison
 public import Mathlib.Basic.Real.Basic
 
-/-! # Finite subdivision of a sector of two-term classes -/
+/-!
+# Recursive Stern–Brocot subdivision of ordered presilting sectors
+
+Section 8 of the manuscript (Lemmas 8.1–8.2). Given presilting complexes `E, L` with
+`Hom(E, L[1]) = 0`, repeatedly inserting a presilting representative of the mediant
+class `[E] + [L]` strictly decreases `dim_k Hom(-, -[1])` in the reverse direction on
+both subsectors (`exists_presilting_sector_cover_of_mediants`,
+`exists_presilting_sector_cover`).
+-/
 
 @[expose] public section
 

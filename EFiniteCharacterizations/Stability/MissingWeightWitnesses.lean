@@ -5,7 +5,24 @@ public import EFiniteCharacterizations.Silting.Fans.ConeSaturation
 public import EFiniteCharacterizations.Stability.StableSubobjects
 public import EFiniteCharacterizations.Stability.SubmodulePolytopes
 
-/-! # Minimal-image witnesses at a missing projective weight -/
+/-!
+# Stable bricks from integral weights outside the `g`-vector fan
+
+Propositions 2.7 (`prop:mp-witness`, after Mousavand–Paquette) and 2.8
+(`prop:stable-witnesses`) of the manuscript:
+
+* `exists_hom_of_class_outside_fan` and `minimal_image_stable_at_corrected_class`:
+  any differential `p` representing `g ∉ Σ(R)` admits a nonzero morphism
+  `coker p → ker(νp)`, and the image `B` of such a morphism of minimal `k`-dimension
+  is a brick stable at the corrected integral weight `(dim_k B) g - ⟨g, [B]⟩ [R]`.
+* `exists_occurrence_polynomial` and `exists_infinite_stable_classes_of_outside_fan`:
+  each fixed brick occurs only on a proper determinantal hypersurface, yielding
+  infinitely many nonisomorphic bricks of one dimension vector and integral weight
+  when `k` is infinite.
+* `exists_equal_class_polytope_stable_pair`: over every field, an E-infinite algebra
+  admits two nonisomorphic bricks stable at a common integral weight with the same
+  dimension vector and submodule polytope.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

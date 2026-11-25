@@ -6,7 +6,15 @@ public import EFiniteCharacterizations.ScalarExtension.FieldExtensionTower
 public import EFiniteCharacterizations.GrothendieckGroups.WideGrothendieck
 public import EFiniteCharacterizations.Subcategories.ExactAbelianClasses
 
-/-! # Modules over the endomorphism quotient of the Bongartz completion -/
+/-!
+# Equivalence of the `τ`-perpendicular category with modules over the reduction algebra
+
+First part of Lemma 2.2 (`lem:perpendicular`, after Jasso and DIRRT): for a two-term
+presilting complex `P` with Bongartz completion `T`, `Hom(G, -)` (where `G` is `H⁰(T)`
+modulo the trace of `H⁰(P)`) defines an exact equivalence between the
+`τ`-perpendicular category `J(P)` and `mod(End(H⁰(T)) / [H⁰(P)])`
+(`perpendicular_equivalence_of_bongartz`).
+-/
 
 @[expose] public section
 

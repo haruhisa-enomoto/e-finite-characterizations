@@ -6,7 +6,22 @@ public import EFiniteCharacterizations.Stability.IntegralDivisionWeight
 public import EFiniteCharacterizations.LargeModules.GenericBrickReduction
 public import EFiniteCharacterizations.Stability.OppositeAlgebra
 
-/-! # Exclusion of generic bricks over E-finite algebras -/
+/-!
+# Exclusion of generic bricks and generic grains over E-finite algebras
+
+Section 7.1 of the manuscript (Lemmas 7.1 and 7.3, and the forward implications of
+Theorem 7.8 for `(no-gen-brick)`, `(no-gen-grain)`, and `(ring-epi)`):
+
+* `TwoTerm.invertedOn_summand_of_divisionSemistable` (**Lemma 7.1**): a `(Λ, Δ)`-bimodule
+  semistable for the `Δ`-dimension Euler weight of a presilting complex `P` inverts
+  every summand of `P` and therefore lies in the large `τ`-perpendicular category.
+* `no_generic_right_brick_of_isEFinite` (**Lemma 7.3**): induction on rank via
+  perpendicular reduction rules out generic bricks over any E-finite algebra.
+* `no_generic_right_grain_of_isEFinite` and
+  `finite_simpleArtinian_ring_epimorphisms_of_isEFinite`: taking the endomorphism
+  socle rules out generic grains, and taking the unique simple module of an
+  infinite-dimensional simple Artinian epimorphic target rules out such targets.
+-/
 
 @[expose] public section
 

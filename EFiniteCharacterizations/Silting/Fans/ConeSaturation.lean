@@ -3,7 +3,18 @@ module
 public import EFiniteCharacterizations.Presentations.StrictSummands
 public import EFiniteCharacterizations.Silting.Fans.ConeLatticePoints
 
-/-! # Integral points of a two-term presilting cone -/
+/-!
+# Lattice saturation of presilting cones and planar sector covers
+
+Proves Lemma 2.1(1) (`lem:fan-lattice`) and Lemma 8.2 (`lem:sector`):
+
+* `mem_gVectorCone_iff_exists_in_add`: the integral lattice points of a presilting
+  cone `C(P)` are precisely the `g`-vectors of objects in `add(P)`.
+* `exists_sector_cover_of_mediants_in_fan`: if two presilting complexes `E, L` satisfy
+  `Hom(E, L[1]) = 0` and all Stern–Brocot mediants up to depth `dim_k Hom(L, E[1])`
+  lie in `Σ(R)`, then the planar sector between `[E]` and `[L]` is covered by at most
+  `2^j` compatible presilting sectors.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits HomologicalComplex

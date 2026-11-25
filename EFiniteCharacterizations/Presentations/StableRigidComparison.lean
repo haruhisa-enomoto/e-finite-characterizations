@@ -3,7 +3,16 @@ module
 public import EFiniteCharacterizations.Presentations.SplitBoundary
 public import EFiniteCharacterizations.Presentations.StableProjectiveTerms
 
-/-! # Comparison at a presilting complex of the same integral class -/
+/-!
+# Shifted Hom bounds at a presilting complex and Stern–Brocot mediants
+
+Lemma 8.1 (`lem:mediant`) of the manuscript. Because a presilting complex `Z`
+minimizes shifted Hom dimensions among all two-term complexes in its `g`-vector
+class (`shiftedHomFinrank_le_of_isPresilting_of_class_eq`), if `E` and `L` are
+presilting with `Hom(E, L[1]) = 0 < dim_k Hom(L, E[1])` and `[Z] = [E] + [L]`, then
+`(E, Z)` and `(Z, L)` remain ordered with strictly smaller reverse shifted Hom
+dimensions (`shiftedHomFinrank_mediant_bounds`).
+-/
 
 @[expose] public section
 

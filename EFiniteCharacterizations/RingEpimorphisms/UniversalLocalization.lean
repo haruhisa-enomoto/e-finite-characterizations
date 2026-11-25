@@ -3,7 +3,16 @@ module
 public import EFiniteCharacterizations.Modules.ProjectiveBaseChange
 public import EFiniteCharacterizations.Silting.Reduction.ReductionRank
 
-/-! # Arbitrary universal localizations of an E-finite algebra -/
+/-!
+# Finite-dimensionality of universal localizations of E-finite algebras
+
+Forward implication `(E-fin) ⇒ (univ-loc)` of Theorem 7.8 (`thm:large`). Using
+specialization of inversion along a presilting pencil (`RigidPencilInversion.lean`)
+for nonzero classes and Fitting decomposition for class zero, induction on the rank
+proves that every universal localization `R →ₐ[k] B` of an E-finite algebra at an
+arbitrary family of projective maps is finite-dimensional over `k`
+(`exists_finite_universalLocalization`, `rightUniversalLocalizationsFinite_of_isEFinite`).
+-/
 
 @[expose] public section
 

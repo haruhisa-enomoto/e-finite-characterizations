@@ -4,7 +4,14 @@ public import EFiniteCharacterizations.ScalarExtension.FiniteFieldOfDefinition
 public import EFiniteCharacterizations.ScalarExtension.GeometricConstituents
 public import EFiniteCharacterizations.ScalarExtension.StableFieldDescent
 
-/-! # Absolute Frobenius orbits of stable modules over a finite field -/
+/-!
+# Frobenius correspondence for stable modules over a finite field
+
+Lemma A.2 (`lem:frob-dict`) of Appendix A. Over a finite field `k`, scalar extension
+to the algebraic closure `L = k̄` identifies isomorphism classes of `P`-stable
+`R`-modules with Frobenius orbits of `P_L`-stable `R_L`-modules
+(`absolute_frobenius_correspondence`).
+-/
 
 @[expose] public section
 

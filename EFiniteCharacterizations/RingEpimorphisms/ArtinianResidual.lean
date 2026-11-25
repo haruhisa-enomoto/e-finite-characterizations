@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.RingEpimorphisms.FiniteDimensionalResidual
 public import Mathlib.Algebra.Algebra.Prod
 
-/-! # Finite-dimensional residual quotients of Artinian rings -/
+/-!
+# Finite-dimensional residual quotients of Artinian algebras
+
+Proves `finite_quotient_residual_of_artinian`: for a ring `B` that is Artinian and a
+`k`-algebra, the descending chain condition implies that the intersection of the
+annihilators of all finite-dimensional `B`-modules is already the annihilator of a
+single finite-dimensional module, so the residual quotient of `B` is finite-dimensional
+over `k`. Used in the proof of Corollary 7.9.
+-/
 
 @[expose] public section
 

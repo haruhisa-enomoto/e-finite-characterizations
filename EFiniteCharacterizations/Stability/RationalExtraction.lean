@@ -3,7 +3,19 @@ module
 public import EFiniteCharacterizations.Characterizations.FixedClassFiniteness
 public import Mathlib.RingTheory.Flat.Localization
 
-/-! # Extraction and common stability in the rational Grothendieck group -/
+/-!
+# Extraction of jointly stable dependent semibricks
+
+Theorem 3.1 (`thm:extraction`) of the manuscript:
+
+* `exists_rationally_dependent_stable_semibrick`: from any pair of nonzero modules
+  `M, N` with `[M] = [N]` and `Hom(M, N) = 0`, one extracts a nonempty finite
+  semibrick whose dimension vectors are linearly dependent and whose members are
+  simultaneously stable at one integral weight.
+* `rationally_independent_and_jointly_stable_of_equalClassHom`: consequently, under
+  `(K₀-Hom)`, every finite semibrick has linearly independent dimension vectors and
+  admits a single integral weight at which all its members are stable.
+-/
 
 @[expose] public section
 

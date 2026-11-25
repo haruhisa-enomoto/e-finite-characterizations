@@ -3,7 +3,20 @@ module
 public import EFiniteCharacterizations.Silting.Fans.RankTwoTauCompletion
 public import EFiniteCharacterizations.LinearAlgebra.FiniteSectorCover
 
-/-! # E-finiteness, tau-tilting finiteness and brick-finiteness in rank at most two -/
+/-!
+# Theorem B: E-finiteness, brick-finiteness, and `τ`-tilting finiteness in rank at most two
+
+Section 8 of the manuscript (`intro:rank-two` and `thm:rank-two`). For a
+finite-dimensional algebra of rank `n ≤ 2` over an arbitrary field `k`:
+
+* `RankTwoBricks.lean` proves `(E-fin) ⇔ brick-finite` via Stern–Brocot mediant
+  subdivision of the two mixed-sign quadrants (`SectorSubdivision.lean`), producing
+  finitely many compatible presilting sectors whose boundary weights detect all bricks;
+* this file completes the cycle `(E-fin) ⇔ τ-tilting finite` (`rankTwoEquivalences`)
+  by bounding indecomposable `τ`-rigid modules from the finite sector cover in the
+  forward direction and covering the plane from finitely many `τ`-rigid rays in the
+  converse direction.
+-/
 
 @[expose] public section
 

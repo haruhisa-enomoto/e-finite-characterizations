@@ -5,7 +5,24 @@ public import EFiniteCharacterizations.Characterizations.Equivalences
 public import EFiniteCharacterizations.Geometry.ComponentMultiplicity
 public import EFiniteCharacterizations.Silting.Fans.RankTwoTauTilting
 
-/-! # Translation to the independent statements -/
+/-!
+# Bridge from the proof library to the standalone statements
+
+This file proves the five standalone predicates defined in
+`EFiniteCharacterizations/Statement.lean` (`proveArbitraryField`,
+`proveInfiniteField`, `proveAlgebraicallyClosedField`, `proveRankTwo`, and
+`proveBrickDiscreteMultiplicityFree`) from the library's main theorems:
+
+* `equivalences_arbitraryField`, `equivalences_infiniteField`, and
+  `equivalences_algebraicallyClosedField` (`Characterizations/Equivalences.lean`);
+* `rankTwoEquivalences` (`Silting/Fans/RankTwoTauTilting.lean`);
+* `brick_discrete_iff_multiplicityFree` (`Geometry/ComponentMultiplicity.lean`).
+
+The private lemmas in this file establish the routine dictionary between the
+minimal Mathlib-only encodings of `Statement.lean` (pairs of projectives for
+integral weights, multisets for Grothendieck monoids, and arbitrary split basic
+Morita charts `Statement.Chart k R`) and the library's internal structures.
+-/
 
 @[expose] public section
 
@@ -261,7 +278,9 @@ theorem proveAlgebraicallyClosedField : Statement.AlgebraicallyClosedField.{u} :
   intro g d
   exact h C (P.vertices.characterExponents g) d
 
-/-- Brick-discreteness is equivalent to multiplicity-freeness on every irreducible component. -/
+/-- **Corollary C (Weyman's conjecture):** Schur-representation-finiteness `(dim-brick)` is
+equivalent over an algebraically closed field to multiplicity-freeness on every irreducible
+component in every split basic Morita chart. -/
 theorem proveBrickDiscreteMultiplicityFree : Statement.BrickDiscreteMultiplicityFree.{u} := by
   intro k A _ _ _ _ _
   letI := IsNoetherianRing.of_finite k Aᵐᵒᵖ

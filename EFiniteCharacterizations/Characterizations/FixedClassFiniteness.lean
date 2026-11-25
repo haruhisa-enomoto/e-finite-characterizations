@@ -3,7 +3,21 @@ module
 public import EFiniteCharacterizations.Characterizations.HomCharacterizations
 public import Mathlib.Data.Set.Finite.Powerset
 
-/-! # Fixed-class finiteness of bricks and stable modules -/
+/-!
+# Finiteness of bricks and stable bricks at a fixed dimension vector
+
+Corollary 3.3 and Corollary 5.4 (Theorem A(II)) of the manuscript:
+
+* `exists_projective_weight_stable_of_isEFinite` (**Corollary 3.3**): over an E-finite
+  algebra, every finite-dimensional brick is stable at some integral weight.
+* `finite_brickClassesOfClass_of_isEFinite`: over any field, E-finiteness implies
+  finiteness of bricks in every fixed Grothendieck class, since two bricks with the
+  same class and the same set of proper subobject classes share a stabilizing weight
+  and are therefore isomorphic.
+* `isEFinite_iff_dim_brick` and `isEFinite_iff_dim_stab` (**Corollary 5.4** /
+  **Theorem A(II)**): over an infinite field, E-finiteness is equivalent to
+  `(dim-brick)` (Schur-representation-finiteness) and to `(dim-stab)`.
+-/
 
 @[expose] public section
 
@@ -17,6 +31,7 @@ namespace EFiniteCharacterizations
 variable (k : Type u) [Field k] {R : Type u} [Ring R] [Algebra k R] [Module.Finite k R]
   [IsNoetherianRing R] [IsArtinianRing R]
 
+/-- **Corollary 3.3:** Over an E-finite algebra, every brick is stable at some integral weight. -/
 theorem exists_projective_weight_stable_of_isEFinite (h : IsEFinite R)
     {X : FGModuleCat.{u} R} (hX : IsBrick X) :
     ∃ g : ProjectiveClass R, (projectiveClassWeight k g).IsStable X := by
@@ -112,8 +127,8 @@ theorem exists_compositionVector_of_module (M : FGModuleCat.{u} R) :
   obtain ⟨d, _, hd⟩ := exists_simple_multiplicities k M
   exact ⟨d, hd⟩
 
-/-- Brick-discreteness at every composition vector characterizes E-finiteness
-over infinite fields. -/
+/-- **Theorem A(II), `(dim-brick)`** (Corollary 5.4): Over an infinite field, E-finiteness is
+equivalent to Schur-representation-finiteness (finitely many bricks of each dimension vector). -/
 theorem isEFinite_iff_dim_brick [Infinite k] :
     IsEFinite R ↔ ∀ d : simpleIsomorphismClasses R → ℕ,
       (brickClassesOfClass (classOfCompositionVector k d)).Finite := by
@@ -127,8 +142,8 @@ theorem isEFinite_iff_dim_brick [Infinite k] :
   · rw [Set.not_nonempty_iff_eq_empty.mp hn]
     exact Set.finite_empty
 
-/-- Stable-brick discreteness at every integral weight and composition vector
-characterizes E-finiteness over infinite fields. -/
+/-- **Theorem A(II), `(dim-stab)`** (Corollary 5.4): Over an infinite field, E-finiteness is
+equivalent to finiteness of `g`-stable bricks of each dimension vector for every `g ∈ K₀(proj R)`. -/
 theorem isEFinite_iff_dim_stab [Infinite k] :
     IsEFinite R ↔ ∀ (g : ProjectiveClass R) (d : simpleIsomorphismClasses R → ℕ),
       (stableClassesOfClass (projectiveClassWeight k g) (classOfCompositionVector k d)).Finite := by

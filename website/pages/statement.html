@@ -1,5 +1,226 @@
-<p class="eyebrow">Theorems and definitions</p><h1>Statements</h1><p>Let Λ be a finite-dimensional algebra over a field <i>k</i>. Its projective lattice is the split Grothendieck group of finitely generated projective right modules. E-finiteness means that the support of the two-term silting fan contains each point of that lattice.</p>
-<h2>Theorem A</h2><p>Over an arbitrary field the paper gives seventeen conditions equivalent to E-finiteness. They concern the equal-class Hom criterion, torsion monoids and torsion pairs, wide subcategories, brick labels and semibricks, endolength and polynomial growth, generic modules, thick generation, universal localizations and simple Artinian epic targets. Two further fixed-vector tests hold over infinite fields. Three tests over algebraically closed fields use King moduli, brick orbits and wide loci.</p>
-<h2>Theorem B and Corollary C</h2><p>In rank at most two, E-finiteness, brick-finiteness and τ-tilting finiteness are equivalent. Over an algebraically closed field, finiteness of the bricks of each composition vector is equivalent to multiplicity-freeness on the irreducible components of the representation varieties.</p>
-<h2>Independent statements</h2><p>The <a href="{{source_url}}/Challenge.lean">five Palomar comparison statements</a> give the three parts of Theorem A, Theorem B and Corollary C. Their definitions include the integral projective lattice, Grothendieck monoid relations, and the projective spectrum of the graded semi-invariant ring. The <a href="{{source_url}}/Solution.lean">solutions</a> connect these statements to the proof library.</p>
-<h2>Theorem A in Lean</h2><p>These three declarations give the theorem under its successive field hypotheses. The <a href="{{source_url}}/docs/PAPER-CORRESPONDENCE.md">concordance</a> links each numbered result to its proof.</p><pre><code>{{statement}}</code></pre>
+<header class="paper-header">
+  <p class="kicker">Mathematical &amp; Formal Specifications</p>
+  <h1>Formalized statements and Mathlib-only encoding</h1>
+  <p class="lead">
+    Every endpoint is formalized at two levels: inside the subject library
+    (<a href="{{source_url}}/EFiniteCharacterizations/Characterizations/Equivalences.lean"><code>Characterizations/Equivalences.lean</code></a>,
+    <a href="{{source_url}}/EFiniteCharacterizations/Silting/Fans/RankTwoTauTilting.lean"><code>RankTwoTauTilting.lean</code></a>,
+    <a href="{{source_url}}/EFiniteCharacterizations/Geometry/ComponentMultiplicity.lean"><code>ComponentMultiplicity.lean</code></a>)
+    and independently in <a href="{{source_url}}/EFiniteCharacterizations/Statement.lean"><code>Statement.lean</code></a>
+    using Mathlib alone.
+  </p>
+  <div class="actions">
+    <a class="button primary" href="{{source_url}}/EFiniteCharacterizations/Statement.lean">Statement.lean (Mathlib-only) ↗</a>
+    <a class="button" href="{{source_url}}/Challenge.lean">Challenge.lean ↗</a>
+    <a class="button" href="{{source_url}}/EFiniteCharacterizations/MainTheorems.lean">MainTheorems.lean (bridge) ↗</a>
+    <a class="button" href="{{source_url}}/docs/PAPER-CORRESPONDENCE.md">44-result concordance ↗</a>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="On this page">
+  <strong>Contents</strong>
+  <a href="#thm-a-table">All 22 conditions of Theorem A</a>
+  <a href="#thm-bc">Theorem B, Corollary C &amp; unified conjectures</a>
+  <a href="#encoding">Mathlib-only encoding choices</a>
+  <a href="#lean-source">Lean declarations &amp; Challenge source</a>
+</nav>
+
+<h2 id="thm-a-table">1. Complete reference for Theorem A</h2>
+<p>
+  Let <span class="m">Λ</span> be a finite-dimensional algebra over a field <span class="m">k</span> of rank
+  <span class="m">n = |sim Λ|</span>. Baseline condition <span class="cond">(E-fin)</span> states that every
+  integral class <span class="m">g = [P<sup>0</sup>] − [P<sup>−1</sup>] ∈ K<sub>0</sub>(proj Λ)</span> is
+  represented by a two-term presilting complex (<span class="m">Hom<sub>K<sup>b</sup>(proj Λ)</sub>(U, U[1]) = 0</span>).
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tag</th>
+      <th>Scope</th>
+      <th>Mathematical statement</th>
+      <th>Predicate in <code>Statement.lean</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="cond">(E-fin)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every <span class="m">g ∈ K<sub>0</sub>(proj Λ)</span> is the class of a two-term presilting complex (<span class="m">K<sub>0</sub>(proj Λ) ⊆ Σ(Λ)</span>).</td>
+      <td><code>EFinite A</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(K₀-Hom)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>For all <span class="m">M, N ∈ mod Λ</span>, if <span class="m">[M] = [N] ≠ 0</span> in <span class="m">K<sub>0</sub>(mod Λ)</span>, then <span class="m">Hom<sub>Λ</sub>(M, N) ≠ 0</span>.</td>
+      <td><code>cl X = cl Y → cl X ≠ 0 → ∃ f, f ≠ 0</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(mon-dim)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>For every torsion class <span class="m">𝒯 ⊆ mod Λ</span>, the dimension-vector map <span class="m">M(𝒯) → K<sub>0</sub>(mod Λ)</span> is injective.</td>
+      <td><code>MonoidDimension A</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(comp-tors)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every singly generated (compact) torsion class <span class="m"><sup>⊥</sup>(M<sup>⊥</sup>)</span> in <span class="m">mod Λ</span> is functorially finite.</td>
+      <td><code>FunctoriallyFinite (leftPerp (rightPerp M))</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(num-disj)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>For every torsion pair <span class="m">(𝒯, ℱ)</span> and nonzero <span class="m">X ∈ 𝒯, Y ∈ ℱ</span>, <span class="m">[X] ≠ [Y]</span> in <span class="m">K<sub>0</sub>(mod Λ)</span>.</td>
+      <td><code>TorsionPair T F → … → cl X ≠ cl Y</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(wide)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every wide subcategory <span class="m">𝒲 ⊆ mod Λ</span> is functorially finite.</td>
+      <td><code>Wide W → FunctoriallyFinite W</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(wide₁)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>For every brick <span class="m">B ∈ brick Λ</span>, the filtration subcategory <span class="m">Filt(B)</span> is functorially finite.</td>
+      <td><code>Brick B → FunctoriallyFinite (Filt B)</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(brick-label)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every brick <span class="m">B</span> labels a cover <span class="m">𝒯′ ⋖ 𝒯</span> in <span class="m">f-tors Λ</span> via <span class="m">Filt(B) = 𝒯 ∩ (𝒯′)<sup>⊥</sup></span>.</td>
+      <td><code>BrickLabels A</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(n-sbrick)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>The set <span class="m">sim Λ</span> of simple modules is the unique <span class="m">n</span>-element semibrick in <span class="m">mod Λ</span>.</td>
+      <td><code>s.ncard = (simpleClasses A).ncard → s = simpleClasses A</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(fin-sbrick)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every semibrick in <span class="m">mod Λ</span> is finite.</td>
+      <td><code>Semibrick s → s.Finite</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(brick-discrete)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>For every <span class="m">r ≥ 1</span>, only finitely many classes in <span class="m">brick Λ</span> have endolength <span class="m">r</span>.</td>
+      <td><code>(classes (endolength k X = r ∧ Brick X)).Finite</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(endo-stab)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>For every <span class="m">θ ∈ K<sub>0</sub>(proj Λ)</span> and <span class="m">r ≥ 1</span>, only finitely many <span class="m">θ</span>-stable bricks have endolength <span class="m">r</span>.</td>
+      <td><code>(classes (endolength k X = r ∧ Stable k P Q X)).Finite</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(poly-brick)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>The number of isomorphism classes of bricks of composition length <span class="m">≤ m</span> grows at most polynomially in <span class="m">m</span>.</td>
+      <td><code>PolynomialGrowth A</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(no-gen-brick)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>There is no infinite-dimensional generic brick in <span class="m">Mod Λ</span>.</td>
+      <td><code>¬ ∃ M, GenericBrick k M</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(no-gen-grain)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>There is no generic grain in <span class="m">Mod Λ</span>.</td>
+      <td><code>¬ ∃ M, GenericGrain k M</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(thick-gen)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every thick subcategory of <span class="m">K<sup>[−1,0]</sup>(proj Λ)</span> is <span class="m">thick(U) ∩ K<sup>[−1,0]</sup>(proj Λ)</span> for a two-term presilting <span class="m">U</span>.</td>
+      <td><code>ThickGeneration A</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(univ-loc)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every universal localization of <span class="m">Λ</span> at a set of projective morphisms is finite-dimensional over <span class="m">k</span>.</td>
+      <td><code>LocalizationFinite (k := k) R</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(ring-epi)</span></td>
+      <td>any <span class="m">k</span></td>
+      <td>Every ring epimorphism <span class="m">Λ → Γ</span> with simple Artinian target satisfies <span class="m">dim<sub>k</sub> Γ &lt; ∞</span>.</td>
+      <td><code>SimpleEpicFinite (k := k) R</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(dim-brick)</span></td>
+      <td><span class="m">k</span> infinite</td>
+      <td>For every dimension vector <span class="m">d</span>, only finitely many bricks have class <span class="m">d</span> (<em>Schur-representation-finiteness</em>).</td>
+      <td><code>(classes (cl X = c ∧ Brick X)).Finite</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(dim-stab)</span></td>
+      <td><span class="m">k</span> infinite</td>
+      <td>For every <span class="m">θ ∈ K<sub>0</sub>(proj Λ)</span> and class <span class="m">d</span>, only finitely many <span class="m">θ</span>-stable bricks have class <span class="m">d</span>.</td>
+      <td><code>(classes (cl X = c ∧ Stable k P Q X)).Finite</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(moduli-pt)</span></td>
+      <td><span class="m">k = k̄</span></td>
+      <td>For every <span class="m">θ ∈ K<sub>0</sub>(proj Λ)</span> and <span class="m">d ∈ ℕ<sup>n</sup></span>, King's moduli scheme <span class="m">ℳ<sub>θ</sub><sup>ss</sup>(Λ, d)</span> has at most one closed point.</td>
+      <td><code>C.KingCondition</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(open-brick)</span></td>
+      <td><span class="m">k = k̄</span></td>
+      <td>Every brick <span class="m">B ∈ brick Λ</span> has a Zariski-open <span class="m">GL(d)</span>-orbit in <span class="m">rep(Λ, d)</span>.</td>
+      <td><code>C.BrickOrbits</code></td>
+    </tr>
+    <tr>
+      <td><span class="cond">(open-wide)</span></td>
+      <td><span class="m">k = k̄</span></td>
+      <td>For every <span class="m">d ∈ ℕ<sup>n</sup></span> and wide <span class="m">𝒲 ⊆ mod Λ</span>, <span class="m">{x ∈ rep(Λ, d) | x ∈ 𝒲}</span> is Zariski-open.</td>
+      <td><code>C.WideLoci</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="thm-bc">2. Theorem B, Corollary C, and the five Challenge endpoints</h2>
+<p>
+  <code>Challenge.lean</code> checks five standalone theorems against <code>Solution.lean</code>:
+</p>
+<ol>
+  <li><code>Challenge.arbitraryField</code> — <strong>Theorem A(I)</strong>: the seventeen arbitrary-field equivalences above.</li>
+  <li><code>Challenge.infiniteField</code> — <strong>Theorem A(II)</strong>: the two dimension-vector equivalences <span class="cond">(dim-brick)</span> and <span class="cond">(dim-stab)</span> over infinite fields.</li>
+  <li><code>Challenge.algebraicallyClosedField</code> — <strong>Theorem A(III)</strong>: existence of a split basic Morita chart (<code>Nonempty (Chart k R)</code>) and the equivalences with <span class="cond">(moduli-pt)</span>, <span class="cond">(open-brick)</span>, and <span class="cond">(open-wide)</span> across all such charts.</li>
+  <li><code>Challenge.rankTwo</code> — <strong>Theorem B</strong>: when <span class="m">|sim Λ| ≤ 2</span> over any field, <span class="m">Λ</span> is E-finite iff <span class="m">Λ</span> is <span class="m">τ</span>-tilting finite iff <span class="m">Λ</span> is brick-finite.</li>
+  <li><code>Challenge.brickDiscreteMultiplicityFree</code> — <strong>Corollary C (Weyman's conjecture)</strong>: over an algebraically closed field of any characteristic, <span class="cond">(dim-brick)</span> holds iff every <span class="m">GL(d)</span>-semi-invariant weight space on every irreducible component of <span class="m">rep(Λ, d)</span> has dimension <span class="m">≤ 1</span>.</li>
+</ol>
+
+<h2 id="encoding">3. Encoding conventions in <code>Statement.lean</code></h2>
+<div class="callout">
+  <p>
+    <strong>Why a separate <code>Statement.lean</code>?</strong> A large proof library inevitably introduces
+    internal helper structures. Stating the endpoints directly over Mathlib in <code>Statement.lean</code>
+    (~625 lines) lets a human mathematician verify that the formalized definitions match the paper without
+    auditing 388 proof files.
+  </p>
+</div>
+<ul>
+  <li><strong>Right modules via opposite rings:</strong> Right modules over a finite-dimensional <span class="m">k</span>-algebra <code>R</code> are left modules over <code>Rᵐᵒᵖ</code>: <code>Mod Rᵐᵒᵖ := FGModuleCat.{u} Rᵐᵒᵖ</code> for <span class="m">mod Λ</span> and <code>ModuleCat.{u} Rᵐᵒᵖ</code> for <span class="m">Mod Λ</span>.</li>
+  <li><strong>Projective lattice &amp; integral weights:</strong> <code>Lattice A</code> is the quotient of the free abelian group on finitely generated projectives by isomorphism and biproduct relations, and integral weights are pairs <code>P Q : Proj A</code> acting on <span class="m">M</span> via <code>dim_k Hom(Q, M) - dim_k Hom(P, M)</code>.</li>
+  <li><strong>Dimension vectors &amp; Grothendieck monoids:</strong> <code>K₀ A</code> is the quotient of the free abelian group on <code>Mod A</code> by short exact sequences. For a torsion class <code>T</code>, <code>ExactMonoidRel T</code> generates the additive congruence of short exact sequences inside <code>T</code> on <code>Multiset {X // T X}</code>.</li>
+  <li><strong>Two-term thick subcategories:</strong> <code>Differential.realize</code> places a map <code>P ⟶ Q</code> in degrees <span class="m">−1</span> and <span class="m">0</span> of <code>HomotopyCategory (Mod A) (ComplexShape.up ℤ)</code>; equivalence between the triangulated envelope in <code>K(mod A)</code> and in <code>Kᵇ(proj A)</code> is proved in <code>BoundedProjectiveHomotopy.lean</code>.</li>
+  <li><strong>Basic Morita charts and King's <code>Proj</code>:</strong> Over <span class="m">k = k̄</span>, representation varieties require vertex idempotents of a basic algebra. <code>Chart k R</code> packages any split basic <span class="m">k</span>-algebra <code>C.A</code> equipped with a complete set of primitive orthogonal idempotents and an equivalence <code>Mod Rᵐᵒᵖ ≌ Mod C.A</code>, constructs <code>kingProj = AlgebraicGeometry.Proj (kingGrading …)</code> directly from Mathlib's projective spectrum, and proves both existence of a chart and invariance across all charts.</li>
+</ul>
+
+<h2 id="lean-source">4. Theorem A in the proof library &amp; standalone <code>Challenge.lean</code></h2>
+<p>
+  In the proof library (<a href="{{source_url}}/EFiniteCharacterizations/Characterizations/Equivalences.lean"><code>Characterizations/Equivalences.lean</code></a>),
+  the three field layers of Theorem A have the following Lean signatures:
+</p>
+<pre><code>{{statement}}</code></pre>
+
+<details class="source-fold">
+  <summary>Inspect the complete Mathlib-only Challenge.lean ({{challenge_lines}} lines)</summary>
+  <pre><code>{{challenge}}</code></pre>
+</details>

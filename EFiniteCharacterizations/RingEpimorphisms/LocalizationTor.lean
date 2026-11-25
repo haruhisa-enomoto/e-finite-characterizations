@@ -3,11 +3,15 @@ module
 public import EFiniteCharacterizations.RingEpimorphisms.LocalizationExtensions
 public import Mathlib.CategoryTheory.Limits.Shapes.Pullback.IsPullback.Kernels
 
-/-! # First Tor of a universal localization
+/-!
+# Vanishing of `Tor₁ᴿ(B, B)` for universal localizations
 
-For a ring map `R → B`, resolve the restricted left regular module by the free
-left module on its elements. First Tor is the kernel of the map induced on the
-first syzygy by extension of scalars. -/
+Defines `FirstTorSelf f` (`Tor₁ᴿ(B, B)`) from the canonical free presentation of the
+restricted regular module of `B` along `f : R →+* B`, and proves by a syzygy pushout
+argument that every universal localization at a family of projective morphisms is a
+ring epimorphism with `Tor₁ᴿ(B, B) = 0`
+(`IsUniversalLocalization.firstTorSelf_subsingleton`).
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits

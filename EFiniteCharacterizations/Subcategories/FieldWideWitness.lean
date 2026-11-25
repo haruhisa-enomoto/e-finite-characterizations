@@ -4,7 +4,14 @@ public import EFiniteCharacterizations.Subcategories.BrickFiltrationDuality
 public import EFiniteCharacterizations.Stability.FiniteCogeneratorWeights
 public import Mathlib.FieldTheory.Finiteness
 
-/-! # One stable brick with neither left nor right filtration approximations -/
+/-!
+# Obstruction to functorial finiteness of `Filt(B)` over an E-infinite algebra
+
+Lemma A.5 (`lem:field-wide`) of Appendix A: over an arbitrary field `k`, if `R` is
+E-infinite, then there exist an integral weight `g` and a `g`-stable brick `B` such
+that `Filt(B)` is neither covariantly finite nor contravariantly finite in `mod R`
+(`exists_stable_brick_without_filtration_approximations`), giving `(wide₁) ⇒ (E-fin)`.
+-/
 
 @[expose] public section
 open CategoryTheory Opposite

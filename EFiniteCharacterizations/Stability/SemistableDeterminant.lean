@@ -7,7 +7,15 @@ public import EFiniteCharacterizations.Subcategories.WideSimpleSupport
 public import EFiniteCharacterizations.Stability.SemistableSimples
 public import EFiniteCharacterizations.RingEpimorphisms.LocalizationExtensions
 
-/-! # Determinantal characterization of semistability -/
+/-!
+# Determinantal criterion for numerical semistability
+
+Proposition 2.5(2) (`prop:known-baseline`, after King and Schofield/Derksen–Fei):
+over an algebraically closed field, a finite-dimensional module `M` is semistable at
+an integral weight `g ∈ K₀(proj R)` if and only if some positive multiple `t g` is
+represented by a differential `Q` such that `Hom_R(Q.differential, M)` is an
+isomorphism (`semistable_iff_exists_inverting_multiple`).
+-/
 
 @[expose] public section
 

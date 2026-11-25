@@ -10,7 +10,17 @@ public import EFiniteCharacterizations.Stability.StableFiniteness
 public import EFiniteCharacterizations.Silting.ThickSubcategories.ThickGeneration
 public import EFiniteCharacterizations.Silting.ThickSubcategories.ThickInversion
 
-/-! # Simple objects of the perpendicular category of a presilting complex -/
+/-!
+# Rank of the `τ`-perpendicular category and basic silting summand count
+
+Completes Lemma 2.2 (`lem:perpendicular`) over an arbitrary field:
+
+* `perpendicular_simple_count` and `basic_perpendicular_reduction`: for a basic
+  two-term presilting complex `P` with `r` indecomposable summands, the reduction
+  category `J(P)` has `n - r` isomorphism classes of simple objects.
+* `basic_silting_summand_count`: in particular, a basic two-term silting complex has
+  exactly `n` indecomposable summands.
+-/
 
 @[expose] public section
 

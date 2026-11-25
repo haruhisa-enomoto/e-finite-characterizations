@@ -5,7 +5,14 @@ public import EFiniteCharacterizations.Subcategories.BrickFiltrationEquivalences
 public import EFiniteCharacterizations.Subcategories.CompactTorsionEquivalences
 public import Mathlib.Order.Cover
 
-/-! # Bricks labeling covers of functorially finite torsion classes -/
+/-!
+# Brick labels of covers in the poset of functorially finite torsion classes
+
+Theorem 5.1 (`thm:wide`, condition `(brick-label)` in Theorem A(I)) of the
+manuscript: over an arbitrary field, `R` is E-finite if and only if every brick `B`
+in `mod R` arises as the brick label `Filt(B) = U ∩ T⊥` of a cover `T ⋖ U` in the
+poset `f-tors R` of functorially finite torsion classes (`isEFinite_iff_brickLabels`).
+-/
 
 @[expose] public section
 
@@ -21,9 +28,12 @@ abbrev FiniteTorsionPoset (R : Type u) [Ring R] [IsNoetherianRing R] :=
   {T : ObjectProperty (FGModuleCat.{u} R) //
     (∃ F, T = leftHomOrthogonal F) ∧ FunctoriallyFinite T}
 
+/-- The heart interval `U ∩ T⊥` associated to a pair `T, U` of torsion classes. -/
 def torsionInterval (T U : ObjectProperty (FGModuleCat.{u} R)) : ObjectProperty (FGModuleCat.{u} R) :=
   fun X ↦ U X ∧ ∀ Y, T Y → rightHomOrthogonal Y X
 
+/-- Condition `(brick-label)`: every brick `B` satisfies `Filt(B) = U ∩ T⊥` for a cover `T ⋖ U`
+in `FiniteTorsionPoset R`. -/
 def BrickLabels (R : Type u) [Ring R] [IsNoetherianRing R] : Prop :=
   ∀ B : FGModuleCat.{u} R, IsBrick B → ∃ T U : FiniteTorsionPoset R,
     T ⋖ U ∧ FilteredBy B = torsionInterval T.val U.val
@@ -161,6 +171,7 @@ theorem brickLabels_of_isEFinite (h : IsEFinite R) : BrickLabels R := by
       exact hq.of_iso (Iso.refl _) (asIso p).symm
 
 include k in
+/-- **Theorem 5.1, `(E-fin) ⇔ (brick-label)`.** -/
 theorem isEFinite_iff_brickLabels : IsEFinite R ↔ BrickLabels R := by
   refine ⟨brickLabels_of_isEFinite k,fun h ↦ (isEFinite_iff_covariantlyFinite_filteredBy k).2 ?_⟩
   intro B hb

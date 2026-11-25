@@ -3,7 +3,14 @@ module
 public import EFiniteCharacterizations.Characterizations.FixedClassFiniteness
 public import EFiniteCharacterizations.LinearAlgebra.WeightSignPatterns
 
-/-! # Polynomial growth of bricks of bounded composition length -/
+/-!
+# Polynomial growth of bricks of bounded composition length
+
+Theorem 5.2 (`thm:walls`, condition `(poly-brick)` in Theorem A(I)) of the manuscript:
+over an arbitrary field, `R` is E-finite if and only if the number of isomorphism
+classes of bricks of composition length at most `m` is bounded by a polynomial in `m`
+(`isEFinite_iff_poly_brick`).
+-/
 
 @[expose] public section
 

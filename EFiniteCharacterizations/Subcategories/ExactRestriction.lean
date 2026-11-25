@@ -2,7 +2,15 @@ module
 
 public import EFiniteCharacterizations.RingEpimorphisms.ResiduallyFiniteTargets
 
-/-! # Descent of E-finiteness along exact fully faithful functors -/
+/-!
+# Descent of E-finiteness along exact fully faithful functors and algebra quotients
+
+Corollary 3.4 (`cor:exact-restriction`) of the manuscript: because an exact fully
+faithful functor `F : mod B → mod A` preserves equality of dimension vectors and
+reflects zero morphisms, `(K₀-Hom)` — and therefore E-finiteness — passes from `A` to
+`B` (`isEFinite_of_exact_embedding`), and in particular to every quotient algebra of
+`A` (`isEFinite_of_surjective`).
+-/
 
 @[expose] public section
 
@@ -16,6 +24,7 @@ variable (k : Type u) [Field k] {A B : Type u} [Ring A] [Ring B] [Algebra k A] [
   [IsNoetherianRing B] [IsArtinianRing B]
 
 include k in
+/-- **Corollary 3.4:** E-finiteness descends along any exact fully faithful functor `mod B → mod A`. -/
 theorem isEFinite_of_exact_embedding (F : FGModuleCat.{u} B ⥤ FGModuleCat.{u} A)
     [F.Full] [F.Faithful] [PreservesFiniteLimits F] [PreservesFiniteColimits F]
     (h : IsEFinite A) : IsEFinite B := by

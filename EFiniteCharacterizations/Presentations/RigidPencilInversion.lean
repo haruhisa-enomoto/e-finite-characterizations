@@ -3,7 +3,15 @@ module
 public import EFiniteCharacterizations.LinearAlgebra.PencilKernel
 public import EFiniteCharacterizations.Presentations.RigidPencil
 
-/-! # Inversion of a rigid differential on arbitrary modules -/
+/-!
+# Specialization of module-theoretic inversion along a presilting pencil
+
+Shows that if an `R`-module `N` (possibly infinite-dimensional) inverts any map
+`σ : P.source → P.target` on the projective terms of a two-term presilting complex
+`P`, then `N` also inverts the presilting differential `P.differential`
+(`TwoTerm.bijective_leftComp_of_isPresilting`). This drives the direct inductive
+proof that universal localizations of E-finite algebras are finite-dimensional.
+-/
 
 @[expose] public section
 

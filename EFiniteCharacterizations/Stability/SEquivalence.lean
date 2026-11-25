@@ -2,7 +2,14 @@ module
 
 public import EFiniteCharacterizations.Stability.PolystableClasses
 
-/-! # S-equivalence of semistable modules with a prescribed composition vector -/
+/-!
+# Uniqueness of S-equivalence classes at fixed weight and dimension vector
+
+Companion characterization of E-finiteness: at a fixed integral weight, linear
+independence of the classes of stable bricks means that the dimension vector of a
+semistable module uniquely determines its multiset of Jordan–Hölder factors in the
+semistable category (`isEFinite_iff_subsingleton_sEquivalenceClasses`).
+-/
 
 @[expose] public section
 

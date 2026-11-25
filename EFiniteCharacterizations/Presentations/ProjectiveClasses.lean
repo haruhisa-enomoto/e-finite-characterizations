@@ -5,7 +5,15 @@ public import Mathlib.Algebra.Category.ModuleCat.Biproducts
 public import Mathlib.GroupTheory.FreeAbelianGroup
 public import Mathlib.GroupTheory.QuotientGroup.Defs
 
-/-! # Integral projective classes -/
+/-!
+# Split Grothendieck group of finite projectives and E-finiteness
+
+Defines the category `FiniteProjective R` of finitely generated projective modules,
+its split Grothendieck group `ProjectiveClass R = K₀(proj R)`, the `g`-vector
+`P.projectiveClass = [P⁰] - [P⁻¹]` of a two-term complex `P`, and the predicate
+`IsEFinite R` asserting that every class in `ProjectiveClass R` is represented by a
+two-term presilting complex.
+-/
 
 @[expose] public section
 

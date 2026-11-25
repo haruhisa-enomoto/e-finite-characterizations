@@ -15,7 +15,19 @@ public import EFiniteCharacterizations.Stability.SharpBrickGrowth
 public import EFiniteCharacterizations.GrothendieckGroups.WideGrothendieckEquivalence
 public import EFiniteCharacterizations.Subcategories.WideSubcategories
 
-/-! # Arbitrary-field E-finiteness criteria for right modules -/
+/-!
+# Aggregate module-theoretic and ring-theoretic criteria for right modules
+
+Internal aggregation module collecting arbitrary-field (`moduleCriteria`),
+infinite-field (`compositionVectorCriteria`), and finite-field growth
+(`finiteFieldGrowthDichotomy`) characterizations in the right-module convention
+`Rᵐᵒᵖ`, used to assemble `Equivalences.lean` and `BrickFiniteness.lean`.
+
+In addition to the conditions entering Theorem A(I), `moduleCriteria` records
+several companion characterizations proved in the library, including `K₀`-injectivity
+for wide subcategories, finiteness of semistable simples at integral weights, and
+facet / injectivity properties of brick stability walls.
+-/
 
 @[expose] public section
 

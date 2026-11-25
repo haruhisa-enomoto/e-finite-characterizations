@@ -4,7 +4,14 @@ public import EFiniteCharacterizations.Stability.ConeTorsionPairs
 public import EFiniteCharacterizations.Presentations.SiltingPresentation
 public import EFiniteCharacterizations.Silting.ThickSubcategories.ThickGeneration
 
-/-! # The torsion class of the basic Bongartz completion -/
+/-!
+# Basic Bongartz completion of a two-term presilting complex
+
+Constructs a basic two-term silting complex `T` containing a given presilting complex
+`P` in `add(T)` such that `Fac H⁰(T) = ⊥(H⁻¹(νP))` (`exists_basic_bongartz_completion`),
+following Adachi–Iyama–Reiten and Demonet–Iyama–Reading–Reiten–Thomas over an
+arbitrary field.
+-/
 
 @[expose] public section
 open CategoryTheory CategoryTheory.Limits
