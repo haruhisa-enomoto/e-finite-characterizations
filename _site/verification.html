@@ -1,7 +1,105 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Verification · Characterizations of E-finite algebras</title><link rel="stylesheet" href="assets/site.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="nav" aria-label="Main"><a class="brand" href="index.html">Characterizations of E-finite algebras</a><a href="index.html">Overview</a><a href="statement.html">Statement</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub</a></nav></header>
-<main id="main"><p class="eyebrow">Reproducibility</p><h1>Verification and provenance</h1><p>Palomar’s hosted preflight passed on November 25, 2026. The five headline proofs passed the local kernel comparison. All 6,463 declarations use only propext, Classical.choice and Quot.sound.</p><dl><dt>Lean</dt><dd>v4.35.0-rc3</dd><dt>Mathlib revision</dt><dd><code>c55e6e786f49471c72fbddbec5415808896aec1e</code></dd><dt>Permitted axioms</dt><dd>propext, Classical.choice, Quot.sound</dd></dl><p>The <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/a42443dfc6cba03f3e9501696bca2f121b73732b/docs/VERIFICATION.md">verification guide</a> gives the reproduction commands. The <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/a42443dfc6cba03f3e9501696bca2f121b73732b/verification">verification records</a> identify the commits checked. The <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/a42443dfc6cba03f3e9501696bca2f121b73732b/PROVENANCE.md">provenance record</a> describes the paper, the Lean proofs and adapted code.</p>
-<p><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/actions/runs/45530650450">Passing hosted preflight</a> · <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/a42443dfc6cba03f3e9501696bca2f121b73732b/verification/2026-11-25/README.md">Checks, timing and resource use</a></p>
-</main><footer class="site-footer">Source: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a42443dfc6cba03f3e9501696bca2f121b73732b">a42443d</a> · API: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/f594ef1cc3337cf35db6bbc3a32b515d400b4a3e">f594ef1</a><br>Haruhisa Enomoto · Lean formalization · Apache-2.0</footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Verification · Characterizations of E-finite algebras</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">E-finite Algebras · Lean 4</a><a href="index.html">Overview</a><a href="statement.html">Statements</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html" aria-current="page">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub ↗</a>
+    </nav>
+  </header>
+  <main id="main">
+<header class="paper-header">
+  <p class="kicker">Mechanical Checks, Reproducibility &amp; Provenance</p>
+  <h1>Verification and trust boundary</h1>
+  <p class="lead">All 6,463 declarations across the library and Solution.lean compile in Lean 4 and depend only on propext, Classical.choice, and Quot.sound. The five standalone Challenge endpoints (Theorem A(I–III), Theorem B, and Corollary C) and their proof dependencies also pass external kernel replay via NanoDa and con-ron, and Palomar&#x27;s hosted mechanical preflight passed with zero errors on release v0.1.0.</p>
+  <div class="meta-strip">
+    <span><strong>Lean toolchain:</strong> <code>leanprover/lean4:v4.35.0-rc3</code></span>
+    <span><strong>Mathlib commit:</strong> <code>c55e6e786f49471c72fbddbec5415808896aec1e</code></span>
+    <span><strong>Permitted axioms:</strong> <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code></span>
+  </div>
+</header>
+
+<h2>1. What is mechanically verified vs. what requires human reading</h2>
+<p>
+  Following the <a href="https://palomar-registry.org">Palomar</a> verification architecture, statement
+  review is separated from proof checking:
+</p>
+<ul>
+  <li><strong>Whole-library compilation &amp; axiom scan:</strong> All 6,463 declarations across the 388 library modules and <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/Solution.lean"><code>Solution.lean</code></a> compile in the Lean 4 kernel and pass <code>Lean.collectAxioms</code> with only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code> (zero <code>sorryAx</code>).</li>
+  <li><strong>Standalone statement (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Statement.lean"><code>Statement.lean</code></a> → <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/Challenge.lean"><code>Challenge.lean</code></a>) &amp; external kernel replay:</strong> <code>Statement.lean</code> imports Mathlib alone and states the five headline endpoints (Theorem A(I–III), Theorem B, and Corollary C). Running <code>lake comparator</code> inside Bubblewrap compares the exported theorem statements and the declarations used in their types between <code>Challenge.lean</code> and <code>Solution.lean</code> (with proof bodies omitted) and replays those five endpoint proofs together with their transitive proof dependencies through the Lean 4 kernel, <strong>NanoDa</strong>, and <strong>con-ron</strong>.</li>
+  <li><strong>Human review surface:</strong> No human expert has reviewed the Lean source files line-by-line. For the five compared Challenge endpoints, human mathematical review reduces to checking that the ~625 lines of Mathlib-only definitions in <code>Statement.lean</code> faithfully express the statements of the paper. For the remaining 41 body and appendix statements (some of which, such as Corollary 7.9 in <code>ArtinTargets.lean</code>, compile in the library outside <code>Solution.lean</code>'s import closure), human judgment also applies to comparing their declarations in <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/docs/PAPER-CORRESPONDENCE.md"><code>docs/PAPER-CORRESPONDENCE.md</code></a> against the manuscript.</li>
+</ul>
+
+<h2>2. Summary of verification checks</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Verification step</th>
+      <th>Scope &amp; recorded outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Source &amp; module header check</strong></td>
+      <td>392 Lean files inspected; all use the Lean 4 <code>module</code> system and stay well within the 10,000-line limit.</td>
+    </tr>
+    <tr>
+      <td><strong>Library &amp; Solution build</strong></td>
+      <td><code>lake build</code> and <code>lake build Challenge Solution</code> pass cleanly (3,873 Lake build jobs).</td>
+    </tr>
+    <tr>
+      <td><strong>Full declaration axiom scan</strong></td>
+      <td><code>Lean.collectAxioms</code> across all 6,463 declarations in the library and <code>Solution.lean</code> reports only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code> (zero <code>sorryAx</code>).</td>
+    </tr>
+    <tr>
+      <td><strong>External kernel comparator</strong></td>
+      <td>Accepted by Lean 4 kernel, NanoDa, and con-ron on the five Challenge endpoints in <code>comparator.json</code> and their transitive proof dependencies.</td>
+    </tr>
+    <tr>
+      <td><strong>Hosted Palomar preflight (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/actions/runs/45530650450">Run 45530650450 ↗</a>)</strong></td>
+      <td>Passed on proof tag <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/releases/tag/v0.1.0"><code>v0.1.0</code></a> (<code>f594ef1</code>): zero errors; Solution build 317 s (2.13 GiB peak RSS), comparator 238 s (2.20 GiB), con-ron 100 s (1.84 GiB).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Reproducing the checks locally</h2>
+<pre><code>python3 scripts/check-lean-sources.py
+lake exe cache get
+lake build
+python3 scripts/audit_axioms.py
+python3 scripts/scan_axioms.py
+python3 scripts/generate_challenge.py --check
+lake build Challenge Solution
+./scripts/verify-comparator.sh</code></pre>
+<p>
+  <code>verify-comparator.sh</code> runs on Linux with <code>bwrap</code> (Bubblewrap) on <code>PATH</code>
+  and a real directory (not a symlink) at <code>.lake/packages</code>; see
+  <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/docs/VERIFICATION.md"><code>docs/VERIFICATION.md</code></a> for details.
+</p>
+
+<h2>4. Provenance and attribution</h2>
+<p>
+  Haruhisa Enomoto authored the manuscript and directed both the mathematical research and the Lean
+  formalization. Detailed attribution of AI contributions to the paper and formalization, exact TeX/PDF
+  hashes, and per-file origins of the 24 adapted Apache-2.0 modules are recorded in:
+</p>
+<div class="actions">
+  <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/PROVENANCE.md">PROVENANCE.md ↗</a>
+  <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/VENDORED.md">VENDORED.md ↗</a>
+  <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/docs/MANUSCRIPT.md">docs/MANUSCRIPT.md ↗</a>
+  <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/verification/2026-11-25/README.md">November 25 verification report ↗</a>
+</div>
+
+  </main>
+  <footer class="site-footer">
+    <div>Haruhisa Enomoto · Lean 4 formalization (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/LICENSE">Apache-2.0</a>)</div>
+    <div>Commit <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/24b9293df93e0a39fa5d84d383be69a79c7fde3b"><code>24b9293</code></a> · API built from <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a4659f0560f20395765dc3291302f8c53048eeaf"><code>a4659f0</code></a></div>
+  </footer>
+</body>
+</html>

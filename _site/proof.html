@@ -1,11 +1,204 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Proof guide · Characterizations of E-finite algebras</title><link rel="stylesheet" href="assets/site.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="nav" aria-label="Main"><a class="brand" href="index.html">Characterizations of E-finite algebras</a><a href="index.html">Overview</a><a href="statement.html">Statement</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub</a></nav></header>
-<main id="main"><p class="eyebrow">Proof guide</p><h1>From the silting fan to bricks</h1>
-<h2>Inside a cone</h2><p>At an interior weight of a presilting cone, the semistable category identifies with a perpendicular module category. The classes of its simple objects are linearly independent. This prevents two distinct stable objects at that weight from having the same composition vector.</p>
-<h2>A missing integral class</h2><p>Represent the class by a differential between finite projectives. Failure of presilting gives a nonzero map from the cokernel to the Nakayama kernel. A map of minimum image dimension produces a stable brick. Varying the differential gives witnesses violating the finiteness criteria. Over finite fields the proof descends stable constituents along Frobenius orbits and counts their ground forms.</p>
-<h2>Rank two</h2><p>In each mixed quadrant, insert the sum of two boundary vectors between them. A shifted Hom dimension bounds the depth of the resulting subdivision. The finite cover gives a bound on the presilting cokernels and finitely many weights that detect every brick.</p>
-<h2>Artin targets</h2><p>A missing weight yields a universal localization with an infinite-dimensional quotient detected by finite-dimensional representations. The localization has vanishing first Tor. In an Artinian target the descending chain condition would make the quotient embed in a finite-dimensional representation. This proves Corollary 7.9.</p>
-<p><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/a42443dfc6cba03f3e9501696bca2f121b73732b/docs/proofs/PROOF-ROUTES.md">Detailed proof routes and Lean source links</a></p>
-</main><footer class="site-footer">Source: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a42443dfc6cba03f3e9501696bca2f121b73732b">a42443d</a> · API: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/f594ef1cc3337cf35db6bbc3a32b515d400b4a3e">f594ef1</a><br>Haruhisa Enomoto · Lean formalization · Apache-2.0</footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Proof guide · Characterizations of E-finite algebras</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">E-finite Algebras · Lean 4</a><a href="index.html">Overview</a><a href="statement.html">Statements</a><a href="proof.html" aria-current="page">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub ↗</a>
+    </nav>
+  </header>
+  <main id="main">
+<header class="paper-header">
+  <p class="kicker">Mathematical Architecture &amp; Formal Proof Routes</p>
+  <h1>How the Lean formalization proves the theorems</h1>
+  <p class="lead">
+    The proof of Theorem A is organized around a single hub equivalence—linking the polyhedral condition
+    <span class="cond">(E-fin)</span> to the module-theoretic condition <span class="cond">(K₀-Hom)</span>—from
+    which the categorical, monoid-theoretic, polyhedral, infinite-dimensional, and geometric characterizations
+    branch out. Where the paper cites external results that would be heavy to import (such as Cohn's universal
+    skew field or King's polystable moduli theorem), Lean substitutes self-contained arguments.
+  </p>
+  <div class="actions">
+    <a class="button primary" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/docs/proofs/PROOF-ROUTES.md">Full technical route notes (PROOF-ROUTES.md) ↗</a>
+    <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/docs/PAPER-CORRESPONDENCE.md">Statement-by-statement concordance ↗</a>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="On this page">
+  <strong>Sections</strong>
+  <a href="#hub">1. Central bridge</a>
+  <a href="#subcat">2. Monoids, wide subcategories &amp; polytopes</a>
+  <a href="#large">3. Generic modules &amp; localizations</a>
+  <a href="#geom-rank2">4. Geometry &amp; rank two</a>
+  <a href="#divergences">5. Where Lean differs from the paper</a>
+</nav>
+
+<figure class="math-fig">
+  <svg viewBox="0 0 840 330" role="img" aria-label="Hub and spoke diagram of the proof of Theorem A centered on (E-fin) equivalent to (K0-Hom)">
+    <!-- Central Hub -->
+    <rect x="28" y="118" width="236" height="92" rx="5" fill="#edf3f5" stroke="#1d4e5f" stroke-width="2"/>
+    <text x="146" y="146" text-anchor="middle" font-family="Georgia, serif" font-size="14.5" font-weight="bold" fill="#1b2024">Central Bridge (§2–§3)</text>
+    <text x="146" y="169" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="bold" fill="#7a2e26">(E-fin) ⇔ (K₀-Hom)</text>
+    <text x="146" y="190" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#384148">J(U) independence vs. missing-weight</text>
+    <text x="146" y="203" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#384148">bricks &amp; Frobenius descent</text>
+
+    <!-- Spine -->
+    <line x1="264" y1="164" x2="318" y2="164" stroke="#1d4e5f" stroke-width="1.8"/>
+    <line x1="318" y1="34" x2="318" y2="296" stroke="#1d4e5f" stroke-width="1.6"/>
+
+    <!-- Branch 1 -->
+    <line x1="318" y1="34" x2="365" y2="34" stroke="#1d4e5f" stroke-width="1.4"/>
+    <rect x="365" y="12" width="448" height="44" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+    <text x="379" y="31" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1b2024">§3–§4 · Torsion pairs &amp; Grothendieck monoids</text>
+    <text x="379" y="48" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">(comp-tors), (num-disj), (mon-dim) + Cor. 4.3 cancellativity</text>
+
+    <!-- Branch 2 -->
+    <line x1="318" y1="86" x2="365" y2="86" stroke="#1d4e5f" stroke-width="1.4"/>
+    <rect x="365" y="64" width="448" height="44" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+    <text x="379" y="83" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1b2024">§5.1 &amp; App. A · Wide subcategories &amp; brick labels</text>
+    <text x="379" y="100" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">(wide), (wide₁), (brick-label)  [W = J(U) realization]</text>
+
+    <!-- Branch 3 -->
+    <line x1="318" y1="138" x2="365" y2="138" stroke="#1d4e5f" stroke-width="1.4"/>
+    <rect x="365" y="116" width="448" height="44" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+    <text x="379" y="135" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1b2024">§3.2 &amp; §5.2 · Semibricks, normalized polytopes &amp; growth</text>
+    <text x="379" y="152" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">(fin-sbrick), (n-sbrick), (brick-discrete), (endo-stab), (poly-brick)</text>
+
+    <!-- Branch 4 -->
+    <line x1="318" y1="190" x2="365" y2="190" stroke="#1d4e5f" stroke-width="1.4"/>
+    <rect x="365" y="168" width="448" height="44" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+    <text x="379" y="187" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1b2024">§7 · Generic modules, thick generation &amp; localizations</text>
+    <text x="379" y="204" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">(no-gen-brick), (no-gen-grain), (thick-gen), (univ-loc), (ring-epi)</text>
+
+    <!-- Branch 5 -->
+    <line x1="318" y1="242" x2="365" y2="242" stroke="#1d4e5f" stroke-width="1.4"/>
+    <rect x="365" y="220" width="448" height="44" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+    <text x="379" y="239" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1b2024">§5.2 (k infinite) · Fixed dimension vectors</text>
+    <text x="379" y="256" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">(dim-brick), (dim-stab)  [forward holds over any field]</text>
+
+    <!-- Branch 6 -->
+    <line x1="318" y1="294" x2="365" y2="294" stroke="#1d4e5f" stroke-width="1.4"/>
+    <rect x="365" y="272" width="448" height="44" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+    <text x="379" y="291" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1b2024">§6 (k = k̄) · Moduli, open loci &amp; Weyman's conjecture</text>
+    <text x="379" y="308" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">(moduli-pt), (open-brick), (open-wide) + Cor. C multiplicity-free</text>
+  </svg>
+  <figcaption>
+    <strong>Figure 2.</strong> Dependency flow of Theorem A in the formalization, matching Figure 1 of the
+    manuscript. Every forward implication starts from <span class="cond">(E-fin)</span> and
+    <span class="cond">(K₀-Hom)</span>; every converse produces a contradiction from a missing integral class
+    <span class="m">g ∈ K<sub>0</sub>(proj Λ) \ Σ(Λ)</span>.
+  </figcaption>
+</figure>
+
+<h2 id="hub">1. The central bridge: <span class="cond">(E-fin)</span> ⇔ <span class="cond">(K₀-Hom)</span></h2>
+<p>
+  For a two-term projective complex <span class="m">U = (P<sup>−1</sup> → P<sup>0</sup>)</span> with cokernel
+  <span class="m">C = H<sup>0</sup>(U)</span> and Nakayama kernel <span class="m">N = ker(νu)</span>, Nakayama
+  duality rewrites the Euler pairing as
+</p>
+<div class="formula">
+  ⟨[U], [X]⟩ = dim<sub>k</sub> Hom<sub>Λ</sub>(C, X) − dim<sub>k</sub> Hom<sub>Λ</sub>(X, N).
+</div>
+<p>
+  When <span class="m">U</span> is presilting and <span class="m">θ ∈ C°(U)</span>, the <span class="m">θ</span>-semistable
+  modules are precisely the objects of the <span class="m">τ</span>-perpendicular category
+  <span class="m">𝒥(U) = C<sup>⊥</sup> ∩ <sup>⊥</sup>N</span>, which is equivalent via Bongartz completion to
+  <span class="m">mod Γ<sub>U</sub></span> for an algebra <span class="m">Γ<sub>U</sub></span> of rank
+  <span class="m">n − r</span>
+  (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Silting/Reduction/PerpendicularReduction.lean"><code>PerpendicularReduction.lean</code></a>,
+  <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Silting/Reduction/PerpendicularSimpleCount.lean"><code>PerpendicularSimpleCount.lean</code></a>).
+  Separating the simple objects of <span class="m">𝒥(U)</span> by Bongartz summands proves that the dimension
+  vectors of <span class="m">θ</span>-stable bricks are linearly independent in <span class="m">K<sub>0</sub>(mod Λ)</span>
+  (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Stability/StableSeparationWeights.lean"><code>StableSeparationWeights.lean</code></a>).
+</p>
+<ul>
+  <li><strong>Forward (<span class="cond">(E-fin)</span> ⇒ <span class="cond">(K₀-Hom)</span>):</strong> If nonzero modules <span class="m">M, N</span> satisfy <span class="m">[M] = [N]</span> and <span class="m">Hom<sub>Λ</sub>(M, N) = 0</span>, an inductive reduction extracts a nonempty finite semibrick with linearly dependent dimension vectors whose members are simultaneously stable at one integral weight <span class="m">θ</span> (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Stability/RationalExtraction.lean"><code>RationalExtraction.lean</code></a>), contradicting linear independence at covered weights.</li>
+  <li><strong>Converse (<span class="cond">(K₀-Hom)</span> ⇒ <span class="cond">(E-fin)</span>):</strong> At an integral class <span class="m">g = [P<sup>0</sup>] − [P<sup>−1</sup>] ∉ Σ(Λ)</span>, every differential <span class="m">p : P<sup>−1</sup> → P<sup>0</sup></span> admits a nonzero map <span class="m">coker p → ker(νp)</span>; an image <span class="m">B</span> of minimal <span class="m">k</span>-dimension is a brick stable at the corrected integral weight <span class="m">(dim<sub>k</sub> B) g − ⟨g, [B]⟩ [Λ]</span> (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Stability/MissingWeightWitnesses.lean"><code>MissingWeightWitnesses.lean</code></a>). Over infinite fields, determinantal hypersurface avoidance produces infinitely many stable bricks at one weight and dimension vector; over a finite field <span class="m">𝔽<sub>q</sub></span>, Frobenius orbit descent (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/ScalarExtension/AbsoluteFrobeniusCorrespondence.lean"><code>AbsoluteFrobeniusCorrespondence.lean</code></a>, <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/ScalarExtension/SharpFiniteFieldCount.lean"><code>SharpFiniteFieldCount.lean</code></a>) produces, for each auxiliary extension degree <span class="m">s ≥ 1</span>, at least <span class="m">q<sup>s</sup>/(c<sub>0</sub> s)</span> nonisomorphic ground bricks across a fixed finite set of weights with endolength <span class="m">≤ dim<sub>k</sub> P<sup>0</sup></span> and <span class="m">k</span>-dimension <span class="m">≤ s · dim<sub>k</sub> P<sup>0</sup></span>, yielding two nonisomorphic bricks of equal dimension vector stable at a single weight.</li>
+</ul>
+
+<h2 id="subcat">2. Grothendieck monoids, wide subcategories, and normalized polytopes</h2>
+<ul>
+  <li><strong>Grothendieck monoids &amp; cancellativity (§4):</strong> Under <span class="cond">(K₀-Hom)</span>, if <span class="m">X, Y ∈ 𝒯</span> have equal dimension vector, pushing out short exact sequences in <span class="m">𝒯</span> along a nonzero morphism <span class="m">X → Y</span> identifies their classes in <span class="m">M(𝒯)</span> by induction on length (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/GrothendieckGroups/TorsionMonoidEmbedding.lean"><code>TorsionMonoidEmbedding.lean</code></a>). Since <span class="m">K<sub>0</sub>(𝒯) ↪ K<sub>0</sub>(mod Λ)</span> is injective for <em>every</em> torsion or torsion-free class (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/GrothendieckGroups/TorsionGrothendieckGroups.lean"><code>TorsionGrothendieckGroups.lean</code></a>), injectivity of <span class="m">M(𝒯) → K<sub>0</sub>(mod Λ)</span> is equivalent to cancellativity of <span class="m">M(𝒯)</span>, and contragredient duality transfers the criterion to torsion-free classes (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/GrothendieckGroups/MonoidCancellation.lean"><code>MonoidCancellation.lean</code></a>).</li>
+  <li><strong>Wide subcategories as <span class="m">τ</span>-perpendicular categories (§5.1):</strong> Under <span class="cond">(E-fin)</span>, <span class="m">sim 𝒲</span> is a finite semibrick jointly stable at an integral weight; choosing a presilting cone <span class="m">C(U)</span> of maximal dimension whose interior stabilizes <span class="m">sim 𝒲</span> forces <span class="m">𝒲 = 𝒥(U)</span>, giving functorial finiteness <span class="cond">(wide)</span> and covers <span class="m">Filt(B) = 𝒯 ∩ (𝒯′)<sup>⊥</sup></span> in <span class="m">f-tors Λ</span> (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Subcategories/WidePerpendicular.lean"><code>WidePerpendicular.lean</code></a>, <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Subcategories/BrickLabels.lean"><code>BrickLabels.lean</code></a>).</li>
+  <li><strong>Normalized submodule polytopes (§5.2):</strong> Dividing projective Hom coordinates of submodules of a brick <span class="m">B</span> by <span class="m">dim<sub>k</sub> End<sub>Λ</sub>(B)</span> places all vertices in <span class="m">{0, 1, …, endolength(B)}<sup>n</sup></span> (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Stability/NormalizedPolytopes.lean"><code>NormalizedPolytopes.lean</code></a>), yielding <span class="cond">(brick-discrete)</span>, <span class="cond">(endo-stab)</span>, and the explicit bound <span class="m">2(n − 1)(m + 1)<sup>n(n−1)</sup></span> for bricks of length <span class="m">≤ m</span> (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Stability/SharpBrickGrowth.lean"><code>SharpBrickGrowth.lean</code></a>).</li>
+</ul>
+
+<h2 id="large">3. Generic modules, thick generation, and universal localizations</h2>
+<ul>
+  <li><strong>Excluding generic bricks by <span class="m">(Λ, Δ)</span>-bimodule stability (§7.1):</strong> For a generic brick <span class="m">G</span> with endomorphism division ring <span class="m">Δ</span>, <span class="m">Δ</span>-dimension defines a real stability weight; under <span class="cond">(E-fin)</span>, a presilting representative places a nonzero <span class="m">Δ</span>-subquotient into a large <span class="m">τ</span>-perpendicular category <span class="m">Mod Γ<sub>U</sub></span> of smaller rank (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/LargeModules/GenericBrickExclusion.lean"><code>GenericBrickExclusion.lean</code></a>).</li>
+  <li><strong>Two-term thick subcategories (§7.2):</strong> Over an E-finite algebra, any basic presilting complex <span class="m">U ∈ ℋ</span> of maximum summand count generates the two-term thick subcategory <span class="m">ℋ ⊆ K<sup>[−1,0]</sup>(proj Λ)</span> via mapping-cone reduction, rational pencils, and Garcia's triangulated summand lemma (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Silting/ThickSubcategories/BoundedProjectiveHomotopy.lean"><code>BoundedProjectiveHomotopy.lean</code></a>).</li>
+  <li><strong>Artin targets of Tor-vanishing epimorphisms (Corollary 7.9):</strong> Every universal localization <span class="m">Λ → Γ</span> satisfies <span class="m">Tor<sub>1</sub><sup>Λ</sup>(Γ, Γ) = 0</span> (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/RingEpimorphisms/LocalizationTor.lean"><code>LocalizationTor.lean</code></a>). When <span class="m">Λ</span> is E-infinite, a single projective map has a universal localization whose residual finite-dimensional quotient is still infinite-dimensional (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/RingEpimorphisms/ResidualLocalization.lean"><code>ResidualLocalization.lean</code></a>), which the descending chain condition forbids in any Artin algebra target (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/RingEpimorphisms/ArtinTargets.lean"><code>ArtinTargets.lean</code></a>).</li>
+</ul>
+
+<h2 id="geom-rank2">4. Geometry over <span class="m">k = k̄</span> and Stern–Brocot subdivision in rank two</h2>
+<p>
+  Over an algebraically closed field, <span class="cond">(E-fin)</span> makes Jordan–Hölder multiplicities in
+  <span class="m">𝒥(U)</span> unique at each dimension vector; degenerating semistable representations by
+  scaling extension blocks shows both that King's projective moduli scheme <span class="m">ℳ<sub>θ</sub><sup>ss</sup>(Λ, d)</span>
+  has at most one closed point (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Geometry/KingModuli.lean"><code>KingModuli.lean</code></a>)
+  and that every semi-invariant weight space on every irreducible component of <span class="m">rep(Λ, d)</span>
+  is at most one-dimensional (Corollary C, <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Geometry/ComponentMultiplicity.lean"><code>ComponentMultiplicity.lean</code></a>).
+</p>
+<p>
+  In rank <span class="m">n ≤ 2</span> over any field (Theorem B), each mixed-sign quadrant between ordered
+  presilting boundary complexes <span class="m">(E, L)</span> with <span class="m">Hom(E, L[1]) = 0</span> is
+  subdivided at the mediant <span class="m">[Z] = [E] + [L]</span>. Comparing <span class="m">Z</span> with the
+  cone of a nonzero morphism <span class="m">L → E[1]</span> proves <span class="m">dim<sub>k</sub> Hom(Z, E[1]), dim<sub>k</sub> Hom(L, Z[1]) &lt; dim<sub>k</sub> Hom(L, E[1])</span>
+  (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Presentations/StableRigidComparison.lean"><code>StableRigidComparison.lean</code></a>),
+  producing a finite cover of <span class="m">ℝ<sup>2</sup></span> by compatible silting cones from which
+  finiteness of bricks and <span class="m">τ</span>-rigid modules is read off directly
+  (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Silting/Fans/RankTwoBricks.lean"><code>RankTwoBricks.lean</code></a>,
+  <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Silting/Fans/RankTwoTauTilting.lean"><code>RankTwoTauTilting.lean</code></a>).
+</p>
+
+<h2 id="divergences">5. Summary of alternative proof routes in Lean</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Result</th>
+      <th>Manuscript argument</th>
+      <th>Lean formalization route</th>
+      <th>Primary modules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Prop. 7.6</strong> <span class="cond">(no-gen-grain)</span></td>
+      <td>Uses Cohn's universal skew field of a free algebra to supply generic coefficients.</td>
+      <td>Constructs a division ring directly from Malcev–Neumann well-ordered series on a bi-ordered finitely generated free group.</td>
+      <td><code>DivisionRings/*</code>, <code>GenericGrainCriterion.lean</code></td>
+    </tr>
+    <tr>
+      <td><strong>Thm. 7.8</strong> <span class="cond">(univ-loc)</span></td>
+      <td>Deduces finite-dimensionality of universal localizations from <span class="cond">(thick-gen)</span>.</td>
+      <td>Also proves <span class="cond">(E-fin)</span> ⇒ <span class="cond">(univ-loc)</span> directly by rank induction via presilting-pencil inversion and Fitting decomposition.</td>
+      <td><code>RigidPencilInversion.lean</code>, <code>UniversalLocalization.lean</code></td>
+    </tr>
+    <tr>
+      <td><strong>Thm. 6.1</strong> <span class="cond">(moduli-pt)</span></td>
+      <td>Cites King's bijection between closed points of <span class="m">ℳ<sub>θ</sub><sup>ss</sup>(Λ, d)</span> and polystable modules.</td>
+      <td>Splits extensions directly on vertex representations while preserving evaluation in <code>AlgebraicGeometry.Proj</code>.</td>
+      <td><code>KingSplitting.lean</code>, <code>KingModuli.lean</code></td>
+    </tr>
+    <tr>
+      <td><strong>Lem. 2.2 &amp; Thm. 8.4</strong></td>
+      <td>Uses <span class="m">τ</span>-tilting cover counts for rank <span class="m">n − r</span>, and cites DIJ/Asai for fan completeness ⇒ brick-finite.</td>
+      <td>Proves <span class="m">s = n − r</span> by dual spanning/independence inequalities, and bounds bricks in rank <span class="m">≤ 2</span> directly from the finite sector cover.</td>
+      <td><code>BongartzCounting.lean</code>, <code>RankTwoBricks.lean</code></td>
+    </tr>
+  </tbody>
+</table>
+
+  </main>
+  <footer class="site-footer">
+    <div>Haruhisa Enomoto · Lean 4 formalization (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/LICENSE">Apache-2.0</a>)</div>
+    <div>Commit <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/24b9293df93e0a39fa5d84d383be69a79c7fde3b"><code>24b9293</code></a> · API built from <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a4659f0560f20395765dc3291302f8c53048eeaf"><code>a4659f0</code></a></div>
+  </footer>
+</body>
+</html>

@@ -1,14 +1,308 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Overview · Characterizations of E-finite algebras</title><link rel="stylesheet" href="assets/site.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="nav" aria-label="Main"><a class="brand" href="index.html">Characterizations of E-finite algebras</a><a href="index.html">Overview</a><a href="statement.html">Statement</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub</a></nav></header>
-<main id="main"><section class="hero"><div><p class="eyebrow">Representation theory · Lean 4</p>
-<h1>Characterizations of E-finite algebras</h1>
-<p class="lead">When do the cones of two-term silting complexes cover every integral projective class? For a finite-dimensional algebra, the answer can be read from morphisms between its modules, from the distribution of its bricks, or from its wide subcategories.</p>
-<div class="math-panel"><b>Theorem A.</b> Over any field, an algebra is E-finite precisely when every two nonzero finite modules of the same composition vector admit a nonzero homomorphism in each direction. This is also equivalent to finiteness of every semibrick and to the absence of generic bricks.</div>
-<div class="math-panel"><b>Theorem B.</b> An algebra with at most two simple right modules up to isomorphism is E-finite if and only if it has finitely many bricks up to isomorphism, equivalently if and only if it is τ-tilting finite.</div>
-<div class="actions"><a class="button primary" href="statement.html">Read the statements</a><a class="button" href="proof.html">Follow the proofs</a><a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub</a></div></div>
-<aside class="status"><h2>Formalization</h2><dl><dt>Proof assistant</dt><dd>Lean 4.35.0-rc3</dd><dt>Dependency</dt><dd>Mathlib</dd><dt>Manuscript</dt><dd>November 25, 2026</dd></dl><p><a href="verification.html">Verification and provenance</a></p></aside></section>
-<h2>What changes with the field?</h2><p>A brick has a division ring of endomorphisms. Counting bricks by their dimension over this division ring characterizes E-finiteness over every field. Over an infinite field one may instead count them by their ordinary composition vectors. Over an algebraically closed field there are also geometric tests using open orbits, open wide loci and closed points of King moduli spaces.</p>
-<h2>The manuscript and the library</h2><p>The <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/a42443dfc6cba03f3e9501696bca2f121b73732b/docs/PAPER-CORRESPONDENCE.md">statement correspondence</a> locates each of the 44 numbered results in Lean, including the finite-field and localization arguments in the appendices. The <a href="api.html">declaration index</a> links the main results to their definitions and proofs.</p>
-</main><footer class="site-footer">Source: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a42443dfc6cba03f3e9501696bca2f121b73732b">a42443d</a> · API: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/f594ef1cc3337cf35db6bbc3a32b515d400b4a3e">f594ef1</a><br>Haruhisa Enomoto · Lean formalization · Apache-2.0</footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Overview · Characterizations of E-finite algebras</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">E-finite Algebras · Lean 4</a><a href="index.html" aria-current="page">Overview</a><a href="statement.html">Statements</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub ↗</a>
+    </nav>
+  </header>
+  <main id="main">
+<header class="paper-header">
+  <p class="kicker">Lean 4 Formalization · Representation Theory of Finite-Dimensional Algebras</p>
+  <h1>Characterizations of E-finite algebras and conjectures on brick-finiteness</h1>
+  <p class="byline">Companion formalization to the manuscript by Haruhisa Enomoto (November 25, 2026)</p>
+  <p class="lead">
+    A finite-dimensional algebra <span class="m">Λ</span> over a field <span class="m">k</span> is
+    <strong>E-finite</strong> when its two-term silting (<span class="m">g</span>-vector) fan
+    <span class="m">Σ(Λ) ⊆ K<sub>0</sub>(proj Λ)<sub>ℝ</sub></span> contains every integral lattice point
+    <span class="m">K<sub>0</sub>(proj Λ)</span>. This library formalizes in Mathlib-only Lean 4 that
+    E-finiteness is equivalent over an arbitrary field to seventeen module-theoretic, categorical,
+    numerical, and homological conditions—unifying seven open conjectures on brick-finiteness for each
+    individual algebra—and proves this common conjecture in rank at most two over every field.
+  </p>
+  <div class="actions">
+    <a class="button primary" href="statement.html">Read all 22 characterizations</a>
+    <a class="button" href="proof.html">Mathematical proof guide</a>
+    <a class="button" href="api.html">Searchable Lean API</a>
+    <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/docs/PAPER-CORRESPONDENCE.md">44-result concordance ↗</a>
+    <a class="button" href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub repository ↗</a>
+  </div>
+  <div class="meta-strip">
+    <span><strong>Toolchain:</strong> Lean v4.35.0-rc3</span>
+    <span><strong>Dependencies:</strong> Mathlib only</span>
+    <span><strong>Library:</strong> 388 modules · 6,463 declarations</span>
+    <span><strong>Axioms:</strong> <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code> (0 <code>sorry</code>)</span>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="On this page">
+  <strong>Contents</strong>
+  <a href="#question">The mathematical problem</a>
+  <a href="#results">Main results (Theorems A &amp; B, Corollary C)</a>
+  <a href="#fan-geometry">Geometry in rank two</a>
+  <a href="#explore">Navigating the formalization</a>
+</nav>
+
+<h2 id="question">1. Background and the seven brick-finiteness conjectures</h2>
+<p>
+  For a finite-dimensional <span class="m">k</span>-algebra <span class="m">Λ</span> of rank
+  <span class="m">n = |sim Λ|</span>, a fundamental theorem of Demonet, Iyama, and Jasso and of Asai
+  identifies three global finiteness conditions: <span class="m">Λ</span> has finitely many isomorphism
+  classes of finite-dimensional bricks (<em>brick-finiteness</em>) if and only if it is
+  <span class="m">τ</span>-tilting finite, and if and only if its <span class="m">g</span>-vector fan
+  <span class="m">Σ(Λ)</span> covers all of <span class="m">K<sub>0</sub>(proj Λ)<sub>ℝ</sub></span>.
+</p>
+<p>
+  Because silting cones are rational polyhedral cones, <span class="m">K<sub>0</sub>(proj Λ) ⊆ Σ(Λ)</span>
+  holds precisely when <span class="m">Σ(Λ)</span> contains every rational ray (<em>rational completeness</em>,
+  or vanishing of Derksen–Fei's generic self E-invariant when <span class="m">k = k̄</span>).
+  <strong>Demonet's lattice point conjecture</strong> asks whether rational completeness already forces the fan
+  to be complete—that is, whether every E-finite algebra is brick-finite. In parallel, six other open
+  problems ask whether brick-finiteness follows from:
+</p>
+<ul>
+  <li>finiteness of every semibrick in <span class="m">mod Λ</span> (<em>Enomoto's finite semibrick conjecture</em>), or uniqueness of the <span class="m">n</span> simple modules among <span class="m">n</span>-element semibricks (<em>Mousavand–Paquette</em>);</li>
+  <li>having only finitely many bricks of each endolength <span class="m">r ≥ 1</span> (<em>second brick-Brauer–Thrall conjecture</em>), or of each endolength at each integral stability weight <span class="m">θ</span> (<em>Pfeifer's stable Brauer–Thrall II′ conjecture</em>);</li>
+  <li>nonexistence of infinite-dimensional generic bricks in <span class="m">Mod Λ</span> (<em>Mousavand–Paquette's generic brick conjecture</em>);</li>
+  <li>functorial finiteness of every wide subcategory of <span class="m">mod Λ</span> (<em>Angeleri Hügel–Sentieri</em>).</li>
+</ul>
+<p>
+  Theorem A(I) proves that <em>all seven hypotheses are equivalent to E-finiteness for each fixed algebra
+  <span class="m">Λ</span> over any field <span class="m">k</span></em>, reducing all seven conjectures
+  pointwise to a single problem.
+</p>
+
+<h2 id="results">2. Principal formalized theorems</h2>
+
+<section class="thm">
+  <div class="thm-head">
+    <span class="thm-title">Theorem A — Characterizations of E-finite algebras</span>
+    <a class="thm-link" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Characterizations/Equivalences.lean">Characterizations/Equivalences.lean ↗</a>
+  </div>
+  <p>
+    Let <span class="m">Λ</span> be a finite-dimensional <span class="m">k</span>-algebra of rank <span class="m">n</span>.
+  </p>
+  <div class="cond-grid">
+    <div class="cond-group">
+      <h4>I(a). Dimension vectors &amp; torsion classes (any <span class="m">k</span>)</h4>
+      <ul>
+        <li><span class="cond">(E-fin)</span> <span class="m">K<sub>0</sub>(proj Λ) ⊆ Σ(Λ)</span>.</li>
+        <li><span class="cond">(K₀-Hom)</span> <span class="m">[M] = [N] ≠ 0 ⇒ Hom<sub>Λ</sub>(M, N) ≠ 0</span>.</li>
+        <li><span class="cond">(mon-dim)</span> <span class="m">M(𝒯) → K<sub>0</sub>(mod Λ)</span> injective for every torsion class <span class="m">𝒯</span>.</li>
+        <li><span class="cond">(comp-tors)</span> Every compact torsion class is functorially finite.</li>
+        <li><span class="cond">(num-disj)</span> Every torsion pair is numerically disjoint.</li>
+      </ul>
+    </div>
+    <div class="cond-group">
+      <h4>I(b). Wide subcategories &amp; brick counts (any <span class="m">k</span>)</h4>
+      <ul>
+        <li><span class="cond">(wide)</span>, <span class="cond">(wide₁)</span> Every wide subcategory (or <span class="m">Filt(B)</span>) is functorially finite.</li>
+        <li><span class="cond">(brick-label)</span> Every brick labels a cover in <span class="m">f-tors Λ</span>.</li>
+        <li><span class="cond">(fin-sbrick)</span>, <span class="cond">(n-sbrick)</span> Semibricks are finite; simples are the unique <span class="m">n</span>-semibrick.</li>
+        <li><span class="cond">(brick-discrete)</span>, <span class="cond">(endo-stab)</span>, <span class="cond">(poly-brick)</span> Endolength finiteness and polynomial length growth.</li>
+      </ul>
+    </div>
+    <div class="cond-group">
+      <h4>I(c). Large modules &amp; localizations (any <span class="m">k</span>)</h4>
+      <ul>
+        <li><span class="cond">(no-gen-brick)</span>, <span class="cond">(no-gen-grain)</span> No generic brick or generic grain in <span class="m">Mod Λ</span>.</li>
+        <li><span class="cond">(thick-gen)</span> Every thick subcategory of <span class="m">K<sup>[−1,0]</sup>(proj Λ)</span> has a presilting generator.</li>
+        <li><span class="cond">(univ-loc)</span>, <span class="cond">(ring-epi)</span> Universal localizations and simple Artinian epic targets are finite-dimensional.</li>
+      </ul>
+    </div>
+    <div class="cond-group">
+      <h4>II &amp; III. Infinite and algebraically closed fields</h4>
+      <ul>
+        <li><em><span class="m">k</span> infinite:</em> <span class="cond">(dim-brick)</span> and <span class="cond">(dim-stab)</span> (finitely many bricks / <span class="m">θ</span>-stable bricks per dimension vector <span class="m">d ∈ ℕ<sup>n</sup></span>).</li>
+        <li><em><span class="m">k = k̄</span>:</em> <span class="cond">(moduli-pt)</span> (<span class="m">|ℳ<sub>θ</sub><sup>ss</sup>(Λ, d)| ≤ 1</span>), <span class="cond">(open-brick)</span> (open brick orbits), and <span class="cond">(open-wide)</span> (open wide loci).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="thm">
+  <div class="thm-head">
+    <span class="thm-title">Theorem B — Collapse to brick-finiteness in rank at most two</span>
+    <a class="thm-link" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Silting/Fans/RankTwoTauTilting.lean">Silting/Fans/RankTwoTauTilting.lean ↗</a>
+  </div>
+  <p>
+    Let <span class="m">Λ</span> be a finite-dimensional algebra of rank <span class="m">n ≤ 2</span> over an
+    arbitrary field <span class="m">k</span>. Then <span class="m">Λ</span> is E-finite if and only if
+    <span class="m">Λ</span> is brick-finite (equivalently, <span class="m">τ</span>-tilting finite). In
+    particular, all seven conjectures hold in rank at most two over every field.
+  </p>
+</section>
+
+<section class="thm">
+  <div class="thm-head">
+    <span class="thm-title">Corollary C — Weyman's conjecture in arbitrary characteristic</span>
+    <a class="thm-link" href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Geometry/ComponentMultiplicity.lean">Geometry/ComponentMultiplicity.lean ↗</a>
+  </div>
+  <p>
+    Over an algebraically closed field <span class="m">k</span> of any characteristic, <span class="m">Λ</span>
+    is Schur-representation-finite <span class="cond">(dim-brick)</span> if and only if it is
+    <em>multiplicity-free</em> (on every irreducible component of every representation variety
+    <span class="m">rep(Λ, d)</span>, each <span class="m">GL(d)</span>-semi-invariant weight space has
+    dimension at most one).
+  </p>
+</section>
+
+<p>
+  Two further body corollaries are proved in full generality: <strong>Corollary 4.3</strong> characterizes
+  E-finiteness by cancellativity of the Grothendieck monoids of all torsion classes—or, dually, all
+  torsion-free classes—in <span class="m">mod Λ</span>
+  (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/GrothendieckGroups/MonoidCancellation.lean"><code>MonoidCancellation.lean</code></a>);
+  and <strong>Corollary 7.9</strong> shows that if every ring epimorphism <span class="m">Λ → Γ</span> with
+  <span class="m">Tor<sub>1</sub><sup>Λ</sup>(Γ, Γ) = 0</span> has an Artin algebra target, then
+  <span class="m">Λ</span> is E-finite, answering questions of Angeleri Hügel–Marks–Vitória and
+  Angeleri Hügel–Sentieri in rank <span class="m">≤ 2</span>
+  (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/RingEpimorphisms/ArtinTargets.lean"><code>ArtinTargets.lean</code></a>).
+</p>
+
+<h2 id="fan-geometry">3. Why endolength matters over finite fields, and how rank two closes</h2>
+
+<figure class="math-fig">
+  <svg viewBox="0 0 820 300" role="img" aria-label="Comparison of the Kronecker g-vector fan with a missing lattice ray versus Stern-Brocot mediant subdivision in rank two">
+    <defs>
+      <marker id="arr-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#384148"/>
+      </marker>
+      <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#9c2f23"/>
+      </marker>
+      <marker id="arr-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 9 5 L 0 9 z" fill="#1d4e5f"/>
+      </marker>
+    </defs>
+
+    <!-- Panel A: Kronecker fan -->
+    <g transform="translate(20,10)">
+      <text x="180" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="14.5" font-weight="bold" fill="#1b2024">(a) Kronecker algebra k(1 ⇉ 2): E-infinite</text>
+      <!-- Shaded cones in Q1 (+,+), Q2 (-,+), Q3 (-,-) -->
+      <polygon points="180,155 180,38 300,38 300,155" fill="#dce9ec" opacity="0.72"/>
+      <polygon points="180,155 55,155 55,275 180,275" fill="#dce9ec" opacity="0.72"/>
+      <polygon points="180,155 55,155 55,38 180,38" fill="#dce9ec" opacity="0.58"/>
+      <!-- Preprojective & preinjective cones in Q4 (+,-) filling all of Q4 up to the single missing ray (1,-1) -->
+      <polygon points="180,155 300,155 300,272" fill="#cde0e5" opacity="0.82"/>
+      <polygon points="180,155 180,275 297,275" fill="#cde0e5" opacity="0.82"/>
+      <!-- Axes -->
+      <line x1="48" y1="155" x2="315" y2="155" stroke="#5c6770" stroke-width="1.2" marker-end="url(#arr-ink)"/>
+      <line x1="180" y1="280" x2="180" y2="30" stroke="#5c6770" stroke-width="1.2" marker-end="url(#arr-ink)"/>
+      <!-- Accumulating preprojective rays (j+1, -j) for j = 1..5 -->
+      <line x1="180" y1="155" x2="300" y2="215" stroke="#1d4e5f" stroke-width="1.15"/>
+      <line x1="180" y1="155" x2="300" y2="235" stroke="#1d4e5f" stroke-width="1.05" opacity="0.9"/>
+      <line x1="180" y1="155" x2="300" y2="245" stroke="#1d4e5f" stroke-width="0.95" opacity="0.82"/>
+      <line x1="180" y1="155" x2="300" y2="251" stroke="#1d4e5f" stroke-width="0.85" opacity="0.74"/>
+      <line x1="180" y1="155" x2="300" y2="255" stroke="#1d4e5f" stroke-width="0.75" opacity="0.66"/>
+      <!-- Accumulating preinjective rays (j, -j-1) for j = 1..5 -->
+      <line x1="180" y1="155" x2="240" y2="275" stroke="#1d4e5f" stroke-width="1.15"/>
+      <line x1="180" y1="155" x2="260" y2="275" stroke="#1d4e5f" stroke-width="1.05" opacity="0.9"/>
+      <line x1="180" y1="155" x2="270" y2="275" stroke="#1d4e5f" stroke-width="0.95" opacity="0.82"/>
+      <line x1="180" y1="155" x2="276" y2="275" stroke="#1d4e5f" stroke-width="0.85" opacity="0.74"/>
+      <line x1="180" y1="155" x2="280" y2="275" stroke="#1d4e5f" stroke-width="0.75" opacity="0.66"/>
+      <!-- Missing ray (1,-1) (unique ray outside Σ(Λ)) -->
+      <line x1="180" y1="155" x2="299" y2="274" stroke="#ffffff" stroke-width="3.2"/>
+      <line x1="180" y1="155" x2="299" y2="274" stroke="#9c2f23" stroke-width="2.0" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
+      <circle cx="240" cy="215" r="3.4" fill="#9c2f23"/>
+      <text x="322" y="159" font-family="Georgia, serif" font-size="13" fill="#1b2024">[P₁]</text>
+      <text x="187" y="34" font-family="Georgia, serif" font-size="13" fill="#1b2024">[P₂]</text>
+      <text x="304" y="218" font-family="ui-monospace, monospace" font-size="10.5" fill="#1d4e5f">(2,−1)</text>
+      <text x="205" y="286" font-family="ui-monospace, monospace" font-size="10.5" fill="#1d4e5f">(1,−2)</text>
+      <text x="290" y="287" font-family="ui-monospace, monospace" font-size="11" fill="#9c2f23" font-weight="bold">g = (1,−1) ∉ Σ(Λ)</text>
+      <text x="68" y="95" font-family="sans-serif" font-size="11.2" fill="#2c4a54">Σ(Λ) = ℝ² \ ℝ&gt;0(1,−1)</text>
+    </g>
+
+    <line x1="410" y1="24" x2="410" y2="276" stroke="#dcd9cf" stroke-width="1"/>
+
+    <!-- Panel B: Stern-Brocot subdivision -->
+    <g transform="translate(430,10)">
+      <text x="185" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="14.5" font-weight="bold" fill="#1b2024">(b) Rank-two E-finite sector: Stern–Brocot termination</text>
+      <!-- Mixed quadrant sector between E and L -->
+      <polygon points="165,165 310,165 310,262 165,262" fill="#e6f0ec" opacity="0.78"/>
+      <!-- Axes -->
+      <line x1="60" y1="165" x2="322" y2="165" stroke="#5c6770" stroke-width="1.2"/>
+      <line x1="165" y1="272" x2="165" y2="42" stroke="#5c6770" stroke-width="1.2"/>
+      <!-- Boundary rays E = [P_1] and L = -[P_2] -->
+      <line x1="165" y1="165" x2="305" y2="165" stroke="#1d4e5f" stroke-width="2.1" marker-end="url(#arr-teal)"/>
+      <line x1="165" y1="165" x2="165" y2="265" stroke="#1d4e5f" stroke-width="2.1" marker-end="url(#arr-teal)"/>
+      <!-- Mediant Z = [E] + [L] and second-level mediants -->
+      <line x1="165" y1="165" x2="275" y2="255" stroke="#7a2e26" stroke-width="2.0" marker-end="url(#arr-red)"/>
+      <line x1="165" y1="165" x2="296" y2="215" stroke="#1d4e5f" stroke-width="1.3" stroke-dasharray="4,3"/>
+      <line x1="165" y1="165" x2="220" y2="260" stroke="#1d4e5f" stroke-width="1.3" stroke-dasharray="4,3"/>
+      <!-- Labels -->
+      <text x="285" y="154" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1d4e5f">E  (e(E, L) = 0)</text>
+      <text x="108" y="262" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1d4e5f">L</text>
+      <text x="279" y="264" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#7a2e26">[Z] = [E] + [L]</text>
+      <rect x="68" y="54" width="256" height="68" rx="4" fill="#ffffff" stroke="#dcd9cf"/>
+      <text x="80" y="74" font-family="sans-serif" font-size="11.5" fill="#1b2024">When e(L, E) = dim Hom(L, E[1]) ≥ 1, E-finiteness</text>
+      <text x="80" y="92" font-family="sans-serif" font-size="11.5" fill="#1b2024">supplies presilting Z of class [E] + [L] with</text>
+      <text x="80" y="110" font-family="ui-monospace, monospace" font-size="11.2" fill="#7a2e26">e(Z, E) &lt; e(L, E)  and  e(L, Z) &lt; e(L, E).</text>
+    </g>
+  </svg>
+  <figcaption>
+    <strong>Figure 1.</strong> <em>Left:</em> For the Kronecker algebra <span class="m">Λ = k(1 ⇉ 2)</span>,
+    the ray through <span class="m">g = (1, −1)</span> meets <span class="m">Σ(Λ)</span> only at <span class="m">0</span>.
+    Over a finite field <span class="m">𝔽<sub>q</sub></span>, <span class="m">mod Λ</span> has only finitely many modules of each
+    dimension vector, yet closed points of <span class="m">ℙ<sup>1</sup></span> of arbitrary degree <span class="m">s</span> define
+    regular bricks <span class="m">B<sub>f</sub></span> with <span class="m">End<sub>Λ</sub>(B<sub>f</sub>) ≅ 𝔽<sub>q<sup>s</sup></sub></span>
+    and <em>endolength</em> <span class="m">2</span>—explaining why <span class="cond">(brick-discrete)</span> holds over any field while
+    <span class="cond">(dim-brick)</span> requires <span class="m">k</span> to be infinite.
+    <em>Right:</em> In rank two (Lemma 8.1 &amp; Theorem B), inserting the presilting mediant <span class="m">[E] + [L]</span> strictly
+    decreases <span class="m">dim<sub>k</sub> Hom(L, E[1])</span> on both child sectors, forcing termination in at most
+    <span class="m">2<sup>x</sup> + 2<sup>y</sup> + 2</span> silting cones.
+  </figcaption>
+</figure>
+
+<h2 id="explore">4. Navigating the formalization</h2>
+<div class="grid">
+  <article class="card">
+    <h3>Exact statements &amp; Challenge surface</h3>
+    <p>
+      Read <span class="cond">(E-fin)</span> and all 22 equivalent conditions of Theorem A alongside their
+      complete <code>Statement.lean</code> formulations, see how right modules, Grothendieck monoids, and
+      King's projective moduli schemes are encoded using Mathlib alone, and inspect <code>Challenge.lean</code>.
+    </p>
+    <p><a href="statement.html">Open Statements →</a></p>
+  </article>
+  <article class="card">
+    <h3>Mathematical proof guide &amp; Lean routes</h3>
+    <p>
+      Follow the central bridge <span class="cond">(E-fin)</span> ⇔ <span class="cond">(K₀-Hom)</span>,
+      Frobenius orbit descent over <span class="m">𝔽<sub>q</sub></span>, and the places where Lean replaces
+      heavy external citations (such as Cohn's universal skew field) by self-contained constructions.
+    </p>
+    <p><a href="proof.html">Open Proof Guide →</a></p>
+  </article>
+  <article class="card">
+    <h3>Subject-organized Lean library</h3>
+    <p>
+      Explore how the 388 proof modules are partitioned across 14 mathematical subject directories—from
+      <code>Presentations/</code>, <code>Silting/</code>, and <code>Stability/</code> to
+      <code>DivisionRings/</code>, <code>Geometry/</code>, and <code>RingEpimorphisms/</code>.
+    </p>
+    <p><a href="library.html">Open Library Map →</a></p>
+  </article>
+  <article class="card">
+    <h3>Verification, comparator &amp; provenance</h3>
+    <p>
+      Inspect the local and hosted Palomar verification metrics, reproduce the build and external kernel
+      replay (Lean kernel, NanoDa, con-ron), and review model provenance and adapted Apache-2.0 modules.
+    </p>
+    <p><a href="verification.html">Open Verification →</a></p>
+  </article>
+</div>
+
+  </main>
+  <footer class="site-footer">
+    <div>Haruhisa Enomoto · Lean 4 formalization (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/LICENSE">Apache-2.0</a>)</div>
+    <div>Commit <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/24b9293df93e0a39fa5d84d383be69a79c7fde3b"><code>24b9293</code></a> · API built from <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a4659f0560f20395765dc3291302f8c53048eeaf"><code>a4659f0</code></a></div>
+  </footer>
+</body>
+</html>

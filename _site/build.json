@@ -1,7 +1,8 @@
 {
-  "commit": "a42443dfc6cba03f3e9501696bca2f121b73732b",
+  "commit": "24b9293df93e0a39fa5d84d383be69a79c7fde3b",
   "dirty": false,
   "api_generated": true,
-  "api_source_commit": "f594ef1cc3337cf35db6bbc3a32b515d400b4a3e",
-  "statement_lines": 46
+  "api_source_commit": "a4659f0560f20395765dc3291302f8c53048eeaf",
+  "statement_lines": 51,
+  "challenge_lines": 667
 }

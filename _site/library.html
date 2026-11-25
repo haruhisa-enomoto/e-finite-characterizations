@@ -1,21 +1,135 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Library · Characterizations of E-finite algebras</title><link rel="stylesheet" href="assets/site.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><nav class="nav" aria-label="Main"><a class="brand" href="index.html">Characterizations of E-finite algebras</a><a href="index.html">Overview</a><a href="statement.html">Statement</a><a href="proof.html">Proof guide</a><a href="library.html">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub</a></nav></header>
-<main id="main"><p class="eyebrow">Source guide</p><h1>The Lean library</h1><table><thead><tr><th>Directory</th><th>Mathematics</th></tr></thead><tbody>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Algebra">Algebra</a></td><td>Basic algebras, Morita equivalence and matrix images</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Characterizations">Characterizations</a></td><td>The equivalences and consequences for brick-finiteness</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/DivisionRings">DivisionRings</a></td><td>Ordered group series and coefficient division rings</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Geometry">Geometry</a></td><td>Representation varieties, semi-invariants and King moduli</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/GrothendieckGroups">GrothendieckGroups</a></td><td>Exact monoids, group completion and cancellation</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/LargeModules">LargeModules</a></td><td>Endofiniteness, generic bricks and generic grains</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/LinearAlgebra">LinearAlgebra</a></td><td>Rank bounds, tensor products and separation</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Modules">Modules</a></td><td>Finite modules, projectives, duality and endolength</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Presentations">Presentations</a></td><td>Two-term complexes, pencils and Euler pairings</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/RingEpimorphisms">RingEpimorphisms</a></td><td>Universal localization, first Tor and Artin targets</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/ScalarExtension">ScalarExtension</a></td><td>Field descent, Frobenius orbits and counting</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Silting">Silting</a></td><td>Presilting reduction, fans, thick subcategories and rank two</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Stability">Stability</a></td><td>Weights, stable witnesses and stability walls</td></tr>
-<tr><td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Subcategories">Subcategories</a></td><td>Torsion pairs, wide subcategories and approximations</td></tr>
-</tbody></table>
-</main><footer class="site-footer">Source: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a42443dfc6cba03f3e9501696bca2f121b73732b">a42443d</a> · API: <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/f594ef1cc3337cf35db6bbc3a32b515d400b4a3e">f594ef1</a><br>Haruhisa Enomoto · Lean formalization · Apache-2.0</footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Library · Characterizations of E-finite algebras</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html">E-finite Algebras · Lean 4</a><a href="index.html">Overview</a><a href="statement.html">Statements</a><a href="proof.html">Proof guide</a><a href="library.html" aria-current="page">Library</a><a href="api.html">API</a><a href="verification.html">Verification</a><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations">GitHub ↗</a>
+    </nav>
+  </header>
+  <main id="main">
+<header class="paper-header">
+  <p class="kicker">Package Organization · 388 Library Modules</p>
+  <h1>Subject structure of <code>EFiniteCharacterizations/</code></h1>
+  <p class="lead">
+    The Lean package is organized strictly by mathematical subject inside a single
+    <code>EFiniteCharacterizations</code> namespace, with Mathlib as its sole external dependency.
+    Every file uses the Lean 4 module system.
+  </p>
+</header>
+
+<h2>Subject directories</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Directory</th>
+      <th>Files</th>
+      <th>Mathematical scope &amp; representative modules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/Statement.lean"><code>Statement.lean</code></a>,<br><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/EFiniteCharacterizations/MainTheorems.lean"><code>MainTheorems.lean</code></a></td>
+      <td>2</td>
+      <td>Standalone Mathlib-only definitions of the five endpoints (<code>Challenge.lean</code>) and the translation bridge from the proof library (<code>Solution.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Characterizations"><code>Characterizations/</code></a></td>
+      <td>6</td>
+      <td>Assembly of Theorem A(I–III) (<code>Equivalences.lean</code>), fixed-vector finiteness (<code>FixedClassFiniteness.lean</code>), Corollaries 5.4–5.5 (<code>BrickDimension.lean</code>), and the seven unified conjectures (<code>BrickFiniteness.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Presentations"><code>Presentations/</code></a></td>
+      <td>50</td>
+      <td>Two-term projective complexes, split Grothendieck group <code>K₀(proj Λ)</code> (<code>ProjectiveClasses.lean</code>), Nakayama kernels and Euler pairings, presilting representatives on fixed terms (<code>RigidTerms.lean</code>), Euler semicontinuity on pencils (<code>PencilEuler.lean</code>), and <code>τ</code>-tilting modules.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Silting"><code>Silting/</code></a></td>
+      <td>43</td>
+      <td>
+        <strong><code>Reduction/</code>:</strong> Bongartz completion and <code>τ</code>-perpendicular reduction <code>J(U) ≃ mod Γ_U</code> of rank <code>n - r</code>.<br>
+        <strong><code>Fans/</code>:</strong> Lattice saturation, opposite-algebra duality, Stern–Brocot mediant subdivision, Proposition 8.3 (<code>SternBrocot.lean</code>), and Theorem B (<code>RankTwoTauTilting.lean</code>).<br>
+        <strong><code>ThickSubcategories/</code>:</strong> Garcia's summand lemma and presilting generation of <code>K^{[-1,0]}(proj Λ)</code> (<code>BoundedProjectiveHomotopy.lean</code>).
+      </td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Stability"><code>Stability/</code></a></td>
+      <td>54</td>
+      <td>Numerical torsion pairs on cone interiors (<code>ConeTorsionPairs.lean</code>), separating weights, dependent semibrick extraction (<code>RationalExtraction.lean</code>), minimal-image witnesses at missing weights (<code>MissingWeightWitnesses.lean</code>), real chamber rank tests, normalized submodule polytopes (<code>NormalizedPolytopes.lean</code>), and the explicit polynomial bound (<code>SharpBrickGrowth.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Subcategories"><code>Subcategories/</code></a></td>
+      <td>22</td>
+      <td>Compact torsion classes (<code>CompactTorsionEquivalences.lean</code>), realization of wide subcategories as <code>J(U)</code> (<code>WidePerpendicular.lean</code>), brick labels in <code>f-tors Λ</code> (<code>BrickLabels.lean</code>), one-brick obstruction over general fields (<code>FieldWideWitness.lean</code>), exact abelian approximations, and descent along exact embeddings (<code>ExactRestriction.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/GrothendieckGroups"><code>GrothendieckGroups/</code></a></td>
+      <td>11</td>
+      <td>Exact Grothendieck groups and monoids, injectivity of <code>M(T) → K₀(mod Λ)</code> via pushouts (<code>TorsionMonoidEmbedding.lean</code>), subgroup identification for <code>K₀(T)</code> (<code>TorsionGrothendieckGroups.lean</code>), and Corollary 4.3 on cancellativity (<code>MonoidCancellation.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/ScalarExtension"><code>ScalarExtension/</code></a></td>
+      <td>38</td>
+      <td>Scalar extension and restriction for algebras and two-term complexes, preservation of semistability under algebraic extensions, absolute Frobenius orbits (<code>AbsoluteFrobeniusCorrespondence.lean</code>), and the <span class="m">𝔽<sub>q</sub></span> brick bound <span class="m">q<sup>s</sup>/(c<sub>0</sub> s)</span> (<code>SharpFiniteFieldCount.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Geometry"><code>Geometry/</code></a></td>
+      <td>37</td>
+      <td>Split basic vertex representations <code>rep(Λ, d)</code>, Zariski open Hom/orbit/wide loci, graded semi-invariant rings and <code>AlgebraicGeometry.Proj</code> (<code>KingSemiInvariants.lean</code>, <code>KingModuli.lean</code>), and Weyman's conjecture on component semi-invariants (<code>ComponentMultiplicity.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/LargeModules"><code>LargeModules/</code></a></td>
+      <td>18</td>
+      <td>Endofinite modules, exclusion of generic bricks via <span class="m">(Λ, Δ)</span>-bimodule rank reduction (<code>GenericBrickExclusion.lean</code>), endomorphism socles of generic grains, and construction of generic grains at missing weights (<code>GenericGrainCriterion.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/DivisionRings"><code>DivisionRings/</code></a></td>
+      <td>7</td>
+      <td>Bi-invariant total orders on finitely generated free groups (<code>FreeGroupBiorder.lean</code>), Malcev–Neumann well-ordered series rings (<code>OrderedGroupSeries.lean</code>, <code>HahnTriangular.lean</code>), and injective free tensor boundary coefficients.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/RingEpimorphisms"><code>RingEpimorphisms/</code></a></td>
+      <td>15</td>
+      <td>Universal localizations at projective morphisms (<code>UniversalLocalization.lean</code>), vanishing of <code>Tor₁^Λ(Γ, Γ)</code> (<code>LocalizationTor.lean</code>), infinite-dimensional residual localizations (<code>ResidualLocalization.lean</code>), and Artin algebra targets (<code>ArtinTargets.lean</code>).</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Modules"><code>Modules/</code></a></td>
+      <td>31</td>
+      <td>Finitely generated module morphisms, composition series and length, bricks, Hom extraction, endolength, contragredient duality, injectivity, and the Nakayama functor.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/Algebra"><code>Algebra/</code></a></td>
+      <td>7</td>
+      <td>Full-idempotent Morita equivalence (<code>FullCornerMorita.lean</code>), split basic corner reduction over <span class="m">k = k̄</span> (<code>BasicReduction.lean</code>), and simple Artinian matrix-image algebras.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/main/EFiniteCharacterizations/LinearAlgebra"><code>LinearAlgebra/</code></a></td>
+      <td>47</td>
+      <td>Maximal geometric rank (<code>GeometricRank.lean</code>), polynomial covers, matrix rank specialization, Fourier–Motzkin Farkas lemma (<code>Farkas.lean</code>), sign-pattern bounds, linear duals, and balanced tensor products.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Adapted foundational modules</h2>
+<p>
+  Twenty-four foundational modules (on Nakayama functors, linear duals, balanced tensor products,
+  contragredient duality, split basic corners, composition length, and Farkas's lemma) were ported from
+  earlier Apache-2.0 formalizations and unified into the topic layout above; see
+  <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/VENDORED.md"><code>VENDORED.md</code></a> and
+  <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/verification/module-origins.json"><code>verification/module-origins.json</code></a>
+  for module-by-module attribution.
+</p>
+
+  </main>
+  <footer class="site-footer">
+    <div>Haruhisa Enomoto · Lean 4 formalization (<a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/24b9293df93e0a39fa5d84d383be69a79c7fde3b/LICENSE">Apache-2.0</a>)</div>
+    <div>Commit <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/24b9293df93e0a39fa5d84d383be69a79c7fde3b"><code>24b9293</code></a> · API built from <a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/a4659f0560f20395765dc3291302f8c53048eeaf"><code>a4659f0</code></a></div>
+  </footer>
+</body>
+</html>
