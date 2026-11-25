@@ -18,3 +18,5 @@ lake build
 ```
 
 The proof package uses Lean 4.35.0-rc3 and depends only on pinned Mathlib. See the [verification guide](docs/VERIFICATION.md), [manuscript identification](docs/MANUSCRIPT.md), [authorship](PROVENANCE.md) and [code origins](VENDORED.md).
+
+The [hosted Palomar preflight](https://github.com/haruhisa-enomoto/e-finite-characterizations/actions/runs/45530650450) passed for [commit f594ef1](https://github.com/haruhisa-enomoto/e-finite-characterizations/tree/f594ef1cc3337cf35db6bbc3a32b515d400b4a3e). The [verification record](verification/2026-11-25/README.md) includes the mechanical report, kernel checks and file hashes.
