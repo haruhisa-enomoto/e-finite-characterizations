@@ -1,0 +1,378 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>EFiniteCharacterizations.Modules.Nakayama.Basic</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="EFiniteCharacterizations.Modules.Nakayama.Basic";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Characterizations of E-finite algebras</a></span></h1><h2 class="header_filename break_within"><span class="name">EFiniteCharacterizations</span>.<span class="name">Modules</span>.<span class="name">Nakayama</span>.<span class="name">Basic</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/FiniteProjective.html">EFiniteCharacterizations.LinearAlgebra.Dual.FiniteProjective</a></li><li><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html">EFiniteCharacterizations.LinearAlgebra.Dual.RightAction</a></li><li><a href="../../.././EFiniteCharacterizations/Modules/Dual/ProjectiveInjective.html">EFiniteCharacterizations.Modules.Dual.ProjectiveInjective</a></li><li><a href="../../.././EFiniteCharacterizations/Modules/Injective/DivisionRing.html">EFiniteCharacterizations.Modules.Injective.DivisionRing</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Algebra/Basic.lean">Mathlib.Algebra.Algebra.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-EFiniteCharacterizations.Modules.Nakayama.Basic" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.instAddCommMonoid"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instAddCommMonoid</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.instModule"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instModule</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.instModule_1"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instModule_1</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.equivDual"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">equivDual</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.ext"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">ext</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.ext_iff"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">ext_iff</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.smul_apply"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">smul_apply</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.instIsScalarTower"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instIsScalarTower</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.instAddCommGroup"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instAddCommGroup</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.NakayamaModule.instInjectiveOfFiniteOfProjective"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instInjectiveOfFiniteOfProjective</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.nakayamaMap"><span class="name">LinearMap</span>.<span class="name">nakayamaMap</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.nakayamaMap_apply"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_apply</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.nakayamaMap_id"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_id</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.nakayamaMap_comp"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_comp</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.nakayamaMap_zero"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_zero</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.nakayamaMap_add"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_add</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Nakayama-modules" class="markdown-heading">Nakayama modules <a class="hover-link" href="#Nakayama-modules">#</a></h1><p>The Nakayama construction sends a left <code>A</code>-module <code>P</code> to
+<code>ν(P) = Hom_k(Hom_A(P, A), k)</code>. Both dualizations reverse arrows, so <code>ν</code> is covariant.
+The left action is <code>(a • φ)(ψ) = φ(ψ · a)</code>, where the inner dual is a right <code>A</code>-module.
+Finite projective modules go to injective modules when <code>k</code> is a field.</p><p>These modules are the injective terms obtained by dualizing a projective presentation when
+computing the Auslander–Reiten translate. The type synonym keeps the domain action separate
+from Mathlib's codomain action on linear maps. <code><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">NakayamaModule.equivDual</a></code> identifies the
+underlying scalar module with the double dual, and <code><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">LinearMap.nakayamaMap</a></code> computes its maps.</p><h2 id="References" class="markdown-heading">References <a class="hover-link" href="#References">#</a></h2><ul><li>M. Auslander, I. Reiten, S. O. Smalø, <em>Representation Theory of Artin Algebras</em>,
+Cambridge University Press (1995), Section IV.1.</li></ul><p>The action uses <code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapRightAction">EFiniteCharacterizations.linearMapRightAction</a></code>; injectivity uses the opposite dual of a finite
+projective module and <code><a href="../../.././EFiniteCharacterizations/Modules/Dual/ProjectiveInjective.html#LinearEquiv.moduleInjective_of_dual_projective">LinearEquiv.moduleInjective_of_dual_projective</a></code>.</p></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L46-L50">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../../.././foundational_types.html">Type</a> (max (max w v) u)</div></div><p>The Nakayama module <code>ν(P) = D Hom_A(P, A)</code>, with the left action dual to the right
+action on <code>Hom_A(P, A)</code>.</p><details id="instances-for-list-EFiniteCharacterizations.NakayamaModule" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.instAddCommMonoid"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L56-L57">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.instAddCommMonoid"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instAddCommMonoid</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.instModule"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L59-L60">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.instModule"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.instModule_1"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L62-L63">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.instModule_1"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instModule_1</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.equivDual"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L65-L67">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">equivDual</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span></span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">k</span> <span class="fn">(<span class="fn">Module.Dual</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></span></div></div><p>The underlying scalar module of <code>ν(P)</code> is the scalar dual of its algebra-valued dual.</p><details id="instances-for-list-EFiniteCharacterizations.NakayamaModule.equivDual" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.ext"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L69-L73">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.ext"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">ext</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">φ </span><span class="fn">χ</span> : <span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn">∀ (<span class="fn">ψ</span> : <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">A</span> <span class="fn">P</span></span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">φ</span>)</span> <span class="fn">ψ</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">χ</span>)</span> <span class="fn">ψ</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">φ</span> <span class="fn">=</span> <span class="fn">χ</span></span></div></div><p>Nakayama functionals are determined by evaluation on algebra-valued functionals.</p></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.ext_iff"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L70-L70">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.ext_iff"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">ext_iff</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">φ </span><span class="fn">χ</span> : <span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span></span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">φ</span> <span class="fn">=</span> <span class="fn">χ</span></span> <span class="fn">↔</span> <span class="fn">∀ (<span class="fn">ψ</span> : <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">A</span> <span class="fn">P</span></span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">φ</span>)</span> <span class="fn">ψ</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">χ</span>)</span> <span class="fn">ψ</span></span></span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.smul_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L75-L79">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.smul_apply"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">smul_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ψ</span> : <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">A</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">(<span class="fn">a</span> <span class="fn">•</span> <span class="fn">φ</span>)</span>)</span> <span class="fn">ψ</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">φ</span>)</span> <span class="fn">(<span class="fn"><span class="fn">MulOpposite.op</span> <span class="fn">a</span></span> <span class="fn">•</span> <span class="fn">ψ</span>)</span></span></span></div></div><p>The left action is dual to right multiplication on the values of an inner functional.</p></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.instIsScalarTower"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L81-L84">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.instIsScalarTower"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instIsScalarTower</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.instAddCommGroup"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L93-L94">source</a></div><div class="attributes">@[instance_reducible]</div>
+<div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.instAddCommGroup"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instAddCommGroup</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommRing</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.NakayamaModule.instInjectiveOfFiniteOfProjective"><div class="instance"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L103-L107">source</a></div><div class="decl_header"><span class="decl_kind">instance</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.instInjectiveOfFiniteOfProjective"><span class="name">EFiniteCharacterizations</span>.<span class="name">NakayamaModule</span>.<span class="name">instInjectiveOfFiniteOfProjective</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Projective</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module.Injective</span> <span class="fn">A</span> <span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span></span></div></div><p>The Nakayama module of a finite projective module is injective over an algebra over
+a field. The algebra need not be finite-dimensional.</p></div></div><div class="decl" id="LinearMap.nakayamaMap"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L126-L131">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap"><span class="name">LinearMap</span>.<span class="name">nakayamaMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> z}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">EFiniteCharacterizations.NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span></span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">EFiniteCharacterizations.NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">Q</span></span></span></div></div><p>The covariant Nakayama map, obtained by applying the algebra dual and then the scalar dual.</p><details id="instances-for-list-LinearMap.nakayamaMap" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.nakayamaMap_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L133-L137">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap_apply"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_apply</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> z}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule">EFiniteCharacterizations.NakayamaModule</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">ψ</span> : <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">A</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">EFiniteCharacterizations.NakayamaModule.equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">Q</span>)</span> <span class="fn">(<span class="fn"><span class="fn">f</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span> <span class="fn">φ</span>)</span>)</span> <span class="fn">ψ</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#EFiniteCharacterizations.NakayamaModule.equivDual">EFiniteCharacterizations.NakayamaModule.equivDual</a> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">P</span>)</span> <span class="fn">φ</span>)</span> <span class="fn">(<span class="fn">ψ</span> <span class="fn">∘ₗ</span> <span class="fn">f</span>)</span></span></span></div></div><p>A Nakayama map evaluates by precomposing the inner functional with the original map.</p></div></div><div class="decl" id="LinearMap.nakayamaMap_id"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L139-L143">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap_id"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_id</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">id</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span> <span class="fn">=</span> <span class="fn">id</span></span></div></div><p>The Nakayama construction preserves identity maps.</p></div></div><div class="decl" id="LinearMap.nakayamaMap_comp"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L145-L150">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap_comp"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_comp</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> z}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">g</span> <span class="fn">∘ₗ</span> <span class="fn">f</span>)</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">g</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span> <span class="fn">∘ₗ</span> <span class="fn"><span class="fn">f</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span></span></span></div></div><p>The Nakayama construction preserves composition in its original order.</p></div></div><div class="decl" id="LinearMap.nakayamaMap_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L152-L156">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap_zero"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> z}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div><p>The Nakayama construction sends the zero map to zero.</p></div></div><div class="decl" id="LinearMap.nakayamaMap_add"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Nakayama/Basic.lean#L158-L163">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap_add"><span class="name">LinearMap</span>.<span class="name">nakayamaMap_add</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> z}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f </span><span class="fn">g</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">A</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">f</span> <span class="fn">+</span> <span class="fn">g</span>)</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span> <span class="fn">+</span> <span class="fn"><span class="fn">g</span>.<a href="../../.././EFiniteCharacterizations/Modules/Nakayama/Basic.html#LinearMap.nakayamaMap">nakayamaMap</a></span></span></span></div></div><p>The Nakayama construction preserves addition of maps.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

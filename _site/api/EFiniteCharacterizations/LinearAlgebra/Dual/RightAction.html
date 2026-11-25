@@ -1,0 +1,235 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>EFiniteCharacterizations.LinearAlgebra.Dual.RightAction</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="EFiniteCharacterizations.LinearAlgebra.Dual.RightAction";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Characterizations of E-finite algebras</a></span></h1><h2 class="header_filename break_within"><span class="name">EFiniteCharacterizations</span>.<span class="name">LinearAlgebra</span>.<span class="name">Dual</span>.<span class="name">RightAction</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Algebra/Opposite.lean">Mathlib.Algebra.Algebra.Opposite</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Algebra/Tower.lean">Mathlib.Algebra.Algebra.Tower</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Dual/Defs.lean">Mathlib.LinearAlgebra.Dual.Defs</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Module/LinearMap/Basic.lean">Mathlib.Algebra.Module.LinearMap.Basic</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-EFiniteCharacterizations.LinearAlgebra.Dual.RightAction" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.linearMapOpAction"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapOpAction</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.linearMapOpAction_apply_apply"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapOpAction_apply_apply</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.linearMapRightAction"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapRightAction</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.linearMapRightAction_apply_apply"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapRightAction_apply_apply</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.apply_apply_eq_apply_one_mul"><span class="name">EFiniteCharacterizations</span>.<span class="name">apply_apply_eq_apply_one_mul</span></a></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.isScalarTower_of_linearMap"><span class="name">LinearEquiv</span>.<span class="name">isScalarTower_of_linearMap</span></a></div><div class="nav_link"><a class="break_within" href="#LinearEquiv.isScalarTower_of_dual_regular"><span class="name">LinearEquiv</span>.<span class="name">isScalarTower_of_dual_regular</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="The-dual-of-a-right-module-as-a-left-module" class="markdown-heading">The dual of a right module as a left module <a class="hover-link" href="#The-dual-of-a-right-module-as-a-left-module">#</a></h1><p>For a right module <code>N</code> over a semiring <code>A</code> whose right action commutes with a base commutative
+semiring <code>k</code>, the duality <code>D = Hom_k(-, k)</code> turns <code>N</code> into a <em>left</em> <code>A</code>-module: a scalar <code>a</code> acts on
+a functional <code>φ</code> by precomposition with multiplication by <code>a</code>, <code>(a • φ) x = φ (x * a)</code>.
+Precomposition reverses composition, which is exactly what exchanges the two sides.</p><p>This file records that action as a ring homomorphism. The construction does not use the codomain:
+for a <code>k</code>-module <code>E</code>, <code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapRightAction">EFiniteCharacterizations.linearMapRightAction</a></code> is the left action on <code>Hom_k(N, E)</code>, which is
+the duality above when <code>E = k</code>, and <code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapOpAction">EFiniteCharacterizations.linearMapOpAction</a></code> is the right action on <code>Hom_k(M, E)</code>
+of a left <code>A</code>-module <code>M</code>.</p><p>On the other side, a semiring <code>A</code> with a <code>k</code>-module structure commuting with left multiplication
+acts on the right of the dual of its left regular module by
+<code>(ψ · c) b = ψ (c * b)</code>, which Mathlib writes as the domain action <code>DomMulAct.mk c • ψ</code>. A map
+<code>A → Module.Dual k A</code> that is equivariant for the right <code>A</code>-actions is determined by its value at
+<code>1</code>; this is <code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.apply_apply_eq_apply_one_mul">EFiniteCharacterizations.apply_apply_eq_apply_one_mul</a></code>.</p><h2 id="Main-definitions" class="markdown-heading">Main definitions <a class="hover-link" href="#Main-definitions">#</a></h2><ul><li><code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapOpAction">EFiniteCharacterizations.linearMapOpAction</a></code>: the action of <code>Aᵐᵒᵖ</code> on <code>Hom_k(M, E)</code> for a left <code>A</code>-module <code>M</code>, by
+precomposition.</li><li><code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapRightAction">EFiniteCharacterizations.linearMapRightAction</a></code>: the action of <code>A</code> on <code>Hom_k(N, E)</code> for a right <code>A</code>-module <code>N</code>, by
+precomposition.</li></ul><h2 id="Main-results" class="markdown-heading">Main results <a class="hover-link" href="#Main-results">#</a></h2><ul><li><code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.apply_apply_eq_apply_one_mul">EFiniteCharacterizations.apply_apply_eq_apply_one_mul</a></code>: a map from <code>A</code> to its dual that is equivariant for the
+right <code>A</code>-actions is determined by its value at <code>1</code>; additivity is not assumed.</li><li><code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#LinearEquiv.isScalarTower_of_linearMap">LinearEquiv.isScalarTower_of_linearMap</a></code>: an equivariant identification with <code>Hom_k(M, E)</code> for a
+right module <code>M</code> gives compatible actions of <code>k</code> and <code>A</code>.</li><li><code><a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#LinearEquiv.isScalarTower_of_dual_regular">LinearEquiv.isScalarTower_of_dual_regular</a></code>: a left <code>A</code>-module identified with <code>Hom_k(A, E)</code>, with
+action <code>(a • φ) x = φ (x * a)</code>, has compatible actions of <code>k</code> and <code>A</code>.</li></ul><h2 id="Implementation-notes" class="markdown-heading">Implementation notes <a class="hover-link" href="#Implementation-notes">#</a></h2><p>The action is deliberately <em>not</em> installed as a <code>Module A (Module.Dual k N)</code> instance: the
+underlying type of <code>Module.Dual k N</code> is a type of linear maps, which already carries the
+codomain-scaling <code>Module</code> instances of <code>Mathlib.Algebra.Module.LinearMap.Defs</code>, and a second
+<code>Module</code> structure matching every dual would make instance search on those types depend on an
+undetermined right-module structure.  A consumer that wants the left module structure on one
+particular dual builds it with <code>Module.compHom</code>, which pins the right-module structure being
+dualized.</p></div><div class="decl" id="EFiniteCharacterizations.linearMapOpAction"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L71-L79">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapOpAction"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapOpAction</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">A</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">→+*</span> <span class="fn"><span class="fn">Module.End</span> <span class="fn">k</span> <span class="fn">(<span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">E</span>)</span></span></span></div></div><p>The contravariant functor <code>Hom_k(-, E)</code> turns a left <code>A</code>-module <code>M</code> into a right <code>A</code>-module: the
+scalar <code>op a</code> sends a map <code>φ</code> to <code>x ↦ φ (a • x)</code>. This records that action as a ring homomorphism
+from <code>Aᵐᵒᵖ</code> to the <code>k</code>-linear endomorphisms of <code>M →ₗ[k] E</code>.</p><details id="instances-for-list-EFiniteCharacterizations.linearMapOpAction" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.linearMapOpAction_apply_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L81-L84">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapOpAction_apply_apply"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapOpAction_apply_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">A</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">M</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapOpAction">linearMapOpAction</a> <span class="fn">k</span> <span class="fn">M</span> <span class="fn">E</span>)</span> <span class="fn">a</span>)</span> <span class="fn">φ</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">φ</span> <span class="fn">(<span class="fn"><span class="fn">MulOpposite.unop</span> <span class="fn">a</span></span> <span class="fn">•</span> <span class="fn">x</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.linearMapRightAction"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L94-L102">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapRightAction"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapRightAction</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">A</span> <span class="fn">→+*</span> <span class="fn"><span class="fn">Module.End</span> <span class="fn">k</span> <span class="fn">(<span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">E</span>)</span></span></span></div></div><p>The contravariant functor <code>Hom_k(-, E)</code> turns a right <code>A</code>-module <code>N</code> into a left <code>A</code>-module: the
+scalar <code>a</code> sends a map <code>φ</code> to <code>x ↦ φ (x * a)</code>. This records that action as a ring homomorphism from
+<code>A</code> to the <code>k</code>-linear endomorphisms of <code>N →ₗ[k] E</code>.</p><p>Precomposition reverses composition, which is exactly what makes a <em>right</em> action on <code>N</code> into a
+<em>left</em> action on its dual; the hypothesis <code>SMulCommClass Aᵐᵒᵖ k N</code> is what makes multiplication by
+<code>a</code> a <code>k</code>-linear endomorphism of <code>N</code> in the first place.</p><details id="instances-for-list-EFiniteCharacterizations.linearMapRightAction" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.linearMapRightAction_apply_apply"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L104-L107">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapRightAction_apply_apply"><span class="name">EFiniteCharacterizations</span>.<span class="name">linearMapRightAction_apply_apply</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> w)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">a</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">φ</span> : <span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">E</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">x</span> : <span class="fn">N</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">(<a href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.linearMapRightAction">linearMapRightAction</a> <span class="fn">k</span> <span class="fn">N</span> <span class="fn">E</span>)</span> <span class="fn">a</span>)</span> <span class="fn">φ</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">φ</span> <span class="fn">(<span class="fn"><span class="fn">MulOpposite.op</span> <span class="fn">a</span></span> <span class="fn">•</span> <span class="fn">x</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.apply_apply_eq_apply_one_mul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L115-L120">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#EFiniteCharacterizations.apply_apply_eq_apply_one_mul"><span class="name">EFiniteCharacterizations</span>.<span class="name">apply_apply_eq_apply_one_mul</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">e</span> : <span class="fn"><span class="fn">A</span> → <span class="fn"><span class="fn">Module.Dual</span> <span class="fn">k</span> <span class="fn">A</span></span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn">∀ (<span class="fn">a </span><span class="fn">c</span> : <span class="fn">A</span>), <span class="fn"><span class="fn"><span class="fn">e</span> <span class="fn">(<span class="fn">a</span> <span class="fn">*</span> <span class="fn">c</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn"><span class="fn">DomMulAct.mk</span> <span class="fn">c</span></span> <span class="fn">•</span> <span class="fn"><span class="fn">e</span> <span class="fn">a</span></span></span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a </span><span class="fn">b</span> : <span class="fn">A</span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">a</span>)</span> <span class="fn">b</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">1</span>)</span> <span class="fn">(<span class="fn">a</span> <span class="fn">*</span> <span class="fn">b</span>)</span></span></span></div></div><p>A map from <code>A</code> to its dual that is equivariant for the right <code>A</code>-actions, using the action
+<code>DomMulAct.mk c • ψ = ψ (c * ·)</code> on the dual, is determined by its value at <code>1</code>. The map need not
+be additive.</p></div></div><div class="decl" id="LinearEquiv.isScalarTower_of_linearMap"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L126-L137">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#LinearEquiv.isScalarTower_of_linearMap"><span class="name">LinearEquiv</span>.<span class="name">isScalarTower_of_linearMap</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_5}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn"><span class="fn">A</span><span class="fn">ᵐᵒᵖ</span></span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">eM</span> : <span class="fn"><span class="fn">N</span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">E</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">heM</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn">A</span>) (<span class="fn">n</span> : <span class="fn">N</span>) (<span class="fn">m</span> : <span class="fn">M</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">eM</span> <span class="fn">(<span class="fn">a</span> <span class="fn">•</span> <span class="fn">n</span>)</span>)</span> <span class="fn">m</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">eM</span> <span class="fn">n</span>)</span> <span class="fn">(<span class="fn"><span class="fn">MulOpposite.op</span> <span class="fn">a</span></span> <span class="fn">•</span> <span class="fn">m</span>)</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">N</span></span></div></div><p>The <code>A</code>-action on a module identified equivariantly with <code>Hom_k(M, E)</code>, for a right module <code>M</code>,
+commutes with the <code>k</code>-action.</p></div></div><div class="decl" id="LinearEquiv.isScalarTower_of_dual_regular"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.lean#L144-L150">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/LinearAlgebra/Dual/RightAction.html#LinearEquiv.isScalarTower_of_dual_regular"><span class="name">LinearEquiv</span>.<span class="name">isScalarTower_of_dual_regular</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">A</span> : <a href="../../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> u_3}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E</span> : <a href="../../.././foundational_types.html">Type</a> u_4}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CommSemiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">A</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">A</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommMonoid</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">E</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">e</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">A</span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">E</span></span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">he</span> : <span class="fn">∀ (<span class="fn">a</span> : <span class="fn">A</span>) (<span class="fn">q</span> : <span class="fn">Q</span>) (<span class="fn">x</span> : <span class="fn">A</span>), <span class="fn"><span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">(<span class="fn">a</span> <span class="fn">•</span> <span class="fn">q</span>)</span>)</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">e</span> <span class="fn">q</span>)</span> <span class="fn">(<span class="fn">x</span> <span class="fn">*</span> <span class="fn">a</span>)</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">A</span> <span class="fn">Q</span></span></div></div><p>A left <code>A</code>-module identified with <code>Hom_k(A, E)</code>, with action <code>(a • φ) x = φ (x * a)</code>, has
+compatible actions of <code>k</code> and <code>A</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

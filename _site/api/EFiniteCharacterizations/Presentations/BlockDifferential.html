@@ -1,0 +1,358 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../.././style.css"></link><link rel="icon" href="../.././favicon.svg"></link><link rel="mask-icon" href="../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../.././/declarations/declaration-data.bmp" as="image"></link><title>EFiniteCharacterizations.Presentations.BlockDifferential</title><script defer="true" src="../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../.././";</script><script>const MODULE_NAME="EFiniteCharacterizations.Presentations.BlockDifferential";</script><script type="module" src="../.././jump-src.js"></script><script type="module" src="../.././search.js"></script><script type="module" src="../.././expand-nav.js"></script><script type="module" src="../.././how-about.js"></script><script type="module" src="../.././instances.js"></script><script type="module" src="../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../index.html">Characterizations of E-finite algebras</a></span></h1><h2 class="header_filename break_within"><span class="name">EFiniteCharacterizations</span>.<span class="name">Presentations</span>.<span class="name">BlockDifferential</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../.././EFiniteCharacterizations/Presentations/RigidPencilComparison.html">EFiniteCharacterizations.Presentations.RigidPencilComparison</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/CategoryTheory/Preadditive/Biproducts.lean">Mathlib.CategoryTheory.Preadditive.Biproducts</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-EFiniteCharacterizations.Presentations.BlockDifferential" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockDifferential"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.inl_blockDifferential"><span class="name">EFiniteCharacterizations</span>.<span class="name">inl_blockDifferential</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.inl_blockDifferential_assoc"><span class="name">EFiniteCharacterizations</span>.<span class="name">inl_blockDifferential_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.inr_blockDifferential_fst"><span class="name">EFiniteCharacterizations</span>.<span class="name">inr_blockDifferential_fst</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.inr_blockDifferential_fst_assoc"><span class="name">EFiniteCharacterizations</span>.<span class="name">inr_blockDifferential_fst_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockDifferential_snd"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential_snd</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockDifferential_snd_assoc"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential_snd_assoc</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockDifferential_zero"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential_zero</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.BoundaryCokernel"><span class="name">EFiniteCharacterizations</span>.<span class="name">BoundaryCokernel</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockCokernelInclusion"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelInclusion</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockCokernelProjection"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelProjection</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockCokernelInclusion_surjective"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelInclusion_surjective</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockCokernelProjection_surjective"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelProjection_surjective</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockCokernelInclusion_extensionClass"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelInclusion_extensionClass</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.blockCokernelProjection_extensionClass"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelProjection_extensionClass</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="A-block-extension-of-two-term-differentials" class="markdown-heading">A block extension of two-term differentials <a class="hover-link" href="#A-block-extension-of-two-term-differentials">#</a></h1></div><div class="decl" id="EFiniteCharacterizations.blockDifferential"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L20-L22">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">E₁</span> <span class="fn">⊞</span> <span class="fn">L₁</span></span> <span class="fn">⟶</span> <span class="fn"><span class="fn">E₀</span> <span class="fn">⊞</span> <span class="fn">L₀</span></span></span></div></div><p>The block differential of the extension of <code>l</code> by <code>d</code> given by <code>w</code>.</p><details id="instances-for-list-EFiniteCharacterizations.blockDifferential" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.inl_blockDifferential"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L24-L26">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.inl_blockDifferential"><span class="name">EFiniteCharacterizations</span>.<span class="name">inl_blockDifferential</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.inl</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">d</span> <span class="fn">CategoryTheory.Limits.biprod.inl</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.inl_blockDifferential_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L24-L24">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.inl_blockDifferential_assoc"><span class="name">EFiniteCharacterizations</span>.<span class="name">inl_blockDifferential_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn"><span class="fn">E₀</span> <span class="fn">⊞</span> <span class="fn">L₀</span></span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.inl</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span> <span class="fn">h</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">d</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.inl</span> <span class="fn">h</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.inr_blockDifferential_fst"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L28-L30">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.inr_blockDifferential_fst"><span class="name">EFiniteCharacterizations</span>.<span class="name">inr_blockDifferential_fst</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.inr</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span> <span class="fn">CategoryTheory.Limits.biprod.fst</span>)</span></span> <span class="fn">=</span>   <span class="fn">w</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.inr_blockDifferential_fst_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L28-L28">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.inr_blockDifferential_fst_assoc"><span class="name">EFiniteCharacterizations</span>.<span class="name">inr_blockDifferential_fst_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">E₀</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.inr</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span>
+      <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.fst</span> <span class="fn">h</span>)</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">w</span> <span class="fn">h</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.blockDifferential_snd"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L32-L34">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential_snd"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential_snd</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span> <span class="fn">CategoryTheory.Limits.biprod.snd</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.snd</span> <span class="fn">l</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.blockDifferential_snd_assoc"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L32-L32">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential_snd_assoc"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential_snd_assoc</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Z</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">L₀</span> <span class="fn">⟶</span> <span class="fn">Z</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span>
+    <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.snd</span> <span class="fn">h</span>)</span></span> <span class="fn">=</span>   <span class="fn"><span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">CategoryTheory.Limits.biprod.snd</span> <span class="fn">(<span class="fn">CategoryTheory.CategoryStruct.comp</span> <span class="fn">l</span> <span class="fn">h</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.blockDifferential_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L36-L39">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential_zero"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockDifferential_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_2, u_1}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">0</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">CategoryTheory.Limits.biprod.map</span> <span class="fn">d</span> <span class="fn">l</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.BoundaryCokernel"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L47-L49">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.BoundaryCokernel"><span class="name">EFiniteCharacterizations</span>.<span class="name">BoundaryCokernel</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">V₁ </span><span class="fn">V₀ </span><span class="fn">W₁ </span><span class="fn">W₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn"><span class="fn">V₁</span> <span class="fn">⟶</span> <span class="fn">V₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">p</span> : <span class="fn"><span class="fn">W₁</span> <span class="fn">⟶</span> <span class="fn">W₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><a href="../.././foundational_types.html">Type</a> u_3</div></div><p>Cokernel of the boundary map for degree-one morphisms between two differentials.</p><details id="instances-for-list-EFiniteCharacterizations.BoundaryCokernel" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.blockCokernelInclusion"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L54-L60">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelInclusion"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelInclusion</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀ </span><span class="fn">V₁ </span><span class="fn">V₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn"><span class="fn">V₁</span> <span class="fn">⟶</span> <span class="fn">V₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.BoundaryCokernel">BoundaryCokernel</a> <span class="fn">k</span> <span class="fn">v</span> <span class="fn">d</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.BoundaryCokernel">BoundaryCokernel</a> <span class="fn">k</span> <span class="fn">v</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span></span></span></div></div><p>Inclusion of the first block on degree-one Hom cokernels.</p><details id="instances-for-list-EFiniteCharacterizations.blockCokernelInclusion" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.blockCokernelProjection"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L62-L68">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelProjection"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelProjection</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀ </span><span class="fn">V₁ </span><span class="fn">V₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn"><span class="fn">V₁</span> <span class="fn">⟶</span> <span class="fn">V₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.BoundaryCokernel">BoundaryCokernel</a> <span class="fn">k</span> <span class="fn">l</span> <span class="fn">v</span></span> <span class="fn">→ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.BoundaryCokernel">BoundaryCokernel</a> <span class="fn">k</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockDifferential">blockDifferential</a> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span>)</span> <span class="fn">v</span></span></span></div></div><p>Projection onto the second block on the opposite degree-one Hom cokernels.</p><details id="instances-for-list-EFiniteCharacterizations.blockCokernelProjection" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.blockCokernelInclusion_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L70-L88">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelInclusion_surjective"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelInclusion_surjective</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀ </span><span class="fn">V₁ </span><span class="fn">V₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn"><span class="fn">V₁</span> <span class="fn">⟶</span> <span class="fn">V₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/RigidPencil.html#EFiniteCharacterizations.boundaryLinear">boundaryLinear</a> <span class="fn">k</span> <span class="fn">v</span> <span class="fn">l</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelInclusion">blockCokernelInclusion</a> <span class="fn">k</span> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span> <span class="fn">v</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.blockCokernelProjection_surjective"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L90-L108">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelProjection_surjective"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelProjection_surjective</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀ </span><span class="fn">V₁ </span><span class="fn">V₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">v</span> : <span class="fn"><span class="fn">V₁</span> <span class="fn">⟶</span> <span class="fn">V₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">h</span> : <span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/RigidPencil.html#EFiniteCharacterizations.boundaryLinear">boundaryLinear</a> <span class="fn">k</span> <span class="fn">d</span> <span class="fn">v</span>)</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Function.Surjective</span> <span class="fn">⇑<span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelProjection">blockCokernelProjection</a> <span class="fn">k</span> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span> <span class="fn">v</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.blockCokernelInclusion_extensionClass"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L110-L118">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelInclusion_extensionClass"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelInclusion_extensionClass</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelInclusion">blockCokernelInclusion</a> <span class="fn">k</span> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span> <span class="fn">l</span>)</span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/RigidPencil.html#EFiniteCharacterizations.boundaryLinear">boundaryLinear</a> <span class="fn">k</span> <span class="fn">l</span> <span class="fn">d</span>)</span>.<span class="fn">range</span></span>.<span class="fn">mkQ</span></span> <span class="fn">w</span>)</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.blockCokernelProjection_extensionClass"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Presentations/BlockDifferential.lean#L120-L129">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelProjection_extensionClass"><span class="name">EFiniteCharacterizations</span>.<span class="name">blockCokernelProjection_extensionClass</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k</span> : <a href="../.././foundational_types.html">Type</a> u_1)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">C</span> : <a href="../.././foundational_types.html">Type</a> u_2}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Category.{u_3, u_2}</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Preadditive</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Linear</span> <span class="fn">k</span> <span class="fn">C</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">E₁ </span><span class="fn">E₀ </span><span class="fn">L₁ </span><span class="fn">L₀</span> : <span class="fn">C</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₁</span> <span class="fn">L₁</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CategoryTheory.Limits.HasBinaryBiproduct</span> <span class="fn">E₀</span> <span class="fn">L₀</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">d</span> : <span class="fn"><span class="fn">E₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">l</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">L₀</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">w</span> : <span class="fn"><span class="fn">L₁</span> <span class="fn">⟶</span> <span class="fn">E₀</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/BlockDifferential.html#EFiniteCharacterizations.blockCokernelProjection">blockCokernelProjection</a> <span class="fn">k</span> <span class="fn">d</span> <span class="fn">l</span> <span class="fn">w</span> <span class="fn">d</span>)</span> <span class="fn">(<span class="fn"><span class="fn"><span class="fn">(<a href="../.././EFiniteCharacterizations/Presentations/RigidPencil.html#EFiniteCharacterizations.boundaryLinear">boundaryLinear</a> <span class="fn">k</span> <span class="fn">l</span> <span class="fn">d</span>)</span>.<span class="fn">range</span></span>.<span class="fn">mkQ</span></span> <span class="fn">w</span>)</span></span> <span class="fn">=</span> <span class="fn">0</span></span></div></div></div></div></main>
+<nav class="nav"><iframe src="../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

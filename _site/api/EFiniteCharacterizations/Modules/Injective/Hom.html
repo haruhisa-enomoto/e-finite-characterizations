@@ -1,0 +1,237 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../../.././style.css"></link><link rel="icon" href="../../.././favicon.svg"></link><link rel="mask-icon" href="../../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../../.././/declarations/declaration-data.bmp" as="image"></link><title>EFiniteCharacterizations.Modules.Injective.Hom</title><script defer="true" src="../../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../../.././";</script><script>const MODULE_NAME="EFiniteCharacterizations.Modules.Injective.Hom";</script><script type="module" src="../../.././jump-src.js"></script><script type="module" src="../../.././search.js"></script><script type="module" src="../../.././expand-nav.js"></script><script type="module" src="../../.././how-about.js"></script><script type="module" src="../../.././instances.js"></script><script type="module" src="../../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../../index.html">Characterizations of E-finite algebras</a></span></h1><h2 class="header_filename break_within"><span class="name">EFiniteCharacterizations</span>.<span class="name">Modules</span>.<span class="name">Injective</span>.<span class="name">Hom</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/LinearAlgebra/Isomorphisms.lean">Mathlib.LinearAlgebra.Isomorphisms</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Module/Injective.lean">Mathlib.Algebra.Module.Injective</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-EFiniteCharacterizations.Modules.Injective.Hom" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#LinearMap.exists_comp_eq_iff_ker_le"><span class="name">LinearMap</span>.<span class="name">exists_comp_eq_iff_ker_le</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.range_lcomp_eq_ker_lcomp_ker_subtype"><span class="name">LinearMap</span>.<span class="name">range_lcomp_eq_ker_lcomp_ker_subtype</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.cokernelEquivDualKer"><span class="name">LinearMap</span>.<span class="name">cokernelEquivDualKer</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.cokernelEquivDualKer_mk"><span class="name">LinearMap</span>.<span class="name">cokernelEquivDualKer_mk</span></a></div><div class="nav_link"><a class="break_within" href="#LinearMap.comap_range_lcomp_compRight"><span class="name">LinearMap</span>.<span class="name">comap_range_lcomp_compRight</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.exists_linearMap_apply_eq_iff_forall_smul_eq_zero"><span class="name">EFiniteCharacterizations</span>.<span class="name">exists_linearMap_apply_eq_iff_forall_smul_eq_zero</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Exactness-of-Hom-into-an-injective-module" class="markdown-heading">Exactness of Hom into an injective module <a class="hover-link" href="#Exactness-of-Hom-into-an-injective-module">#</a></h1><p>A map into an injective module factors through <code>f</code> exactly when it vanishes on
+<code>ker f</code>. In particular, precomposition with <code>f</code> has image the kernel of restriction
+to <code>ker f</code>, so restriction identifies its cokernel with <code>Hom(ker f, I)</code>
+(<code><a href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.cokernelEquivDualKer">LinearMap.cokernelEquivDualKer</a></code>). This applies to presenting maps that are not monomorphisms,
+as occur in projective presentations over non-hereditary algebras. As a further consequence, an
+annihilator inclusion characterizes the existence of a linear map with one prescribed value.</p></div><div class="decl" id="LinearMap.exists_comp_eq_iff_ker_le"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean#L33-L45">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.exists_comp_eq_iff_ker_le"><span class="name">LinearMap</span>.<span class="name">exists_comp_eq_iff_ker_le</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Small.{t, u}</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Injective</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">g</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(∃ (<span class="fn">h</span> : <span class="fn"><span class="fn">Q</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">I</span></span>), <span class="fn"><span class="fn"><span class="fn">h</span> <span class="fn">∘ₗ</span> <span class="fn">f</span></span> <span class="fn">=</span> <span class="fn">g</span></span>)</span> <span class="fn">↔</span> <span class="fn"><span class="fn"><span class="fn">f</span>.<span class="fn">ker</span></span> <span class="fn">≤</span> <span class="fn"><span class="fn">g</span>.<span class="fn">ker</span></span></span></span></div></div><p>A map into an injective module factors through <code>f</code> exactly when it kills <code>ker f</code>.</p></div></div><div class="decl" id="LinearMap.range_lcomp_eq_ker_lcomp_ker_subtype"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean#L49-L56">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.range_lcomp_eq_ker_lcomp_ker_subtype"><span class="name">LinearMap</span>.<span class="name">range_lcomp_eq_ker_lcomp_ker_subtype</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Small.{t, u}</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Injective</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> s}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">k</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">lcomp</span> <span class="fn">k</span> <span class="fn">I</span> <span class="fn">f</span>)</span>.<span class="fn">range</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">lcomp</span> <span class="fn">k</span> <span class="fn">I</span> <span class="fn"><span class="fn"><span class="fn">f</span>.<span class="fn">ker</span></span>.<span class="fn">subtype</span></span>)</span>.<span class="fn">ker</span></span></span></div></div><p>Precomposition into an injective module has image exactly the maps vanishing on
+the kernel of the original map. The Hom spaces are linear over a semiring whose action
+commutes with the module action.</p></div></div><div class="decl" id="LinearMap.cokernelEquivDualKer"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean#L58-L66">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.cokernelEquivDualKer"><span class="name">LinearMap</span>.<span class="name">cokernelEquivDualKer</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Small.{t, u}</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Injective</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn">(<span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">I</span>)</span> <span class="fn">⧸</span> <span class="fn"><span class="fn">(<span class="fn">lcomp</span> <span class="fn">S</span> <span class="fn">I</span> <span class="fn">f</span>)</span>.<span class="fn">range</span></span>)</span> <span class="fn">≃ₗ[</span><span class="fn">S</span><span class="fn">]</span> <span class="fn"><span class="fn">↥<span class="fn"><span class="fn">f</span>.<span class="fn">ker</span></span></span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">I</span></span></span></div></div><p><strong><code>Hom</code> into an injective module turns kernels into cokernels.</strong> Restriction to <code>ker f</code>
+identifies the cokernel of precomposition with <code>f</code> with <code>Hom_R(ker f, I)</code>. It is surjective
+since <code>I</code> is injective, and its kernel is the image of precomposition with <code>f</code>.</p><details id="instances-for-list-LinearMap.cokernelEquivDualKer" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="LinearMap.cokernelEquivDualKer_mk"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean#L68-L73">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.cokernelEquivDualKer_mk"><span class="name">LinearMap</span>.<span class="name">cokernelEquivDualKer_mk</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Small.{t, u}</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Injective</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">S</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">u</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn"><span class="fn">f</span>.<a href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.cokernelEquivDualKer">cokernelEquivDualKer</a></span> <span class="fn">(<span class="fn">Submodule.Quotient.mk</span> <span class="fn">u</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">u</span> <span class="fn">∘ₗ</span> <span class="fn"><span class="fn"><span class="fn">f</span>.<span class="fn">ker</span></span>.<span class="fn">subtype</span></span></span></span></div></div></div></div><div class="decl" id="LinearMap.comap_range_lcomp_compRight"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean#L78-L88">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#LinearMap.comap_range_lcomp_compRight"><span class="name">LinearMap</span>.<span class="name">comap_range_lcomp_compRight</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">R</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">P</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">I</span> : <a href="../../.././foundational_types.html">Type</a> t}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">P</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Small.{t, u}</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Injective</span> <span class="fn">R</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">k</span> : <a href="../../.././foundational_types.html">Type</a> s}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Semiring</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">k</span> <span class="fn">I</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">N</span> : <a href="../../.././foundational_types.html">Type</a> u_1}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">R</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">SMulCommClass</span> <span class="fn">R</span> <span class="fn">k</span> <span class="fn">N</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">CompatibleSMul</span> <span class="fn">N</span> <span class="fn">I</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">P</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">Q</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">j</span> : <span class="fn"><span class="fn">N</span> <span class="fn">→ₗ[</span><span class="fn">R</span><span class="fn">]</span> <span class="fn">I</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">hj</span> : <span class="fn"><span class="fn">Function.Injective</span> <span class="fn">⇑<span class="fn">j</span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">Submodule.comap</span> <span class="fn">(<span class="fn">compRight</span> <span class="fn">k</span> <span class="fn">j</span>)</span> <span class="fn"><span class="fn">(<span class="fn">lcomp</span> <span class="fn">k</span> <span class="fn">I</span> <span class="fn">f</span>)</span>.<span class="fn">range</span></span></span> <span class="fn">=</span> <span class="fn"><span class="fn">(<span class="fn">lcomp</span> <span class="fn">k</span> <span class="fn">N</span> <span class="fn"><span class="fn"><span class="fn">f</span>.<span class="fn">ker</span></span>.<span class="fn">subtype</span></span>)</span>.<span class="fn">ker</span></span></span></div></div><p>After embedding the coefficient module into an injective module, the inverse image
+of the precomposition range is exactly the maps vanishing on the original kernel.</p></div></div><div class="decl" id="EFiniteCharacterizations.exists_linearMap_apply_eq_iff_forall_smul_eq_zero"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/Modules/Injective/Hom.lean#L96-L107">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../../.././EFiniteCharacterizations/Modules/Injective/Hom.html#EFiniteCharacterizations.exists_linearMap_apply_eq_iff_forall_smul_eq_zero"><span class="name">EFiniteCharacterizations</span>.<span class="name">exists_linearMap_apply_eq_iff_forall_smul_eq_zero</span></a></span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">S</span> : <a href="../../.././foundational_types.html">Type</a> u}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M</span> : <a href="../../.././foundational_types.html">Type</a> w}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">M</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">Q</span> : <a href="../../.././foundational_types.html">Type</a> v}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">AddCommGroup</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module</span> <span class="fn">S</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Small.{v, u}</span> <span class="fn">S</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Injective</span> <span class="fn">S</span> <span class="fn">Q</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">a</span> : <span class="fn">M</span>}</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">x</span> : <span class="fn">Q</span>}</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(∃ (<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">→ₗ[</span><span class="fn">S</span><span class="fn">]</span> <span class="fn">Q</span></span>), <span class="fn"><span class="fn"><span class="fn">f</span> <span class="fn">a</span></span> <span class="fn">=</span> <span class="fn">x</span></span>)</span> <span class="fn">↔</span> <span class="fn">∀ (<span class="fn">s</span> : <span class="fn">S</span>), <span class="fn"><span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">•</span> <span class="fn">a</span></span> <span class="fn">=</span> <span class="fn">0</span></span> → <span class="fn"><span class="fn"><span class="fn">s</span> <span class="fn">•</span> <span class="fn">x</span></span> <span class="fn">=</span> <span class="fn">0</span></span></span></span></span></div></div><p>A linear map into an injective module can send <code>a</code> to <code>x</code> exactly when every scalar
+killing <code>a</code> also kills <code>x</code>.</p></div></div></main>
+<nav class="nav"><iframe src="../../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>

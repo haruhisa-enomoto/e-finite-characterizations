@@ -1,0 +1,251 @@
+<html lang="en"><head><meta charset="UTF-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1"></meta><link rel="stylesheet" href="../.././style.css"></link><link rel="icon" href="../.././favicon.svg"></link><link rel="mask-icon" href="../.././favicon.svg" color="#000000"></link><link rel="prefetch" href="../.././/declarations/declaration-data.bmp" as="image"></link><title>EFiniteCharacterizations.ScalarExtension.FieldExtension</title><script defer="true" src="../.././mathjax-config.js"></script><script defer="true" src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="true" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><script>const SITE_ROOT="../.././";</script><script>const MODULE_NAME="EFiniteCharacterizations.ScalarExtension.FieldExtension";</script><script type="module" src="../.././jump-src.js"></script><script type="module" src="../.././search.js"></script><script type="module" src="../.././expand-nav.js"></script><script type="module" src="../.././how-about.js"></script><script type="module" src="../.././instances.js"></script><script type="module" src="../.././importedBy.js"></script></head><body><input id="nav_toggle" type="checkbox"></input><header><h1><label for="nav_toggle"></label><span><a href="../../../index.html">Characterizations of E-finite algebras</a></span></h1><h2 class="header_filename break_within"><span class="name">EFiniteCharacterizations</span>.<span class="name">ScalarExtension</span>.<span class="name">FieldExtension</span></h2><form id="search_form"><input type="text" name="q" autocomplete="off"></input>&#32;<button id="search_button" onclick="javascript: form.action='../.././search.html';">Search</button></form></header><nav class="internal_nav"><p><a href="#top">return to top</a></p><p class="gh_nav_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean">source</a></p><div class="imports"><details><summary>Imports</summary><ul><li><a href="https://github.com/leanprover/lean4/blob/v4.35.0-rc3/src/Init.lean">Init</a></li><li><a href="../.././EFiniteCharacterizations/Modules/FiniteModuleMorphisms.html">EFiniteCharacterizations.Modules.FiniteModuleMorphisms</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/TensorProduct/Finite.lean">Mathlib.RingTheory.TensorProduct.Finite</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/RingTheory/TensorProduct/Maps.lean">Mathlib.RingTheory.TensorProduct.Maps</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Category/ModuleCat/Algebra.lean">Mathlib.Algebra.Category.ModuleCat.Algebra</a></li><li><a href="https://github.com/leanprover-community/mathlib4/blob/c55e6e786f49471c72fbddbec5415808896aec1e/Mathlib/Algebra/Category/ModuleCat/ChangeOfRings.lean">Mathlib.Algebra.Category.ModuleCat.ChangeOfRings</a></li></ul></details><details><summary>Imported by</summary><ul id="imported-by-EFiniteCharacterizations.ScalarExtension.FieldExtension" class="imported-by-list"></ul></details></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">ExtendedAlgebra</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.isScalarTower_ground_extension"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">isScalarTower_ground_extension</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.representation"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">representation</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.extendedModule"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendedModule</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.representation_tmul"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">representation_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.extendObj"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendObj</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.extendObj_smul_tmul"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendObj_smul_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.extendMap"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendMap</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.extendMap_tmul"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendMap_tmul</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.extend"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extend</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.algebraInclusion"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">algebraInclusion</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.restrictVectorSpaceEquiv"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">restrictVectorSpaceEquiv</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.restrictObj"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">restrictObj</span></a></div><div class="nav_link"><a class="break_within" href="#EFiniteCharacterizations.FieldExtension.restrict"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">restrict</span></a></div></nav><main>
+<div class="mod_doc"><h1 id="Extension-and-restriction-for-finite-modules-under-ground-field-extension" class="markdown-heading">Extension and restriction for finite modules under ground field extension <a class="hover-link" href="#Extension-and-restriction-for-finite-modules-under-ground-field-extension">#</a></h1></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.ExtendedAlgebra"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L24-L25">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">ExtendedAlgebra</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><a href="../.././foundational_types.html">Type</a> u</div></div><p>Extension of the ground field of an algebra, with the field factor first.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.ExtendedAlgebra" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.isScalarTower_ground_extension"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L27-L34">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.isScalarTower_ground_extension"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">isScalarTower_ground_extension</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">N</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">IsScalarTower</span> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">↑<span class="fn">N</span></span></span></div></div><p>The ground and extension field actions on a module over the extended
+algebra form a scalar tower.</p></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.representation"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L36-L42">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.representation"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">representation</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span></span> <span class="fn">→ₐ[</span><span class="fn">F</span><span class="fn">]</span> <span class="fn"><span class="fn">Module.End</span> <span class="fn">F</span> <span class="fn">(<span class="fn">TensorProduct</span> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">↑<span class="fn"><span class="fn">M</span>.<span class="fn">obj</span></span></span>)</span></span></span></div></div><p>The extension of the original algebra action to the scalar-extended
+underlying vector space.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.representation" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.extendedModule"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L44-L47">source</a></div><div class="attributes">@[reducible, inline]</div>
+<div class="decl_header"><span class="decl_kind">abbrev</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendedModule"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendedModule</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">Module</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span> <span class="fn">(<span class="fn">TensorProduct</span> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">↑<span class="fn"><span class="fn">M</span>.<span class="fn">obj</span></span></span>)</span></span></div></div><p>The module structure induced by scalar extension of the action.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.extendedModule" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.representation_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L49-L55">source</a></div><div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.representation_tmul"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">representation_tmul</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">z</span> : <span class="fn"><span class="fn">TensorProduct</span> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">↑<span class="fn"><span class="fn">M</span>.<span class="fn">obj</span></span></span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.representation">representation</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span> <span class="fn">M</span>)</span> <span class="fn">(<span class="fn">c</span> <span class="fn">⊗ₜ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">r</span>)</span>)</span> <span class="fn">z</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">c</span> <span class="fn">•</span> <span class="fn"><span class="fn">(<span class="fn">LinearMap.baseChange</span> <span class="fn">F</span> <span class="fn">(<span class="fn">(<span class="fn">Algebra.lsmul</span> <span class="fn">k</span> <span class="fn">k</span> <span class="fn">↑<span class="fn"><span class="fn">M</span>.<span class="fn">obj</span></span></span>)</span> <span class="fn">r</span>)</span>)</span> <span class="fn">z</span></span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.extendObj"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L59-L70">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendObj"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendObj</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span></span></div></div><p>Extend a finite module to the larger ground field.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.extendObj" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.extendObj_smul_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L72-L77">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendObj_smul_tmul"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendObj_smul_tmul</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">a </span><span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">r</span> : <span class="fn">R</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">↑<span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">(<span class="fn"><span class="fn">a</span> <span class="fn">⊗ₜ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">r</span></span> <span class="fn">•</span>     <span class="fn">have <span class="fn">this</span> := <span class="fn"><span class="fn">c</span> <span class="fn">⊗ₜ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">m</span></span>;
+    <span class="fn">this</span></span>)</span> <span class="fn">=</span>   <span class="fn"><span class="fn">(<span class="fn">a</span> <span class="fn">*</span> <span class="fn">c</span>)</span> <span class="fn">⊗ₜ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">(<span class="fn">r</span> <span class="fn">•</span> <span class="fn">m</span>)</span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.extendMap"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L79-L97">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendMap"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendMap</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendObj">extendObj</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span> <span class="fn">M</span></span> <span class="fn">⟶</span> <span class="fn"><a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendObj">extendObj</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span> <span class="fn">N</span></span></span></div></div><p>The scalar extension of a module map.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.extendMap" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.extendMap_tmul"><div class="theorem"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L99-L100">source</a></div><div class="attributes">@[simp]</div>
+<div class="decl_header"><span class="decl_kind">theorem</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendMap_tmul"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extendMap_tmul</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">{<span class="fn">M </span><span class="fn">N</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span>}</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">f</span> : <span class="fn"><span class="fn">M</span> <span class="fn">⟶</span> <span class="fn">N</span></span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">c</span> : <span class="fn">F</span>)</span></span>
+<span class="decl_args">
+<span class="fn">(<span class="fn">m</span> : <span class="fn">↑<span class="fn">M</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn"><span class="fn">(<span class="fn">ModuleCat.Hom.hom</span> <span class="fn"><span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extendMap">extendMap</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span> <span class="fn">f</span>)</span>.<span class="fn">hom</span></span>)</span> <span class="fn">(<span class="fn">c</span> <span class="fn">⊗ₜ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">m</span>)</span></span> <span class="fn">=</span> <span class="fn"><span class="fn">c</span> <span class="fn">⊗ₜ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><span class="fn">(<span class="fn">ModuleCat.Hom.hom</span> <span class="fn"><span class="fn">f</span>.<span class="fn">hom</span></span>)</span> <span class="fn">m</span></span></span></span></div></div></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.extend"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L102-L121">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.extend"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">extend</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">FGModuleCat</span> <span class="fn">R</span>)</span> <span class="fn">(<span class="fn">FGModuleCat</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span>)</span></span></div></div><p>Extend finite modules and their maps to the larger ground field.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.extend" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.algebraInclusion"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L125-L127">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.algebraInclusion"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">algebraInclusion</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">R</span> <span class="fn">→ₐ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn"><a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span></span></span></div></div><p>The original algebra maps to the ground field extension by (rmapsto 1otimes r).</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.algebraInclusion" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.restrictVectorSpaceEquiv"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L129-L137">source</a></div><div class="decl_header"><span class="decl_kind">def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.restrictVectorSpaceEquiv"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">restrictVectorSpaceEquiv</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">ModuleCat</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">↑<span class="fn">(<span class="fn"><span class="fn">(<span class="fn">ModuleCat.restrictScalars</span> <span class="fn"><span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.algebraInclusion">algebraInclusion</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span>.<span class="fn">toRingHom</span></span>)</span>.<span class="fn">obj</span></span> <span class="fn">M</span>)</span></span> <span class="fn">≃ₗ[</span><span class="fn">k</span><span class="fn">]</span> <span class="fn">↑<span class="fn">M</span></span></span></div></div><p>The underlying ground vector space is unchanged by restriction.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.restrictVectorSpaceEquiv" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.restrictObj"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L139-L148">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.restrictObj"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">restrictObj</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args">
+<span class="fn">(<span class="fn">M</span> : <span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span></span>)</span></span>
+<span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">FGModuleCat</span> <span class="fn">R</span></span></div></div><p>Restriction keeps the additive group and restricts the action along
+the inclusion of the original algebra.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.restrictObj" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div><div class="decl" id="EFiniteCharacterizations.FieldExtension.restrict"><div class="def"><div class="gh_link"><a href="https://github.com/haruhisa-enomoto/e-finite-characterizations/blob/707bfc084bb8646e125c15cb53fefff191486799/EFiniteCharacterizations/ScalarExtension/FieldExtension.lean#L150-L156">source</a></div><div class="decl_header"><span class="decl_kind">noncomputable def</span>
+<span class="decl_name"><a class="break_within" href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.restrict"><span class="name">EFiniteCharacterizations</span>.<span class="name">FieldExtension</span>.<span class="name">restrict</span></a></span><span class="decl_args">
+<span class="fn">(<span class="fn">k </span><span class="fn">F </span><span class="fn">R</span> : <a href="../.././foundational_types.html">Type</a> u)</span></span>
+<span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">k</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Field</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Ring</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Algebra</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">R</span></span>]</span></span>
+</span><span class="impl_arg"><span class="decl_args">
+<span class="fn">[<span class="fn"><span class="fn">Module.Finite</span> <span class="fn">k</span> <span class="fn">F</span></span>]</span></span>
+</span><span class="decl_args"> :</span><div class="decl_type"><span class="fn"><span class="fn">CategoryTheory.Functor</span> <span class="fn">(<span class="fn">FGModuleCat</span> <span class="fn">(<a href="../.././EFiniteCharacterizations/ScalarExtension/FieldExtension.html#EFiniteCharacterizations.FieldExtension.ExtendedAlgebra">ExtendedAlgebra</a> <span class="fn">k</span> <span class="fn">F</span> <span class="fn">R</span>)</span>)</span> <span class="fn">(<span class="fn">FGModuleCat</span> <span class="fn">R</span>)</span></span></div></div><p>Restriction of scalars from a finite ground field extension.</p><details id="instances-for-list-EFiniteCharacterizations.FieldExtension.restrict" class="instances-for-list"><summary>Instances For</summary><ul class="instances-for-enum"></ul></details></div></div></main>
+<nav class="nav"><iframe src="../.././navbar.html" class="navframe" frameBorder="0"></iframe></nav></body></html>
