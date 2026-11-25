@@ -1,6 +1,6 @@
 name = "e_finite_characterizations"
 version = "0.1.0"
-defaultTargets = ["EFiniteCharacterizations"]
+defaultTargets = ["EFiniteCharacterizations", "Solution"]
 
 [[require]]
 name = "mathlib"
@@ -11,3 +11,11 @@ rev = "c55e6e786f49471c72fbddbec5415808896aec1e"
 name = "EFiniteCharacterizations"
 globs = ["EFiniteCharacterizations", "EFiniteCharacterizations.*"]
 weakLeanArgs = ["-j1", "-M14000"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

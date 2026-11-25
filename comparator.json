@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "EFiniteCharacterizations.Challenge.arbitraryField",
+    "EFiniteCharacterizations.Challenge.infiniteField",
+    "EFiniteCharacterizations.Challenge.algebraicallyClosedField",
+    "EFiniteCharacterizations.Challenge.rankTwo",
+    "EFiniteCharacterizations.Challenge.brickDiscreteMultiplicityFree"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

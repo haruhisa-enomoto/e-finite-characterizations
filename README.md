@@ -6,6 +6,8 @@ For a finite-dimensional algebra Λ, E-finiteness means that every integral clas
 
 For algebras with at most two isomorphism classes of simple right modules, Theorem B identifies E-finiteness with both brick-finiteness and τ-tilting finiteness. Corollary C identifies brick-discreteness with multiplicity-freeness of irreducible components over an algebraically closed field. [Theorem B](EFiniteCharacterizations/Silting/Fans/RankTwoTauTilting.lean) · [Corollary C](EFiniteCharacterizations/Geometry/ComponentMultiplicity.lean)
 
+The [independent statement](EFiniteCharacterizations/Statement.lean) uses Mathlib alone. The [five comparison theorems](Challenge.lean) state the three field cases of Theorem A, Theorem B and Corollary C. Their [proofs](Solution.lean) pass through the [translation to the library](EFiniteCharacterizations/MainTheorems.lean). The comparison statements use all split basic presentations, and Lean proves that every algebra under consideration has one.
+
 ## Reading and building
 
 The library is organized by mathematical subject. Start with [two-term projective classes](EFiniteCharacterizations/Presentations/ProjectiveClasses.lean), [semi-invariants and King moduli](EFiniteCharacterizations/Geometry/KingSemiInvariants.lean), or the [torsion-monoid criterion](EFiniteCharacterizations/GrothendieckGroups/TorsionMonoidEmbedding.lean). The [website](https://haruhisa-enomoto.github.io/e-finite-characterizations/) includes the library map and searchable API.

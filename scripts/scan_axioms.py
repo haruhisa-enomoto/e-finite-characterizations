@@ -9,6 +9,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = """import EFiniteCharacterizations
+import Solution
 
 open Lean in
 #eval show CoreM Unit from do
@@ -19,7 +20,7 @@ open Lean in
   for (name, _) in env.constants.toList do
     let some idx := env.getModuleIdxFor? name | continue
     let mod := env.header.moduleNames[idx.toNat]!
-    unless (`EFiniteCharacterizations).isPrefixOf mod do continue
+    unless (`EFiniteCharacterizations).isPrefixOf mod || mod == `Solution do continue
     count := count + 1
     for ax in ← collectAxioms name do
       seen := seen.insert ax

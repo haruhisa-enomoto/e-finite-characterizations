@@ -1,0 +1,114 @@
+version: "v0.4"
+
+project:
+  name: "Characterizations of E-finite algebras and conjectures on brick-finiteness"
+  description: >-
+    For a finite-dimensional algebra, E-finiteness means that the two-term silting fan
+    covers the integral projective lattice. Theorem A relates this property to seventeen
+    tests over arbitrary fields, two fixed-vector counts over infinite fields, and three
+    geometric conditions over algebraically closed fields. The arbitrary-field tests include
+    nonzero morphisms between modules of equal class, injectivity of the dimension maps of
+    torsion-class Grothendieck monoids, finiteness of semibricks, absence of generic bricks and grains,
+    thick generation, and finiteness of localization targets. The geometric tests use closed
+    points of King moduli, open brick orbits and open wide loci. Theorem B equates E-finiteness,
+    brick-finiteness and tau-tilting finiteness in rank at most two. Corollary C identifies
+    brick-discreteness with multiplicity-freeness on every irreducible component in arbitrary
+    characteristic. The intended readers are representation theorists studying finite-dimensional
+    algebras, silting theory, stability and representation varieties.
+  authors: ["Haruhisa Enomoto"]
+  responsible_maintainers: ["Haruhisa Enomoto"]
+  license: "Apache-2.0"
+
+classification:
+  arxiv: ["math.RT", "math.RA"]
+  msc2020: ["16G10", "16G20", "16E35"]
+
+sources:
+  - title: "Characterizations of E-finite algebras and conjectures on brick-finiteness"
+    authors: ["Haruhisa Enomoto"]
+    type: "paper"
+    location: "Author's manuscript, November 25, 2026, 43 pages. Exact TeX and PDF hashes in docs/MANUSCRIPT.md."
+    relationship: "formalizes"
+    author_endorsement: "participated"
+    note: >-
+      Theorems A and B and Corollary C are the compared results. The correspondence links all
+      44 numbered statements, including the localizations, finite-field estimates, cancellation
+      criteria and Artin-target corollary, to their Lean proofs. The author's manuscript credits
+      the AI-assisted development of its results as described in PROVENANCE.md.
+
+related_formalizations:
+  - id: "https://github.com/TauCetiProject/TauCeti"
+    relationship: "adapts"
+    note: "13 modules on Nakayama, duality, injectivity and tensor products from development commit 02160f039476c36211f34cf7cb338272193a0ab6."
+  - id: "https://github.com/haruhisa-enomoto/pretorsion-image-closed"
+    relationship: "adapts"
+    note: "Finite-module morphisms and composition length."
+  - id: "https://github.com/haruhisa-enomoto/third-brauer-thrall-conjecture"
+    relationship: "adapts"
+    note: "Contragredient duality, full corners and basic-algebra reduction."
+  - id: "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution"
+    relationship: "adapts"
+    note: "Criterion for simplicity in the category of finite modules."
+  - id: "https://github.com/haruhisa-enomoto/magnitude-conjecture"
+    relationship: "adapts"
+    note: "Restriction of Morita equivalences to the finite-module categories."
+  - id: "https://github.com/haruhisa-enomoto/extension-closed-string-algebras"
+    relationship: "adapts"
+    note: "Fourier–Motzkin elimination for Farkas's lemma over an ordered field."
+
+status:
+  scope: >-
+    The five compared declarations state Theorem A(I), A(II), A(III), Theorem B and
+    Corollary C. The proof library also covers the numbered body and appendix results
+    listed in docs/PAPER-CORRESPONDENCE.md. Each proof uses only Lean core and Mathlib.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["OpenAI GPT-6 family"]
+      framework: "OpenAI Codex"
+      tool_setup: "Lean compiler, pinned Mathlib, declaration and axiom audits, and independently stated comparison endpoints."
+      prompting_notes: "Formalize the manuscript under the author's direction. Alternative proof routes are permitted."
+  notes: "The Lean proof terms were developed under Haruhisa Enomoto's direction. Authorship and borrowed components are documented in PROVENANCE.md and VENDORED.md."
+
+fidelity:
+  divergences: >-
+    Right modules are left modules over the opposite algebra. Integral weights are represented
+    by differences of finite projectives. Composition vectors are identified with exact
+    Grothendieck classes by the finite-length decomposition into simples. The two-term thick
+    condition uses the fully faithful realization of bounded projective complexes in the ambient
+    homotopy category, with its comparison theorem in the library. The geometric statement
+    proves existence of a split basic presentation and quantifies over all such presentations.
+    The paper uses one basic representative. All algebras, ground fields and modules are taken
+    in one arbitrary universe. See docs/proofs/PROOF-ROUTES.md for the different proof routes.
+
+review:
+  status: "unreviewed"
+  notes: "An independent human review of the Lean statements and proof terms has not been recorded."
+
+alignment:
+  namespace: "EFiniteCharacterizations"
+  statements:
+    - source: "Theorem A(I), arbitrary field, seventeen characterizations"
+      lean: "EFiniteCharacterizations.Challenge.arbitraryField"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem A(II), infinite field, two further characterizations"
+      lean: "EFiniteCharacterizations.Challenge.infiniteField"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem A(III), algebraically closed field, three geometric characterizations"
+      lean: "EFiniteCharacterizations.Challenge.algebraicallyClosedField"
+      module: "Challenge"
+      status: "proved"
+    - source: "Theorem B, rank at most two"
+      lean: "EFiniteCharacterizations.Challenge.rankTwo"
+      module: "Challenge"
+      status: "proved"
+    - source: "Corollary C, Weyman's conjecture"
+      lean: "EFiniteCharacterizations.Challenge.brickDiscreteMultiplicityFree"
+      module: "Challenge"
+      status: "proved"

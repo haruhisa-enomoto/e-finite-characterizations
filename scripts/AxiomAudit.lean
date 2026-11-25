@@ -1,0 +1,26 @@
+module
+
+public import EFiniteCharacterizations
+public import Solution
+
+/-! # Axiom queries for the independent endpoints and additional body results -/
+
+#print axioms EFiniteCharacterizations.Challenge.arbitraryField
+#print axioms EFiniteCharacterizations.Challenge.infiniteField
+#print axioms EFiniteCharacterizations.Challenge.algebraicallyClosedField
+#print axioms EFiniteCharacterizations.Challenge.rankTwo
+#print axioms EFiniteCharacterizations.Challenge.brickDiscreteMultiplicityFree
+#print axioms EFiniteCharacterizations.equivalences_arbitraryField
+#print axioms EFiniteCharacterizations.equivalences_infiniteField
+#print axioms EFiniteCharacterizations.equivalences_algebraicallyClosedField
+#print axioms EFiniteCharacterizations.rankTwoEquivalences
+#print axioms EFiniteCharacterizations.brick_discrete_iff_multiplicityFree
+#print axioms EFiniteCharacterizations.isEFinite_of_exact_embedding
+#print axioms EFiniteCharacterizations.isEFinite_of_surjective
+#print axioms EFiniteCharacterizations.isEFinite_iff_torsionMonoids_cancellative
+#print axioms EFiniteCharacterizations.isEFinite_iff_torsionFreeMonoids_cancellative
+#print axioms EFiniteCharacterizations.exists_infinite_stable_of_infinite_bricks
+#print axioms EFiniteCharacterizations.exists_torsionRadical_subclass
+#print axioms EFiniteCharacterizations.isEFinite_of_artin_epi_targets
+#print axioms EFiniteCharacterizations.tauTiltingFinite_of_artin_epi_targets
+#print axioms EFiniteCharacterizations.IsUniversalLocalization.firstTorSelf_subsingleton
