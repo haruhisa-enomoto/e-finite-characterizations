@@ -77,14 +77,15 @@ related_formalizations:
 status:
   scope: >-
     The five compared theorems in Challenge.lean state Theorem A(I) (arbitrary
-    field, 17 equivalent conditions), Theorem A(II) (infinite field, 2
-    dimension-vector conditions), Theorem A(III) (algebraically closed field,
-    existence of a split basic Morita chart and 3 geometric conditions across all
-    such charts), Theorem B (rank at most two over any field), and Corollary C
-    (Weyman's conjecture over algebraically closed fields). All 44 numbered
-    statements of the manuscript (the 3 introductory results and the 41 body and
-    appendix statements) and all cited inputs required along the Lean proof routes
-    are proved in the library using only Lean core and Mathlib.
+    field, 17 characterizations of E-finiteness—18 conditions including (E-fin)),
+    Theorem A(II) (infinite field, 2 dimension-vector characterizations of
+    E-finiteness), Theorem A(III) (algebraically closed field, existence of a
+    split basic Morita chart and 3 geometric characterizations of E-finiteness
+    across all such charts), Theorem B (rank at most two over any field), and
+    Corollary C (Weyman's conjecture over algebraically closed fields). All 44
+    numbered statements of the manuscript (the 3 introductory results and the 41
+    body and appendix statements) and all cited inputs required along the Lean
+    proof routes are proved in the library using only Lean core and Mathlib.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]

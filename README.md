@@ -175,7 +175,8 @@ citations:
   and [`Geometry/ComponentMultiplicity.lean`](EFiniteCharacterizations/Geometry/ComponentMultiplicity.lean):
   Theorem B and Corollary C.
 - [`docs/PAPER-CORRESPONDENCE.md`](docs/PAPER-CORRESPONDENCE.md): complete lookup table
-  for the 22 conditions of Theorem A and all numbered environments of the manuscript.
+  for `(E-fin)` and its 22 characterizations in Theorem A (23 labels in total) and all
+  numbered environments of the manuscript.
 
 ### What is compared and conventions
 
